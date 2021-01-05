@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: './fonts/NotoSansKR.otf';
+}
+
+div {
+  font-family: 'Noto Sans KR' !important;
+}
