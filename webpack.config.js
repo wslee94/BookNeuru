@@ -24,6 +24,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
+      public: path.resolve(__dirname, 'public'),
       app: path.resolve(__dirname, 'src/app'),
       components: path.resolve(__dirname, 'src/components'),
       containers: path.resolve(__dirname, 'src/containers'),

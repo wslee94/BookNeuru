@@ -3,6 +3,10 @@
   src: './fonts/NotoSansKR.otf';
 }
 
+body {
+  margin: 0;
+}
+
 div {
   font-family: 'Noto Sans KR' !important;
 }
