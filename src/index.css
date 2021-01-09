@@ -6,3 +6,7 @@
 div {
   font-family: 'Noto Sans KR' !important;
 }
+
+a {
+  text-decoration: none;
+}
