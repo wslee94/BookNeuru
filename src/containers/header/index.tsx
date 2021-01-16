@@ -1,65 +1,120 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import { AppBar, CssBaseline, Drawer, Hidden, IconButton, Toolbar, Typography, Button } from '@material-ui/core';
+import { Menu as MenuIcon, AccountCircle as AccountCircleIcon } from '@material-ui/icons';
+import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import Nav from '../Nav';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  logo: {
-    padding: '10px 0px',
-    width: '85px',
-    height: 'auto',
-  },
-}));
+const drawerWidth = 240;
 
-export default function Header() {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: { display: 'flex' },
+    drawer: {
+      [theme.breakpoints.up('lg')]: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
+    },
+    appBar: {
+      [theme.breakpoints.up('lg')]: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+      },
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+      [theme.breakpoints.up('lg')]: {
+        display: 'none',
+      },
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    headerContents: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+  }),
+);
+
+interface Props {
+  window?: () => Window;
+}
+
+export default function ResponsiveDrawer(props: Props) {
+  const { window } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <CssBaseline />
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
+          >
             <MenuIcon />
           </IconButton>
-          <a href="#">
-            <img className={classes.logo} src="public/image/logo/Health_Record_Text.png" alt="logo" />
-          </a>
 
-          <Typography variant="h6" className={classes.title}></Typography>
-          {auth ? (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={() => {}}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-          ) : (
-            <div>
-              <Button color="inherit">Login</Button>
-            </div>
-          )}
+          <div className={classes.headerContents}>
+            <Typography variant="h6" noWrap>
+              Logo
+            </Typography>
+            {auth ? (
+              <div>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={() => {}}
+                  color="inherit"
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+              </div>
+            ) : (
+              <div>
+                <Button color="inherit">Login</Button>
+              </div>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
+      <nav className={classes.drawer} aria-label="nav">
+        <Hidden lgUp implementation="css">
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            classes={{ paper: classes.drawerPaper }}
+            ModalProps={{ keepMounted: true }}
+          >
+            <Nav />
+          </Drawer>
+        </Hidden>
+        <Hidden mdDown implementation="css">
+          <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
+            <Nav />
+          </Drawer>
+        </Hidden>
+      </nav>
     </div>
   );
 }
