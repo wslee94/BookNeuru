@@ -1,6 +1,16 @@
 import React from 'react';
-import { AppBar, CssBaseline, Drawer, Hidden, IconButton, Toolbar, Typography, Button } from '@material-ui/core';
-import { Menu as MenuIcon, AccountCircle as AccountCircleIcon } from '@material-ui/icons';
+import {
+  AppBar,
+  CssBaseline,
+  Drawer,
+  Hidden,
+  IconButton,
+  Toolbar,
+  Typography,
+  Button,
+  Tooltip,
+} from '@material-ui/core';
+import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, Help as HelpIcon } from '@material-ui/icons';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Nav from '../Nav';
 
@@ -61,41 +71,38 @@ export default function ResponsiveDrawer(props: Props) {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
+          <IconButton color="inherit" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
 
           <div className={classes.headerContents}>
             <Typography variant="h6" noWrap>
-              Logo
+              로고
             </Typography>
             {auth ? (
               <div>
-                <IconButton
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={() => {}}
-                  color="inherit"
-                >
-                  <AccountCircleIcon />
-                </IconButton>
+                <Tooltip title="나의 정보">
+                  <IconButton onClick={() => {}} color="inherit">
+                    <AccountCircleIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="메뉴얼">
+                  <IconButton onClick={() => {}} color="inherit">
+                    <HelpIcon />
+                  </IconButton>
+                </Tooltip>
+                <Button color="inherit">로그아웃</Button>
               </div>
             ) : (
               <div>
-                <Button color="inherit">Login</Button>
+                <Button color="inherit">로그인</Button>
+                <Button color="inherit">회원가입</Button>
               </div>
             )}
           </div>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} aria-label="nav">
+      <nav className={classes.drawer}>
         <Hidden lgUp implementation="css">
           <Drawer
             container={container}

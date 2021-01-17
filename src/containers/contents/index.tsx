@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import MenuRouter from 'app';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: { display: 'flex' },
@@ -17,7 +17,7 @@ function Main() {
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
-      <Typography paragraph>본문 내용</Typography>
+      <MenuRouter />
     </main>
   );
 }
