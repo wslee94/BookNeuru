@@ -12,11 +12,23 @@ const theme = createMuiTheme({
   },
 });
 
+// 추후에 userAgent에 따라 분기할 수 있도록 변경 필요
+const isMobile = false;
+
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     <Router>
-      <Header />
-      <Main />
+      {isMobile ? (
+        <>
+          <Header />
+          <Main />
+        </>
+      ) : (
+        <>
+          <Header />
+          <Main />
+        </>
+      )}
     </Router>
   </MuiThemeProvider>,
   document.getElementById('root'),
