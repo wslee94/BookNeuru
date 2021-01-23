@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, Help as HelpIcon } from '@material-ui/icons';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import Nav from '../Nav';
+import Nav from '../nav';
 
 const drawerWidth = 240;
 

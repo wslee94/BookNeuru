@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from 'app/routes/home';
-import MyDashboard from 'app/routes/myDashboard';
-import MyDiary from 'app/routes/myDiary';
-import MyRoutine from 'app/routes/myRoutine';
+import Home from 'app/routes/web/home';
+import MyDashboard from 'app/routes/web/myDashboard';
+import MyDiary from 'app/routes/web/myDiary';
+import MyRoutine from 'app/routes/web/myRoutine';
 
 function MenuRouter() {
   return (

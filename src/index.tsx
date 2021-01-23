@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import Header from 'containers/header';
-import Main from 'containers/contents';
+import Header from 'containers/web/header';
+import Main from 'containers/web/contents';
 import './index.css';
 
 const theme = createMuiTheme({
