@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const rules = [
   {
@@ -21,6 +22,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: { rules },
+  plugins: [new HtmlWebpackPlugin()],
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
