@@ -3,6 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
+type NavProps = {
+  handleDrawerToggle?: () => void;
+};
+
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   menuItem: {
@@ -14,10 +18,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Nav() {
+function Nav(props: NavProps) {
+  const { handleDrawerToggle } = props;
   const classes = useStyles();
   return (
-    <div>
+    <>
       <div className={classes.toolbar} />
       <Divider />
       <List>
@@ -38,7 +43,7 @@ function Nav() {
             link: '/routine',
           },
         ].map((menu, index) => (
-          <ListItem button key={index}>
+          <ListItem button key={index} onClick={handleDrawerToggle}>
             <Link className={classes.menuItem} to={menu.link}>
               <ListItemIcon>
                 <i className={menu.image}></i>
@@ -49,7 +54,7 @@ function Nav() {
         ))}
       </List>
       <Divider />
-    </div>
+    </>
   );
 }
 

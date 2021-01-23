@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   CssBaseline,
@@ -9,6 +9,7 @@ import {
   Typography,
   Button,
   Tooltip,
+  useMediaQuery,
 } from '@material-ui/core';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, Help as HelpIcon } from '@material-ui/icons';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
@@ -57,14 +58,15 @@ export default function ResponsiveDrawer(props: Props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [auth, setAuth] = React.useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [auth, setAuth] = useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const container = window !== undefined ? () => window().document.body : undefined;
+  const isUpLg = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <div className={classes.root}>
@@ -112,8 +114,9 @@ export default function ResponsiveDrawer(props: Props) {
             onClose={handleDrawerToggle}
             classes={{ paper: classes.drawerPaper }}
             ModalProps={{ keepMounted: true }}
+            style={isUpLg ? { display: 'none' } : {}}
           >
-            <Nav />
+            <Nav handleDrawerToggle={handleDrawerToggle} />
           </Drawer>
         </Hidden>
         <Hidden mdDown implementation="css">
