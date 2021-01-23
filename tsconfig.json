@@ -2,21 +2,11 @@
   "compilerOptions": {
     "baseUrl": "src",
 		"paths": {
-      "public/*": [
-        "public/*"
-      ],
-      "app/*": [
-        "src/app/*"
-      ],
-      "components/*": [
-        "src/components/*"
-      ],
-      "containers/*": [
-        "src/containers/*"
-      ],
-      "helpers/*": [
-        "src/helpers/*"
-      ],
+      "public/*": ["public/*"],
+      "app/*": ["src/app/*"],
+      "components/*": ["src/components/*"],
+      "containers/*": ["src/containers/*"],
+      "helpers/*": ["src/helpers/*"],
 		},
     "target": "es5",
     "module": "commonjs",

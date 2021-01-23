@@ -8,7 +8,7 @@ const rules = [
   },
   {
     test: /\.(sass|less|css)/,
-    use: ['style-loader', 'css-loader'],
+    use: ['style-loader', 'css-loader', 'sass-loader'],
   },
 ];
 
@@ -17,7 +17,7 @@ module.exports = {
   mode: 'development',
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
   module: { rules },
