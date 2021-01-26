@@ -4,11 +4,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Header from 'containers/web/header';
 import Main from 'containers/web/contents';
-import './index.css';
+import 'styles/index.scss';
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'Noto Sans KR',
+    fontFamily: 'Spoqa Han Sans',
   },
 });
 

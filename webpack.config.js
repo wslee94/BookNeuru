@@ -4,13 +4,31 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const rules = [
   {
-    test: /\.tsx?/,
+    test: /\.tsx?/i,
     exclude: /node_modules/,
     loader: 'babel-loader',
   },
   {
-    test: /\.(sass|less|css)/,
+    test: /\.(sass|scss|less|css)/i,
     use: ['style-loader', 'css-loader', 'sass-loader'],
+  },
+  {
+    test: /\.(jpg|jpeg|gif|png|svg|ico)/i,
+    loader: 'url-loader',
+    options: {
+      name: 'images/[name].[ext]?[hash]',
+      fallback: 'file-loader',
+      limit: 8192,
+    },
+  },
+  {
+    test: /\.(woff|woff2|eot|ttf|otf)/i,
+    loader: 'url-loader',
+    options: {
+      name: 'fonts/[name].[ext]',
+      fallback: 'file-loader',
+      limit: 8192,
+    },
   },
 ];
 
@@ -28,6 +46,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
       public: path.resolve(__dirname, 'public'),
+      styles: path.resolve(__dirname, 'styles'),
       app: path.resolve(__dirname, 'src/app'),
       components: path.resolve(__dirname, 'src/components'),
       containers: path.resolve(__dirname, 'src/containers'),
@@ -35,7 +54,7 @@ module.exports = {
     },
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'dist'),
     port: 8080,
     historyApiFallback: true,
   },
