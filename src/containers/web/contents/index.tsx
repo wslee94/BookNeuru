@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from 'react-hot-loader';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import MenuRouter from 'app';
 
@@ -22,4 +23,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default hot(module)(Main);
