@@ -2,6 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+/* 
+  폴리필 전역설정 X, nodemodules 하위 npm 모듈에서 에러가 발생하면 해당 모듈 아래와 같이 정규식에서 제외 
+  exclude: /node_modules\/(?!(axios|@redux-saga|redux-logger))/
+*/
+
 const rules = [
   {
     test: /\.tsx?/i,
