@@ -10,6 +10,19 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: 'Spoqa Han Sans',
   },
+  props: {
+    MuiTypography: {
+      variantMapping: {
+        h1: 'h1',
+        h2: 'h2',
+        h3: 'h3',
+        h4: 'h4',
+        h5: 'h5',
+        h6: 'h6',
+        subtitle1: 'h3',
+      },
+    },
+  },
 });
 
 // 추후에 userAgent에 따라 분기할 수 있도록 변경 필요

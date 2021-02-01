@@ -54,10 +54,10 @@ module.exports = (env, arg) => {
       alias: {
         public: path.resolve(__dirname, 'public'),
         styles: path.resolve(__dirname, 'styles'),
-        app: path.resolve(__dirname, 'src/app'),
-        components: path.resolve(__dirname, 'src/components'),
-        containers: path.resolve(__dirname, 'src/containers'),
-        helpers: path.resolve(__dirname, 'src/helpers'),
+        app: path.resolve(__dirname, 'src', 'app'),
+        components: path.resolve(__dirname, 'src', 'components'),
+        containers: path.resolve(__dirname, 'src', 'containers'),
+        helpers: path.resolve(__dirname, 'src', 'helpers'),
       },
     },
     devServer: {
