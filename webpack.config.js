@@ -32,30 +32,32 @@ const rules = [
   },
 ];
 
-module.exports = {
-  target: 'web',
-  mode: 'development',
-  entry: './src/index.tsx',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-  },
-  module: { rules },
-  plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'index.html') }), new CleanWebpackPlugin()],
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-    alias: {
-      public: path.resolve(__dirname, 'public'),
-      styles: path.resolve(__dirname, 'styles'),
-      app: path.resolve(__dirname, 'src/app'),
-      components: path.resolve(__dirname, 'src/components'),
-      containers: path.resolve(__dirname, 'src/containers'),
-      helpers: path.resolve(__dirname, 'src/helpers'),
+module.exports = (env, arg) => {
+  return {
+    target: 'web',
+    mode: arg.mode,
+    entry: './src/index.tsx',
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'bundle.js',
     },
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
-    port: 8080,
-    historyApiFallback: true,
-  },
+    module: { rules },
+    plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'index.html') }), new CleanWebpackPlugin()],
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js'],
+      alias: {
+        public: path.resolve(__dirname, 'public'),
+        styles: path.resolve(__dirname, 'styles'),
+        app: path.resolve(__dirname, 'src/app'),
+        components: path.resolve(__dirname, 'src/components'),
+        containers: path.resolve(__dirname, 'src/containers'),
+        helpers: path.resolve(__dirname, 'src/helpers'),
+      },
+    },
+    devServer: {
+      contentBase: path.resolve(__dirname, 'dist'),
+      port: 8080,
+      historyApiFallback: true,
+    },
+  };
 };
