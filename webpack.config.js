@@ -38,7 +38,7 @@ const rules = [
 ];
 
 module.exports = (env, arg) => {
-  const devtool = arg.mode === 'development' ? 'eval-cheap-module-source-map' : 'source-map';
+  const devtool = arg.mode === 'development' ? 'inline-source-map' : 'source-map';
   return {
     target: 'web',
     mode: arg.mode,
@@ -64,6 +64,7 @@ module.exports = (env, arg) => {
       contentBase: path.resolve(__dirname, 'dist'),
       port: 8080,
       historyApiFallback: true,
+      hot: true,
     },
     devtool,
   };
