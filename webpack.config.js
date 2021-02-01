@@ -33,6 +33,7 @@ const rules = [
 ];
 
 module.exports = (env, arg) => {
+  const devtool = arg.mode === 'development' ? 'eval-cheap-module-source-map' : 'source-map';
   return {
     target: 'web',
     mode: arg.mode,
@@ -59,5 +60,6 @@ module.exports = (env, arg) => {
       port: 8080,
       historyApiFallback: true,
     },
+    devtool,
   };
 };
