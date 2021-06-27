@@ -54,6 +54,24 @@ function Nav(props: NavProps) {
         ))}
       </List>
       <Divider />
+      <List>
+        {[
+          {
+            text: '운동 종목 관리',
+            image: 'fas fa-tasks fa-fw',
+            link: '/',
+          },
+        ].map((menu, index) => (
+          <ListItem button key={index} onClick={handleDrawerToggle}>
+            <Link className={classes.menuItem} to={menu.link}>
+              <ListItemIcon>
+                <i className={menu.image}></i>
+              </ListItemIcon>
+              <ListItemText primary={menu.text} />
+            </Link>
+          </ListItem>
+        ))}
+      </List>
     </>
   );
 }

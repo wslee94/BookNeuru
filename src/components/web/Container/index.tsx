@@ -1,11 +1,10 @@
 import React from 'react';
-import { Typography } from '@material-ui/core/';
+import { Typography, Card } from '@material-ui/core/';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  pageContents: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+  card: {
+    marginTop: theme.spacing(1),
   },
 }));
 
@@ -23,7 +22,7 @@ function Container(props: ContainerProps) {
         <i style={{ marginRight: '10px' }} className="fas fa-dumbbell"></i>
         {pageTitle}
       </Typography>
-      <div className={classes.pageContents}>{children}</div>
+      <Card className={classes.card}>{children}</Card>
     </>
   );
 }
