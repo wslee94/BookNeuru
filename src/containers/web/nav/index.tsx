@@ -28,19 +28,14 @@ function Nav(props: NavProps) {
       <List>
         {[
           {
-            text: '나의 운동 현황',
-            image: 'far fa-chart-bar fa-fw',
-            link: '/dashboard',
+            text: '모임 만들기',
+            image: 'fas fa-user-plus',
+            link: '/plus-metting',
           },
           {
-            text: '나의 운동 일지',
-            image: 'far fa-calendar-check fa-fw',
-            link: '/diary',
-          },
-          {
-            text: '나의 운동 루틴',
-            image: 'fas fa-dumbbell fa-fw',
-            link: '/routine',
+            text: '나의모임',
+            image: 'fas fa-user-friends',
+            link: '/my-metting',
           },
         ].map((menu, index) => (
           <ListItem button key={index} onClick={handleDrawerToggle}>
@@ -54,24 +49,6 @@ function Nav(props: NavProps) {
         ))}
       </List>
       <Divider />
-      <List>
-        {[
-          {
-            text: '운동 종목 관리',
-            image: 'fas fa-tasks fa-fw',
-            link: '/',
-          },
-        ].map((menu, index) => (
-          <ListItem button key={index} onClick={handleDrawerToggle}>
-            <Link className={classes.menuItem} to={menu.link}>
-              <ListItemIcon>
-                <i className={menu.image}></i>
-              </ListItemIcon>
-              <ListItemText primary={menu.text} />
-            </Link>
-          </ListItem>
-        ))}
-      </List>
     </>
   );
 }

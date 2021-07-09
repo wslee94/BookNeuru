@@ -6,13 +6,13 @@ import {
   Hidden,
   IconButton,
   Toolbar,
-  Typography,
   Button,
   Tooltip,
   useMediaQuery,
 } from '@material-ui/core';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, Help as HelpIcon } from '@material-ui/icons';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import logo from 'public/img/logo.png';
 import Nav from '../nav';
 
 const drawerWidth = 240;
@@ -59,7 +59,7 @@ export default function ResponsiveDrawer(props: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -78,9 +78,7 @@ export default function ResponsiveDrawer(props: Props) {
           </IconButton>
 
           <div className={classes.headerContents}>
-            <Typography variant="h6" noWrap>
-              로고
-            </Typography>
+            <img src={logo} alt="logo" style={{ height: 35 }} />
             {auth ? (
               <div>
                 <Tooltip title="나의 정보">

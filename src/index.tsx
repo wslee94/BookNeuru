@@ -10,6 +10,11 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: 'Spoqa Han Sans',
   },
+  palette: {
+    primary: {
+      main: '#284243',
+    },
+  },
   props: {
     MuiTypography: {
       variantMapping: {
