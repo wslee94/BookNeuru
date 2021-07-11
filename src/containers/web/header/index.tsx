@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   AppBar,
   CssBaseline,
@@ -96,7 +97,9 @@ export default function ResponsiveDrawer(props: Props) {
             ) : (
               <div>
                 <Button color="inherit">로그인</Button>
-                <Button color="inherit">회원가입</Button>
+                <Link to="/sign-up">
+                  <Button color="inherit">회원가입</Button>
+                </Link>
               </div>
             )}
           </div>

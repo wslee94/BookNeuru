@@ -43,3 +43,15 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.container-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container-center .item {
+  padding: 10px 0px;
+  width: 400px;
+}
