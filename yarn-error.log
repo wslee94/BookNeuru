@@ -1,8 +1,8 @@
 Arguments: 
-  D:\ProgramFiles\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @babel/runtime-corejs3 -D
+  D:\ProgramFiles\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @material-ui/core/styles
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\user\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\NVIDIA Corporation\NVIDIA NGX;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\DTS\Binn;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn;C:\Program Files\Git\cmd;D:\ProgramFiles\nodejs;C:\Users\user\AppData\Local\Microsoft\WindowsApps;D:\ProgramFiles\Microsoft VS Code\bin;C:\Users\user\AppData\Roaming\npm
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\user\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\NVIDIA Corporation\NVIDIA NGX;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\DTS\Binn;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn;C:\Program Files\Git\cmd;D:\ProgramFiles\nodejs;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\user\AppData\Local\Microsoft\WindowsApps;D:\ProgramFiles\Microsoft VS Code\bin;C:\Users\user\AppData\Roaming\npm
 
 Yarn version: 
   1.17.3
@@ -14,7 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'D:\dev\git\MuscleRecords\node_modules\history\node_modules\.bin'
+  Error: https://registry.yarnpkg.com/@material-ui%2fcore/styles: Request "https://registry.yarnpkg.com/@material-ui%2fcore/styles" returned a 405
+      at Request.params.callback [as _callback] (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66839:18)
+      at Request.self.callback (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140464:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141436:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141358:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
@@ -22,7 +32,7 @@ npm manifest:
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-      "start": "webpack serve --open --hot --mode=development",
+      "dev": "webpack serve --open --hot --mode=development",
       "build": "webpack --mode=production"
     },
     "author": "wslee",
@@ -30,6 +40,7 @@ npm manifest:
     "dependencies": {
       "@material-ui/core": "^4.11.2",
       "@material-ui/icons": "^4.11.2",
+      "@material-ui/lab": "^4.0.0-alpha.60",
       "@types/react": "^17.0.0",
       "@types/react-dom": "^17.0.0",
       "@types/react-router-dom": "^5.1.7",
@@ -44,6 +55,7 @@ npm manifest:
       "@babel/preset-env": "^7.12.11",
       "@babel/preset-react": "^7.12.10",
       "@babel/preset-typescript": "^7.12.7",
+      "@babel/runtime-corejs3": "^7.12.5",
       "@typescript-eslint/eslint-plugin": "^4.11.1",
       "@typescript-eslint/parser": "^4.11.1",
       "babel-loader": "^8.2.2",
@@ -932,6 +944,14 @@ Lockfile:
       "@babel/helper-validator-option" "^7.12.1"
       "@babel/plugin-transform-typescript" "^7.12.1"
   
+  "@babel/runtime-corejs3@^7.12.5":
+    version "7.12.5"
+    resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.12.5.tgz#ffee91da0eb4c6dae080774e94ba606368e414f4"
+    integrity sha512-roGr54CsTmNPPzZoCP1AmDXuBoNao7tnSA83TXTwt+UK5QVyh1DIJnrgYRPWKCF2flqZQXwa7Yr8v7VmLzF0YQ==
+    dependencies:
+      core-js-pure "^3.0.0"
+      regenerator-runtime "^0.13.4"
+  
   "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
     version "7.12.5"
     resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
@@ -1022,6 +1042,17 @@ Lockfile:
     integrity sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==
     dependencies:
       "@babel/runtime" "^7.4.4"
+  
+  "@material-ui/lab@^4.0.0-alpha.60":
+    version "4.0.0-alpha.60"
+    resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.60.tgz#5ad203aed5a8569b0f1753945a21a05efa2234d2"
+    integrity sha512-fadlYsPJF+0fx2lRuyqAuJj7hAS1tLDdIEEdov5jlrpb5pp4b+mRDUqQTUxi4inRZHS1bEXpU8QWUhO6xX88aA==
+    dependencies:
+      "@babel/runtime" "^7.4.4"
+      "@material-ui/utils" "^4.11.2"
+      clsx "^1.0.4"
+      prop-types "^15.7.2"
+      react-is "^16.8.0 || ^17.0.0"
   
   "@material-ui/styles@^4.11.2":
     version "4.11.2"
@@ -2126,6 +2157,11 @@ Lockfile:
     dependencies:
       browserslist "^4.16.0"
       semver "7.0.0"
+  
+  core-js-pure@^3.0.0:
+    version "3.8.3"
+    resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.8.3.tgz#10e9e3b2592ecaede4283e8f3ad7020811587c02"
+    integrity sha512-V5qQZVAr9K0xu7jXg1M7qTEwuxUgqr7dUOezGaNa7i+Xn9oXAU/d1fzqD9ObuwpVQOaorO5s70ckyi1woP9lVA==
   
   core-js@^3.8.3:
     version "3.8.3"

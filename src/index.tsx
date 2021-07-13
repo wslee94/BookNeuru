@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { MuiThemeProvider, createTheme } from '@material-ui/core';
 import Header from 'containers/web/header';
 import Main from 'containers/web/contents';
 import 'styles/index.scss';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: 'Spoqa Han Sans',
   },
