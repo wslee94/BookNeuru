@@ -14,7 +14,7 @@ interface ToggleButtonGroupProps {
 function ToggleButtonGroup(props: ToggleButtonGroupProps) {
   const { value, onChange, isRequired = false, size = 'large', children, label, style } = props;
   return (
-    <div>
+    <>
       {label && !isRequired ? (
         <div style={{ display: 'flex', marginBottom: '3px' }}>{label ? <span>{label}</span> : null}</div>
       ) : null}
@@ -27,7 +27,7 @@ function ToggleButtonGroup(props: ToggleButtonGroupProps) {
       <MuiToggleButtonGroup size={size} value={value} exclusive onChange={onChange} style={style}>
         {children}
       </MuiToggleButtonGroup>
-    </div>
+    </>
   );
 }
 

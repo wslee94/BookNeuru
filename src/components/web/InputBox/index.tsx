@@ -32,7 +32,7 @@ function InputBox(props: InputBoxProps) {
     style,
   } = props;
   return (
-    <div>
+    <>
       {label && !isRequired ? (
         <div style={{ display: 'flex', marginBottom: '3px' }}>{label ? <span>{label}</span> : null}</div>
       ) : null}
@@ -60,7 +60,7 @@ function InputBox(props: InputBoxProps) {
         helperText={helperText}
         style={style}
       />
-    </div>
+    </>
   );
 }
 

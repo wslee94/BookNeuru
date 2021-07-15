@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import InputBox from 'components/web/InputBox';
 import ToggleButtonGroup from 'components/web/ToggleButtonGroup';
 import MuiToggleButton from '@material-ui/lab/ToggleButton';
+import Button from 'components/web/Button';
+import OneLineWrapper from 'components/web/OneLineWrapper';
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -10,17 +12,16 @@ function SignUp() {
   const [isErrPwd, setIsErrPwd] = useState(false);
   const [name, setName] = useState('');
   const [gender, setGender] = useState<string | null>(null);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isCheckingPhoneNumber, setIsCheckingPhoneNumber] = useState(false);
+  const [verificationNumber, setVerificationNumber] = useState('');
 
   useEffect(() => {
     if (checkPassword && password !== checkPassword) setIsErrPwd(true);
     else setIsErrPwd(false);
   }, [password, checkPassword]);
 
-  const [alignment, setAlignment] = React.useState<string | null>('left');
-
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
-    setAlignment(newAlignment);
-  };
+  // 이메일, 핸드폰번호 유효성 검사, 유효성 검사 실패 시 InputBox 문구 표시 및 버튼 disabled
 
   return (
     <div className="container-center">
@@ -75,6 +76,42 @@ function SignUp() {
           </MuiToggleButton>
         </ToggleButtonGroup>
       </div>
+      <div className="item">
+        <OneLineWrapper label="핸드폰 번호" isRequired>
+          <InputBox
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            isRequired
+            style={{ width: '50%' }}
+          />
+          <Button
+            label="인증번호 받기"
+            onClick={() => {
+              setIsCheckingPhoneNumber(true);
+            }}
+            style={{ width: '50%' }}
+          />
+        </OneLineWrapper>
+      </div>
+      {isCheckingPhoneNumber ? (
+        <div className="item">
+          <OneLineWrapper label="인증번호 입력" isRequired>
+            <InputBox
+              value={verificationNumber}
+              onChange={(e) => setVerificationNumber(e.target.value)}
+              isRequired
+              style={{ width: '50%' }}
+            />
+            <Button
+              label="확인"
+              onClick={() => {
+                setIsCheckingPhoneNumber(true);
+              }}
+              style={{ width: '50%' }}
+            />
+          </OneLineWrapper>
+        </div>
+      ) : null}
     </div>
   );
 }
