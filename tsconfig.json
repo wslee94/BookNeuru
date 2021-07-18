@@ -8,6 +8,7 @@
       "components/*": ["src/components/*"],
       "containers/*": ["src/containers/*"],
       "helpers/*": ["src/helpers/*"],
+      "config/*": ["src/config/*"],
 		},
     "target": "es5",
     "module": "commonjs",

@@ -4,22 +4,40 @@ import ToggleButtonGroup from 'components/web/ToggleButtonGroup';
 import MuiToggleButton from '@material-ui/lab/ToggleButton';
 import Button from 'components/web/Button';
 import OneLineWrapper from 'components/web/OneLineWrapper';
+import customeTheme from 'config/theme';
+import * as func from 'helpers/func';
 
 function SignUp() {
   const [email, setEmail] = useState('');
+  const [isErrEmail, setIsErrEmail] = useState(false);
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [isErrPwd, setIsErrPwd] = useState(false);
+  const [isErrPwdCheck, setIsErrPwdCheck] = useState(false);
   const [name, setName] = useState('');
   const [gender, setGender] = useState<string | null>(null);
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [isErrPhone, setIsErrPhone] = useState(false);
   const [isCheckingPhoneNumber, setIsCheckingPhoneNumber] = useState(false);
   const [verificationNumber, setVerificationNumber] = useState('');
 
   useEffect(() => {
-    if (checkPassword && password !== checkPassword) setIsErrPwd(true);
+    if (email && !func.checkEmail(email)) setIsErrEmail(true);
+    else setIsErrEmail(false);
+  }, [email]);
+
+  useEffect(() => {
+    if (password && !func.checkPassword(password)) setIsErrPwd(true);
     else setIsErrPwd(false);
+
+    if (checkPassword && password !== checkPassword) setIsErrPwdCheck(true);
+    else setIsErrPwdCheck(false);
   }, [password, checkPassword]);
+
+  useEffect(() => {
+    if (phoneNumber && !func.checkPhoneNumber(phoneNumber)) setIsErrPhone(true);
+    else setIsErrPhone(false);
+  }, [phoneNumber]);
 
   // 이메일, 핸드폰번호 유효성 검사, 유효성 검사 실패 시 InputBox 문구 표시 및 버튼 disabled
 
@@ -31,6 +49,8 @@ function SignUp() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="example@naver.com"
+          helperText={isErrEmail ? '잘못된 이메일 형식입니다.' : ''}
+          isError={isErrEmail}
           isRequired
         />
       </div>
@@ -51,8 +71,8 @@ function SignUp() {
           label="비밀번호 확인"
           value={checkPassword}
           onChange={(e) => setCheckPassword(e.target.value)}
-          helperText={isErrPwd ? '비밀번호가 일치하지 않습니다.' : ''}
-          isError={isErrPwd}
+          helperText={isErrPwdCheck ? '비밀번호가 일치하지 않습니다.' : ''}
+          isError={isErrPwdCheck}
           isRequired
         />
       </div>
@@ -64,14 +84,27 @@ function SignUp() {
           value={gender}
           onChange={(e, v) => setGender(v)}
           label="성별"
-          isRequired
           size="small"
           style={{ width: '100%', height: 40 }}
         >
-          <MuiToggleButton style={{ width: '50%' }} value="M">
+          <MuiToggleButton
+            style={
+              gender === 'M'
+                ? { width: '50%', backgroundColor: customeTheme.main, color: customeTheme.font }
+                : { width: '50%' }
+            }
+            value="M"
+          >
             남성
           </MuiToggleButton>
-          <MuiToggleButton style={{ width: '50%' }} value="F">
+          <MuiToggleButton
+            style={
+              gender === 'F'
+                ? { width: '50%', backgroundColor: customeTheme.main, color: customeTheme.font }
+                : { width: '50%' }
+            }
+            value="F"
+          >
             여성
           </MuiToggleButton>
         </ToggleButtonGroup>
@@ -81,7 +114,10 @@ function SignUp() {
           <InputBox
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            placeholder="010-1234-5678"
             isRequired
+            helperText={isErrPhone ? '잘못된 핸드폰번호 형식입니다.' : ''}
+            isError={isErrPhone}
             style={{ width: '50%' }}
           />
           <Button
@@ -89,7 +125,8 @@ function SignUp() {
             onClick={() => {
               setIsCheckingPhoneNumber(true);
             }}
-            style={{ width: '50%' }}
+            isDisabled={!phoneNumber || isErrPhone}
+            style={{ width: '50%', height: '40px' }}
           />
         </OneLineWrapper>
       </div>

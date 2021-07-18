@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createTheme } from '@material-ui/core';
 import Header from 'containers/web/header';
 import Main from 'containers/web/contents';
+import customeTheme from 'config/theme';
 import 'styles/index.scss';
 
 const theme = createTheme({
@@ -12,7 +13,7 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#284243',
+      main: customeTheme.main,
     },
   },
   props: {
