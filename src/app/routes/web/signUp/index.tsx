@@ -4,6 +4,7 @@ import ToggleButtonGroup from 'components/web/ToggleButtonGroup';
 import MuiToggleButton from '@material-ui/lab/ToggleButton';
 import Button from 'components/web/Button';
 import OneLineWrapper from 'components/web/OneLineWrapper';
+import ImageFile from 'components/web/ImageFile';
 import customeTheme from 'config/theme';
 import * as func from 'helpers/func';
 
@@ -20,6 +21,7 @@ function SignUp() {
   const [isErrPhone, setIsErrPhone] = useState(false);
   const [isCheckingPhoneNumber, setIsCheckingPhoneNumber] = useState(false);
   const [verificationNumber, setVerificationNumber] = useState('');
+  const [imageFile, setImageFile] = useState<string | null>(null);
 
   useEffect(() => {
     if (email && !func.checkEmail(email)) setIsErrEmail(true);
@@ -38,8 +40,6 @@ function SignUp() {
     if (phoneNumber && !func.checkPhoneNumber(phoneNumber)) setIsErrPhone(true);
     else setIsErrPhone(false);
   }, [phoneNumber]);
-
-  // 이메일, 핸드폰번호 유효성 검사, 유효성 검사 실패 시 InputBox 문구 표시 및 버튼 disabled
 
   return (
     <div className="container-center">
@@ -149,6 +149,9 @@ function SignUp() {
           </OneLineWrapper>
         </div>
       ) : null}
+      <div className="item">
+        <ImageFile label="프로필 사진" file={imageFile} onChange={(file) => setImageFile(file)} />
+      </div>
     </div>
   );
 }
