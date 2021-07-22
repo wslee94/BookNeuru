@@ -43,6 +43,7 @@ function SignUp() {
 
   return (
     <div className="container-center">
+      <h1>회원가입</h1>
       <div className="item">
         <InputBox
           label="이메일"
@@ -150,7 +151,17 @@ function SignUp() {
         </div>
       ) : null}
       <div className="item">
-        <ImageFile label="프로필 사진" file={imageFile} onChange={(file) => setImageFile(file)} />
+        <ImageFile
+          label="프로필 사진"
+          alt="프로필 사진"
+          size="large"
+          file={imageFile}
+          onChange={(file) => setImageFile(file)}
+          align="center"
+        />
+      </div>
+      <div className="item">
+        <Button label="회원가입" onClick={() => {}} style={{ width: '100%' }} />
       </div>
     </div>
   );
