@@ -96,7 +96,9 @@ export default function ResponsiveDrawer(props: Props) {
               </div>
             ) : (
               <div>
-                <Button color="inherit">로그인</Button>
+                <Link to="/login">
+                  <Button color="inherit">로그인</Button>
+                </Link>
                 <Link to="/sign-up">
                   <Button color="inherit">회원가입</Button>
                 </Link>

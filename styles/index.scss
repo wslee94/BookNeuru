@@ -34,9 +34,18 @@
   src:url('../public/fonts/SpoqaHanSansNeo-Thin.ttf') format('truetype');
 }
 
+html, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: Spoqa Han Sans;
+  height: 100%;
+}
+
+main {
+  height: 100%;
 }
 
 a {
@@ -44,15 +53,34 @@ a {
   color: inherit;
 }
 
-.container-center {
+.container-vertical-center {
+  width: 100%;
+  height: 100%;
+  display: table;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-vertical-center .item {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.container-horizontal-center {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.container-center .item {
+.container-horizontal-center .item {
   padding: 10px 0px;
+  width: 400px;
+}
+
+.container-horizontal-center .item-small-padding {
+  padding: 5px 0px;
   width: 400px;
 }
 
