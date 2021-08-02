@@ -23,6 +23,28 @@ function SignUp() {
   const [verificationNumber, setVerificationNumber] = useState('');
   const [imageFile, setImageFile] = useState<string | null>(null);
 
+  function cleanState() {
+    setEmail('');
+    setIsErrEmail(false);
+    setPassword('');
+    setCheckPassword('');
+    setIsErrPwd(false);
+    setIsErrPwdCheck(false);
+    setName('');
+    setGender(null);
+    setPhoneNumber('');
+    setIsErrPhone(false);
+    setIsCheckingPhoneNumber(false);
+    setVerificationNumber('');
+    setImageFile(null);
+  }
+
+  useEffect(() => {
+    return function cleanUp() {
+      cleanState();
+    };
+  }, []);
+
   useEffect(() => {
     if (email && !func.checkEmail(email)) setIsErrEmail(true);
     else setIsErrEmail(false);
