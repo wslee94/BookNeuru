@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import InputBox from 'components/web/InputBox';
 import Button from 'components/web/Button';
+import FindEmail from '../findEmail';
+import FindPassword from '../findPassword';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isOpenFindEmail, setIsOpenFindEmail] = useState(false);
+  const [isOpenFindPassword, setIsOpenFindPassword] = useState(false);
 
   return (
     <div className="container-vertical-center">
@@ -33,14 +37,18 @@ function Login() {
             />
           </div>
           <div className="item-small-padding" style={{ display: 'flex', justifyContent: 'flex-end', color: '#7b7b7b' }}>
-            <div style={{ cursor: 'pointer' }} onClick={() => {}}>
+            <div style={{ cursor: 'pointer' }} onClick={() => setIsOpenFindEmail(true)}>
               이메일 찾기
             </div>
             <div>&nbsp;/&nbsp;</div>
-            <div style={{ cursor: 'pointer' }}>비밀번호 찾기</div>
+            <div style={{ cursor: 'pointer' }} onClick={() => setIsOpenFindPassword(true)}>
+              비밀번호 찾기
+            </div>
           </div>
         </div>
       </div>
+      <FindEmail isOpen={isOpenFindEmail} handleClose={() => setIsOpenFindEmail(false)} />
+      <FindPassword isOpen={isOpenFindPassword} handleClose={() => setIsOpenFindPassword(false)} />
     </div>
   );
 }
