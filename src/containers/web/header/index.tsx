@@ -48,6 +48,11 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'space-between',
       alignItems: 'center',
     },
+    customToolbar: {
+      minHeight: '64px',
+      paddingLeft: '16px',
+      paddingRight: '16px',
+    },
   }),
 );
 
@@ -73,7 +78,7 @@ export default function ResponsiveDrawer(props: Props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className={classes.customToolbar}>
           <IconButton color="inherit" edge="start" onClick={handleDrawerToggle} className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
