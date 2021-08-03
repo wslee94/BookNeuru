@@ -9,20 +9,20 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: { display: 'flex' },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    paddingTop: theme.spacing(11),
+    paddingBottom: theme.spacing(3),
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
     [theme.breakpoints.up('lg')]: {
       marginLeft: drawerWidth,
     },
   },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
 }));
 
 function Contents() {
   const classes = useStyles();
   return (
     <main className={classes.content}>
-      <div className={classes.toolbar} />
       <MenuRouter />
     </main>
   );
