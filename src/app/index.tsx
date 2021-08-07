@@ -9,21 +9,11 @@ import Login from 'app/routes/web/login';
 function MenuRouter() {
   return (
     <Switch>
-      <Route path="/sign-up">
-        <SignUp />
-      </Route>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/plus-metting">
-        <PlusMetting />
-      </Route>
-      <Route path="/my-metting">
-        <MyMetting />
-      </Route>
-      <Route path="/">
-        <Home />
-      </Route>
+      <Route path="/sign-up" component={SignUp} />
+      <Route path="/login" component={Login} />
+      <Route path="/plus-metting" component={PlusMetting} />
+      <Route path="/my-metting" component={MyMetting} />
+      <Route path="/" component={Home} />
     </Switch>
   );
 }
