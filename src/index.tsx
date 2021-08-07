@@ -9,7 +9,7 @@ import 'styles/index.scss';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Spoqa Han Sans',
+    fontFamily: 'NotoSansKR',
   },
   palette: {
     primary: {

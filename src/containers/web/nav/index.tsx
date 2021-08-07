@@ -67,7 +67,9 @@ function Nav(props: NavProps) {
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <span style={menu.selected ? { color: '#1976d2', fontWeight: 500 } : undefined}>{menu.text}</span>
+                    <span style={menu.selected ? { color: '#1976d2', fontWeight: 'bold' } : undefined}>
+                      {menu.text}
+                    </span>
                   }
                 />
               </ListItem>
