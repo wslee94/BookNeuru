@@ -1,7 +1,7 @@
 import React from 'react';
 import MuiButton from '@material-ui/core/Button';
 import AttachFile from '@material-ui/icons/AttachFile';
-import noneImage from 'public/img/none_image.png';
+import noneImage from 'public/img/none_user_image.png';
 
 interface ImageFileProps {
   isRequired?: boolean;
