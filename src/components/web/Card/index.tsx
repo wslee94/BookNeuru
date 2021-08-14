@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 interface CardProps {
   children: object;
   onClick?: () => void;
-  image: string;
+  image?: string;
   imageHeight?: number;
   imageAlt?: string;
   actionButton?: object;
@@ -21,7 +21,9 @@ function Card(props: CardProps) {
   return (
     <MuiCard style={style}>
       <CardActionArea>
-        <CardMedia component="img" alt={imageAlt} height={imageHeight} image={image} />
+        {image ? (
+          <CardMedia component="img" alt={imageAlt} image={image} style={{ height: imageHeight, width: '100%' }} />
+        ) : null}
         <CardContent>{children}</CardContent>
       </CardActionArea>
       {actionButton && <CardActions>{actionButton}</CardActions>}
