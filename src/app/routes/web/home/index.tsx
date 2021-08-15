@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'components/web/Card';
+import CardMedia from 'components/web/CardMedia';
 import Carousel from 'components/web/Carousel';
 import 'react-multi-carousel/lib/styles.css';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,7 +10,13 @@ import NoContent from 'components/web/NoContent';
 const banners = [{}];
 
 const recruiting = [
-  { title: '모임제목1', desc: '모임설명1', location: '서울시 강남구', image: 'no-image' },
+  {
+    title: '모임제목1',
+    desc:
+      '모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1임설명1모임설명1모임설명1모임설명1',
+    location: '서울시 강남구',
+    image: 'no-image',
+  },
   { title: '모임제목2', desc: '모임설명2', location: '서울시 강서구', image: 'no-image' },
   { title: '모임제목3', desc: '모임설명3', location: '경기도 분당구', image: 'no-image' },
   { title: '모임제목4', desc: '모임설명4', location: '경기도 분당구', image: 'no-image' },
@@ -26,7 +33,12 @@ const activating = [
   { title: '모임제목7', desc: '모임설명7', location: '경기도 분당구', image: 'no-image' },
 ];
 
-const mostViewBooks = [{}];
+const mostViewBooks = [
+  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', description: '책설명', image: '' },
+  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', description: '책설명', image: '' },
+  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', description: '책설명', image: '' },
+  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', description: '책설명', image: '' },
+];
 
 function Home() {
   return (
@@ -61,7 +73,7 @@ function Home() {
                     >
                       <div>
                         <span style={{ fontSize: '16px', fontWeight: 'bold' }}>{n.title}</span>
-                        <div style={{ marginTop: '10px' }}>{n.desc}</div>
+                        <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
                       </div>
                       <div style={{ textAlign: 'right' }}>{n.location}</div>
                     </div>
@@ -119,11 +131,56 @@ function Home() {
                       >
                         <div>
                           <span style={{ fontSize: '16px', fontWeight: 'bold' }}>{n.title}</span>
-                          <div style={{ marginTop: '10px' }}>{n.desc}</div>
+                          <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>{n.location}</div>
                       </div>
                     </Card>
+                  </div>
+                );
+              }
+
+              return (
+                <div key={index} style={{ padding: '5px 10px' }}>
+                  <Card onClick={() => {}}>
+                    <div
+                      style={{
+                        height: '290px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <NoContent text="모집중인 모임이 없습니다." />
+                    </div>
+                  </Card>
+                </div>
+              );
+            })}
+          </Carousel>
+        </div>
+
+        <div style={{ marginTop: '10px' }}>
+          <Carousel
+            header={
+              <div
+                style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 10px', alignItems: 'center' }}
+              >
+                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모임에서 가장 많이 읽은 책</div>
+                <div>
+                  <IconButton onClick={() => {}}>
+                    <MoreHorizIcon />
+                  </IconButton>
+                </div>
+              </div>
+            }
+          >
+            {mostViewBooks.map((n, index) => {
+              if (n) {
+                return (
+                  <div key={index} style={{ padding: '5px 10px' }}>
+                    <CardMedia />
                   </div>
                 );
               }
