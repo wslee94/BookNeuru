@@ -30,6 +30,18 @@ function Nav(props: NavProps) {
       selected: false,
     },
     {
+      text: '모집중인 모임',
+      image: 'fas fa-battery-quarter',
+      link: '/recruiting-metting',
+      selected: false,
+    },
+    {
+      text: '활동중인 모임',
+      image: 'fas fa-battery-full',
+      link: '/activating-metting',
+      selected: false,
+    },
+    {
       text: '모임 만들기',
       image: 'fas fa-user-plus',
       link: '/plus-metting',
