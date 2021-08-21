@@ -6,31 +6,20 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 interface CarouselProps {
   children: object;
+  responsive: {
+    [key: string]: {
+      breakpoint: {
+        max: number;
+        min: number;
+      };
+      items: number;
+      partialVisibilityGutter?: number;
+      paritialVisibilityGutter?: number;
+      slidesToSlide?: number;
+    };
+  };
   header?: object;
 }
-
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1280 },
-    items: 5,
-  },
-  labtop: {
-    breakpoint: { max: 1280, min: 1024 },
-    items: 4,
-  },
-  largeTablet: {
-    breakpoint: { max: 1024, min: 768 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 768, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
 
 const CustomBottomButton = (obj: any) => {
   const { next, previous, goToSlide, ...rest } = obj;
@@ -43,10 +32,10 @@ const CustomBottomButton = (obj: any) => {
 
   return (
     <div style={{ textAlign: 'right', padding: '0px 10px' }}>
-      <IconButton onClick={() => previous()} style={isFirst ? { display: 'none' } : undefined}>
+      <IconButton onClick={() => previous()} style={isFirst ? { visibility: 'hidden' } : undefined}>
         <ArrowBackIcon />
       </IconButton>
-      <IconButton onClick={() => obj.next()} style={isLast ? { display: 'none' } : undefined}>
+      <IconButton onClick={() => obj.next()} style={isLast ? { visibility: 'hidden' } : undefined}>
         <ArrowForwardIcon />
       </IconButton>
     </div>
@@ -54,7 +43,7 @@ const CustomBottomButton = (obj: any) => {
 };
 
 function Carousel(props: CarouselProps) {
-  const { children, header } = props;
+  const { children, header, responsive } = props;
 
   return (
     <div className="container-horizontal-center">

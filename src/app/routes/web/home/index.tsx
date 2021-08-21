@@ -7,11 +7,57 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import NoContent from 'components/web/NoContent';
 
+const CAROUSEL_VERTICAL = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1280 },
+    items: 5,
+  },
+  labtop: {
+    breakpoint: { max: 1280, min: 1024 },
+    items: 4,
+  },
+  largeTablet: {
+    breakpoint: { max: 1024, min: 768 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 768, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
+const CAROUSEL_HORIZONTAL = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1280 },
+    items: 3,
+  },
+  labtop: {
+    breakpoint: { max: 1280, min: 1024 },
+    items: 2,
+  },
+  largeTablet: {
+    breakpoint: { max: 1024, min: 768 },
+    items: 2,
+  },
+  tablet: {
+    breakpoint: { max: 768, min: 464 },
+    items: 1,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
 const banners = [{}];
 
 const recruiting = [
   {
-    title: '모임제목1',
+    title: '모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1',
     desc:
       '모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1임설명1모임설명1모임설명1모임설명1',
     location: '서울시 강남구',
@@ -34,10 +80,9 @@ const activating = [
 ];
 
 const mostViewBooks = [
-  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', description: '책설명', image: '' },
-  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', description: '책설명', image: '' },
-  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', description: '책설명', image: '' },
-  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', description: '책설명', image: '' },
+  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', desc: '책설명', image: 'no-image' },
+  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', desc: '책설명', image: 'no-image' },
+  null,
 ];
 
 function Home() {
@@ -45,6 +90,7 @@ function Home() {
     <div className="container-horizontal-center">
       <div className="item-wide-width">
         <Carousel
+          responsive={CAROUSEL_VERTICAL}
           header={
             <div
               style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 10px', alignItems: 'center' }}
@@ -62,7 +108,7 @@ function Home() {
             if (n) {
               return (
                 <div key={index} style={{ padding: '5px 10px' }}>
-                  <Card image={n.image} imageHeight={140}>
+                  <Card image={n.image} imageHeight={180}>
                     <div
                       style={{
                         height: '150px',
@@ -72,10 +118,12 @@ function Home() {
                       }}
                     >
                       <div>
-                        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>{n.title}</span>
+                        <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
+                          {n.title}
+                        </div>
                         <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
                       </div>
-                      <div style={{ textAlign: 'right' }}>{n.location}</div>
+                      <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
                     </div>
                   </Card>
                 </div>
@@ -87,7 +135,7 @@ function Home() {
                 <Card onClick={() => {}}>
                   <div
                     style={{
-                      height: '290px',
+                      height: '330px',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
@@ -101,8 +149,10 @@ function Home() {
             );
           })}
         </Carousel>
+
         <div style={{ marginTop: '10px' }}>
           <Carousel
+            responsive={CAROUSEL_VERTICAL}
             header={
               <div
                 style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 10px', alignItems: 'center' }}
@@ -120,7 +170,7 @@ function Home() {
               if (n) {
                 return (
                   <div key={index} style={{ padding: '5px 10px' }}>
-                    <Card image={n.image} imageHeight={140}>
+                    <Card image={n.image} imageHeight={180}>
                       <div
                         style={{
                           height: '150px',
@@ -130,10 +180,12 @@ function Home() {
                         }}
                       >
                         <div>
-                          <span style={{ fontSize: '16px', fontWeight: 'bold' }}>{n.title}</span>
+                          <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
+                            {n.title}
+                          </div>
                           <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
                         </div>
-                        <div style={{ textAlign: 'right' }}>{n.location}</div>
+                        <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
                       </div>
                     </Card>
                   </div>
@@ -145,14 +197,14 @@ function Home() {
                   <Card onClick={() => {}}>
                     <div
                       style={{
-                        height: '290px',
+                        height: '330px',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
                     >
-                      <NoContent text="모집중인 모임이 없습니다." />
+                      <NoContent text="활동중인 모임이 없습니다." />
                     </div>
                   </Card>
                 </div>
@@ -163,6 +215,7 @@ function Home() {
 
         <div style={{ marginTop: '10px' }}>
           <Carousel
+            responsive={CAROUSEL_HORIZONTAL}
             header={
               <div
                 style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 10px', alignItems: 'center' }}
@@ -180,7 +233,24 @@ function Home() {
               if (n) {
                 return (
                   <div key={index} style={{ padding: '5px 10px' }}>
-                    <CardMedia />
+                    <CardMedia image={n.image} onClick={() => {}}>
+                      <div
+                        style={{
+                          height: '300px',
+                          overflow: 'hidden',
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{n.title}</div>
+                          <div style={{ marginTop: '10px' }}>{`책장르 : ${n.genre}`}</div>
+                          <div>{`작가 : ${n.author}`}</div>
+                          <div>{`출판일 : ${n.publishDate}`}</div>
+                          <div style={{ marginTop: '10px' }}>{n.desc}</div>
+                        </div>
+                      </div>
+                    </CardMedia>
                   </div>
                 );
               }
@@ -190,14 +260,14 @@ function Home() {
                   <Card onClick={() => {}}>
                     <div
                       style={{
-                        height: '290px',
+                        height: '300px',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
                     >
-                      <NoContent text="모집중인 모임이 없습니다." />
+                      <NoContent text="책 정보가 없습니다." />
                     </div>
                   </Card>
                 </div>
