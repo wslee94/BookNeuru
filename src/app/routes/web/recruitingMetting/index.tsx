@@ -1,5 +1,8 @@
 import React from 'react';
 import Card from 'components/web/Card';
+import Select from 'components/web/Select';
+
+// 각 Select options 구현
 
 const recruiting = [
   { title: '모임제목1', desc: '모임설명1', location: '서울시 강남구', image: 'no-image' },
@@ -14,6 +17,19 @@ const recruiting = [
 function RecruitingMetting() {
   return (
     <div className="container-horizontal-center">
+      <div style={{ display: 'flex', width: '100%', padding: '5px 10px' }}>
+        <Select
+          label="지역(시, 도)"
+          value={1}
+          options={[
+            { key: '1', text: '경기도' },
+            { key: '2', text: '충청도' },
+            { key: '3', text: '경상도' },
+          ]}
+          onChange={() => {}}
+          style={{ width: '120px' }}
+        />
+      </div>
       <div className="card-container">
         {recruiting.map((n, index) => (
           <div key={index} style={{ padding: '5px 10px' }}>
