@@ -27,7 +27,7 @@ function Popup(props: PopupProps) {
       <DialogTitle>{title}</DialogTitle>
       <DialogContent dividers>
         <>
-          {contentText ? <DialogContentText>{contentText}</DialogContentText> : null}
+          {contentText ? <DialogContentText style={{ fontSize: '12px' }}>{contentText}</DialogContentText> : null}
           {children}
         </>
       </DialogContent>

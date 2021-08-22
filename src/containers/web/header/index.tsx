@@ -84,7 +84,9 @@ export default function ResponsiveDrawer(props: Props) {
           </IconButton>
 
           <div className={classes.headerContents}>
-            <img src={logo} alt="로고" style={{ height: 35 }} />
+            <div>
+              <img className="header-logo" src={logo} alt="로고" />
+            </div>
             {auth ? (
               <div>
                 <Tooltip title="나의 정보">
