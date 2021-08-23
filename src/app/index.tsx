@@ -6,7 +6,7 @@ import MyMetting from 'app/routes/web/myMetting';
 import SignUp from 'app/routes/web/signUp';
 import Login from 'app/routes/web/login';
 import RecruitingMetting from './routes/web/recruitingMetting';
-import ActivatingMetting from './routes/web/activationgMetting';
+import ActivatingMetting from './routes/web/activatingMetting';
 
 function MenuRouter() {
   return (

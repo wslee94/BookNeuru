@@ -88,7 +88,7 @@ const mostViewBooks = [
 function Home() {
   return (
     <div className="container-horizontal-center">
-      <div className="item-wide-width">
+      <div style={{ width: '100%' }}>
         <Carousel
           responsive={CAROUSEL_VERTICAL}
           header={

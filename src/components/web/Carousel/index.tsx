@@ -46,18 +46,16 @@ function Carousel(props: CarouselProps) {
   const { children, header, responsive } = props;
 
   return (
-    <div className="container-horizontal-center">
-      <div className="item-wide-width">
-        {header ? header : null}
-        <RMCarousel
-          responsive={responsive}
-          arrows={false}
-          renderButtonGroupOutside={true}
-          customButtonGroup={<CustomBottomButton />}
-        >
-          {children}
-        </RMCarousel>
-      </div>
+    <div>
+      {header ? header : null}
+      <RMCarousel
+        responsive={responsive}
+        arrows={false}
+        renderButtonGroupOutside={true}
+        customButtonGroup={<CustomBottomButton />}
+      >
+        {children}
+      </RMCarousel>
     </div>
   );
 }

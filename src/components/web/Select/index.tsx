@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MuiSelect from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import { v4 as uuidv4 } from 'uuid';
@@ -23,22 +24,12 @@ function Select(props: SelectProps) {
   return (
     <FormControl variant="outlined">
       <InputLabel htmlFor={id}>{label}</InputLabel>
-      <MuiSelect
-        native
-        value={value}
-        onChange={onChange}
-        label={label}
-        inputProps={{
-          name: label,
-          id,
-        }}
-        style={style}
-      >
-        <option value="" />
+      <MuiSelect value={value} onChange={onChange} label={label} style={style}>
+        {/* <MenuItem value=""></MenuItem> */}
         {options.map((n, index) => (
-          <option key={index} value={n.key}>
+          <MenuItem key={index} value={n.key}>
             {n.text}
-          </option>
+          </MenuItem>
         ))}
       </MuiSelect>
     </FormControl>
