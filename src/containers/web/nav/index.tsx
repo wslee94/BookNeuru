@@ -31,13 +31,13 @@ function Nav(props: NavProps) {
     },
     {
       text: '모집중인 모임',
-      image: 'fas fa-battery-quarter',
+      image: 'fas fa-lock-open',
       link: '/recruiting-metting',
       selected: false,
     },
     {
       text: '활동중인 모임',
-      image: 'fas fa-battery-full',
+      image: 'fas fa-lock',
       link: '/activating-metting',
       selected: false,
     },
