@@ -7,6 +7,7 @@
 기술
 -------------
 * React
+* Recoil
 * TypeScript
 * Webpack & Babel
 * eslint, prettier
