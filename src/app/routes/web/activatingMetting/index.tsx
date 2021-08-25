@@ -38,7 +38,7 @@ function ActivatingMetting() {
       </div>
       <div className="card-container">
         {activating.map((n, index) => (
-          <div key={index} style={{ padding: '5px 10px' }}>
+          <div key={index} style={{ padding: '10px' }}>
             <Card image={n.image} imageHeight={180}>
               <div
                 style={{
