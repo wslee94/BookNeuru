@@ -41,15 +41,19 @@ const useStyles = makeStyles((theme: Theme) =>
 interface FiledProps {
   title: string;
   children: object;
+  isRequired?: boolean;
 }
 
 function Filed(props: FiledProps) {
-  const { title, children } = props;
+  const { title, children, isRequired } = props;
   const classes = useStyles();
 
   return (
     <div className={classes.filed}>
-      <div className={classes.text}>{title}</div>
+      <div className={classes.text}>
+        {title}
+        {isRequired ? <span style={{ color: 'red' }}>*</span> : null}
+      </div>
       <div>{children}</div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import Filed from 'components/web/Filed';
+import Field from 'components/web/Field';
 import InputBox from 'components/web/InputBox';
 import DatePicker from 'components/web/DatePicker';
 import TimePicker from 'components/web/TimePicker';
@@ -14,19 +14,19 @@ function PlusMetting() {
 
   return (
     <>
-      <Filed title="모임명">
+      <Field title="모임명" isRequired>
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
-      </Filed>
-      <Filed title="첫 모임장소">
+      </Field>
+      <Field title="첫 모임장소">
         <InputBox value={location} onChange={(e) => setLocation(e.target.value)} />
-      </Filed>
-      <Filed title="첫 모임일">
+      </Field>
+      <Field title="첫 모임일">
         <DatePicker value={date} onChange={(e) => setDate(e.target.value)} />
-      </Filed>
-      <Filed title="첫 모임시간">
+      </Field>
+      <Field title="첫 모임시간">
         <TimePicker value={time} onChange={(e) => setTime(e.target.value)} />
-      </Filed>
-      <Filed title="모집인원">
+      </Field>
+      <Field title="모집인원">
         <InputBox
           type="number"
           value={numOfPeople}
@@ -34,19 +34,19 @@ function PlusMetting() {
           unit="명"
           style={{ width: '100px' }}
         />
-      </Filed>
-      <Filed title="모임이미지">
+      </Field>
+      <Field title="모임이미지">
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
-      </Filed>
-      <Filed title="모임설명">
+      </Field>
+      <Field title="모임설명">
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
-      </Filed>
-      <Filed title="첫 모임 책">
+      </Field>
+      <Field title="첫 모임 책">
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
-      </Filed>
-      <Filed title="모임분야">
+      </Field>
+      <Field title="모임분야">
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
-      </Filed>
+      </Field>
     </>
   );
 }
