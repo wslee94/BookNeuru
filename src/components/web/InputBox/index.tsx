@@ -14,6 +14,7 @@ interface InputBoxProps {
   placeholder?: string;
   helperText?: string;
   style?: object;
+  unit?: string;
 }
 
 function InputBox(props: InputBoxProps) {
@@ -30,6 +31,7 @@ function InputBox(props: InputBoxProps) {
     helperText,
     type = 'text',
     style,
+    unit,
   } = props;
   return (
     <>
@@ -43,23 +45,26 @@ function InputBox(props: InputBoxProps) {
         </div>
       ) : null}
 
-      <TextField
-        value={value}
-        onChange={onChange}
-        size="small"
-        error={isError}
-        disabled={isDisabled}
-        fullWidth={isFullWidth}
-        type={type}
-        // variant="filled"
-        variant="outlined"
-        InputProps={{
-          readOnly: isReadOnly,
-        }}
-        placeholder={placeholder}
-        helperText={helperText}
-        style={style}
-      />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <TextField
+          value={value}
+          onChange={onChange}
+          size="small"
+          error={isError}
+          disabled={isDisabled}
+          fullWidth={isFullWidth}
+          type={type}
+          // variant="filled"
+          variant="outlined"
+          InputProps={{
+            readOnly: isReadOnly,
+          }}
+          placeholder={placeholder}
+          helperText={helperText}
+          style={style}
+        />
+        {unit && <div style={{ fontWeight: 'bold', marginLeft: '5px' }}>{unit}</div>}
+      </div>
     </>
   );
 }

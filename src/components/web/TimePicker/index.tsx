@@ -27,6 +27,7 @@ function TimePicker(props: TimePickerProps) {
     <form className={classes.container} noValidate>
       <TextField
         label={label}
+        margin="dense"
         variant="outlined"
         type="time"
         defaultValue={value}
