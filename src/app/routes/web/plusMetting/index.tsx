@@ -4,6 +4,7 @@ import Field from 'components/web/Field';
 import InputBox from 'components/web/InputBox';
 import DatePicker from 'components/web/DatePicker';
 import TimePicker from 'components/web/TimePicker';
+import ImageFile from 'components/web/ImageFile';
 
 function PlusMetting() {
   const [title, setTitle] = useState('');
@@ -11,6 +12,7 @@ function PlusMetting() {
   const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
   const [time, setTime] = useState('00:00');
   const [numOfPeople, setNumOfPeople] = useState('');
+  const [imageFile, setImageFile] = useState<string | null>(null);
 
   return (
     <>
@@ -26,7 +28,7 @@ function PlusMetting() {
       <Field title="첫 모임시간">
         <TimePicker value={time} onChange={(e) => setTime(e.target.value)} />
       </Field>
-      <Field title="모집인원">
+      <Field title="모집인원" isRequired>
         <InputBox
           type="number"
           value={numOfPeople}
@@ -36,9 +38,15 @@ function PlusMetting() {
         />
       </Field>
       <Field title="모임이미지">
-        <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
+        <ImageFile
+          alt="모임이미지"
+          size="large"
+          file={imageFile}
+          onChange={(file) => setImageFile(file)}
+          previewType="square"
+        />
       </Field>
-      <Field title="모임설명">
+      <Field title="모임설명" isRequired>
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
       </Field>
       <Field title="첫 모임 책">

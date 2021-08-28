@@ -11,10 +11,11 @@ interface ImageFileProps {
   align?: undefined | 'left' | 'center' | 'right';
   file: string | undefined | null;
   onChange: (event: string) => void;
+  previewType?: 'round' | 'square';
 }
 
 function ImageFile(props: ImageFileProps) {
-  const { isRequired, label, size = 'small', alt, align, file, onChange } = props;
+  const { isRequired, label, size = 'small', alt, align, file, onChange, previewType = 'round' } = props;
 
   let justifyContent = 'left';
   if (align === 'left') justifyContent = 'flex-start';
@@ -35,7 +36,11 @@ function ImageFile(props: ImageFileProps) {
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent }}>
         <div>
-          <img className={`image-preview-${size}`} alt={alt} src={file || noneImage} />
+          <img
+            className={previewType === 'round' ? `image-preview-${size}` : `image-preview-square-${size}`}
+            alt={alt}
+            src={file || noneImage}
+          />
         </div>
         <div style={{ marginLeft: '10px' }}>
           <input
