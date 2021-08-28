@@ -27,6 +27,7 @@ function DatePicker(props: DatePickerProps) {
     <form className={classes.container} noValidate>
       <TextField
         label={label}
+        margin="dense"
         variant="outlined"
         type="date"
         defaultValue={value}

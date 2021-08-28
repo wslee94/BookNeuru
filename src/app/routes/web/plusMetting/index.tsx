@@ -10,6 +10,7 @@ function PlusMetting() {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
   const [time, setTime] = useState('00:00');
+  const [numOfPeople, setNumOfPeople] = useState('');
 
   return (
     <>
@@ -26,7 +27,13 @@ function PlusMetting() {
         <TimePicker value={time} onChange={(e) => setTime(e.target.value)} />
       </Filed>
       <Filed title="모집인원">
-        <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
+        <InputBox
+          type="number"
+          value={numOfPeople}
+          onChange={(e) => setNumOfPeople(e.target.value)}
+          unit="명"
+          style={{ width: '100px' }}
+        />
       </Filed>
       <Filed title="모임이미지">
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
