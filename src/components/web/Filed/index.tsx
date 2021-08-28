@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'grid',
       gridTemplateColumns: '1fr 10fr',
       gridGap: '10px',
+      padding: '5px 0px',
       [theme.breakpoints.down('xl')]: {
         gridTemplateColumns: '1fr 9fr',
       },
@@ -47,12 +48,10 @@ function Filed(props: FiledProps) {
   const classes = useStyles();
 
   return (
-    <>
-      <div className={classes.filed}>
-        <div className={classes.text}>{title}</div>
-        <div>{children}</div>
-      </div>
-    </>
+    <div className={classes.filed}>
+      <div className={classes.text}>{title}</div>
+      <div>{children}</div>
+    </div>
   );
 }
 
