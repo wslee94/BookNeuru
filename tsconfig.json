@@ -9,6 +9,7 @@
       "containers/*": ["src/containers/*"],
       "helpers/*": ["src/helpers/*"],
       "config/*": ["src/config/*"],
+      "data/*": ["src/data/*"]
 		},
     "target": "es5",
     "module": "commonjs",

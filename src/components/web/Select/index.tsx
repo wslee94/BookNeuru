@@ -6,9 +6,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { v4 as uuidv4 } from 'uuid';
 
 interface SelectProps {
-  label: string;
-  value: number | string;
-  onChange: () => void;
+  label?: string;
+  value: string;
+  onChange: (arg0: string) => void;
   options: { key: number | string; text: string }[];
   style?: object;
 }
@@ -21,11 +21,14 @@ function Select(props: SelectProps) {
     setId(uuidv4());
   }, []);
 
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    onChange(event.target.value as string);
+  };
+
   return (
     <FormControl variant="outlined">
-      <InputLabel htmlFor={id}>{label}</InputLabel>
-      <MuiSelect value={value} onChange={onChange} label={label} style={style}>
-        {/* <MenuItem value=""></MenuItem> */}
+      {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
+      <MuiSelect value={value} onChange={handleChange} style={style} margin="dense">
         {options.map((n, index) => (
           <MenuItem key={index} value={n.key}>
             {n.text}

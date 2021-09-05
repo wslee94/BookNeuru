@@ -6,7 +6,8 @@ import DatePicker from 'components/web/DatePicker';
 import TimePicker from 'components/web/TimePicker';
 import ImageFile from 'components/web/ImageFile';
 import Editor from 'components/web/Editor';
-import AutoComplete from 'components/web/AutoComplete';
+import Select from 'components/web/Select';
+import { select_genre } from 'data/index';
 
 function PlusMetting() {
   const [title, setTitle] = useState('');
@@ -16,6 +17,8 @@ function PlusMetting() {
   const [numOfPeople, setNumOfPeople] = useState('');
   const [imageFile, setImageFile] = useState<string | null>(null);
   const [description, setDescription] = useState('');
+  const [book, setBook] = useState('');
+  const [genre, setGenre] = useState<string>('');
 
   return (
     <>
@@ -53,18 +56,10 @@ function PlusMetting() {
         <Editor value={description} onChange={(value) => setDescription(value)} />
       </Field>
       <Field title="첫 모임 책">
-        <AutoComplete
-          options={[
-            { key: 1, text: '테스트1' },
-            { key: 2, text: '테스트2' },
-            { key: 3, text: '테스트3' },
-            { key: 4, text: '화화3' },
-          ]}
-          onChange={(option) => console.log(option)}
-        />
+        <InputBox value={book} onChange={(e) => setBook(e.target.value)} />
       </Field>
       <Field title="모임분야">
-        <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
+        <Select value={genre} options={select_genre} style={{ width: 200 }} onChange={(value) => setGenre(value)} />
       </Field>
     </>
   );

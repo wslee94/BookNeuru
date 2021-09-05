@@ -59,6 +59,7 @@ module.exports = (env, arg) => {
         containers: path.resolve(__dirname, 'src', 'containers'),
         helpers: path.resolve(__dirname, 'src', 'helpers'),
         config: path.resolve(__dirname, 'src', 'config'),
+        data: path.resolve(__dirname, 'src', 'data'),
       },
     },
     devServer: {
