@@ -21,7 +21,7 @@ function Editor(props: EditorProps) {
 
   const editorRef = useRef<any>();
 
-  const handleChange = (editorType: string) => {
+  const handleChange = () => {
     onChange(editorRef.current.getInstance().getHTML());
   };
 

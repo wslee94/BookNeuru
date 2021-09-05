@@ -6,6 +6,7 @@ import DatePicker from 'components/web/DatePicker';
 import TimePicker from 'components/web/TimePicker';
 import ImageFile from 'components/web/ImageFile';
 import Editor from 'components/web/Editor';
+import AutoComplete from 'components/web/AutoComplete';
 
 function PlusMetting() {
   const [title, setTitle] = useState('');
@@ -52,7 +53,15 @@ function PlusMetting() {
         <Editor value={description} onChange={(value) => setDescription(value)} />
       </Field>
       <Field title="첫 모임 책">
-        <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
+        <AutoComplete
+          options={[
+            { key: 1, text: '테스트1' },
+            { key: 2, text: '테스트2' },
+            { key: 3, text: '테스트3' },
+            { key: 4, text: '화화3' },
+          ]}
+          onChange={(option) => console.log(option)}
+        />
       </Field>
       <Field title="모임분야">
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
