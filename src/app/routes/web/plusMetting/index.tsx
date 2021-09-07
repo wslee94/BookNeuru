@@ -7,6 +7,7 @@ import TimePicker from 'components/web/TimePicker';
 import ImageFile from 'components/web/ImageFile';
 import Editor from 'components/web/Editor';
 import Select from 'components/web/Select';
+import PageCard from 'components/web/PageCard';
 import { select_genre } from 'data/index';
 
 function PlusMetting() {
@@ -21,7 +22,7 @@ function PlusMetting() {
   const [genre, setGenre] = useState<string>('');
 
   return (
-    <>
+    <PageCard pageTitle="모임 만들기">
       <Field title="모임명" isRequired>
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
       </Field>
@@ -61,7 +62,7 @@ function PlusMetting() {
       <Field title="모임분야">
         <Select value={genre} options={select_genre} style={{ width: 200 }} onChange={(value) => setGenre(value)} />
       </Field>
-    </>
+    </PageCard>
   );
 }
 

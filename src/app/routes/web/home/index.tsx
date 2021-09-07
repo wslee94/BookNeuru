@@ -6,6 +6,7 @@ import 'react-multi-carousel/lib/styles.css';
 import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import NoContent from 'components/web/NoContent';
+import PageCard from 'components/web/PageCard';
 
 const CAROUSEL_VERTICAL = {
   desktop: {
@@ -87,77 +88,16 @@ const mostViewBooks = [
 
 function Home() {
   return (
-    <div className="container-horizontal-center">
-      <div style={{ width: '100%' }}>
-        <Carousel
-          responsive={CAROUSEL_VERTICAL}
-          header={
-            <div
-              style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 10px', alignItems: 'center' }}
-            >
-              <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모집중인 모임</div>
-              <div>
-                <IconButton onClick={() => {}}>
-                  <MoreHorizIcon />
-                </IconButton>
-              </div>
-            </div>
-          }
-        >
-          {recruiting.map((n, index) => {
-            if (n) {
-              return (
-                <div key={index} style={{ padding: '5px 10px' }}>
-                  <Card image={n.image} imageHeight={180}>
-                    <div
-                      style={{
-                        height: '150px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-                      <div>
-                        <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                          {n.title}
-                        </div>
-                        <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
-                      </div>
-                      <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
-                    </div>
-                  </Card>
-                </div>
-              );
-            }
-
-            return (
-              <div key={index} style={{ padding: '5px 10px' }}>
-                <Card onClick={() => {}}>
-                  <div
-                    style={{
-                      height: '330px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <NoContent text="모집중인 모임이 없습니다." />
-                  </div>
-                </Card>
-              </div>
-            );
-          })}
-        </Carousel>
-
-        <div style={{ marginTop: '10px' }}>
+    <PageCard pageTitle="홈">
+      <div className="container-horizontal-center">
+        <div style={{ width: '100%' }}>
           <Carousel
             responsive={CAROUSEL_VERTICAL}
             header={
               <div
                 style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 10px', alignItems: 'center' }}
               >
-                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>활동중인 모임</div>
+                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모집중인 모임</div>
                 <div>
                   <IconButton onClick={() => {}}>
                     <MoreHorizIcon />
@@ -166,7 +106,7 @@ function Home() {
               </div>
             }
           >
-            {activating.map((n, index) => {
+            {recruiting.map((n, index) => {
               if (n) {
                 return (
                   <div key={index} style={{ padding: '5px 10px' }}>
@@ -204,79 +144,152 @@ function Home() {
                         alignItems: 'center',
                       }}
                     >
-                      <NoContent text="활동중인 모임이 없습니다." />
+                      <NoContent text="모집중인 모임이 없습니다." />
                     </div>
                   </Card>
                 </div>
               );
             })}
           </Carousel>
-        </div>
 
-        <div style={{ marginTop: '10px' }}>
-          <Carousel
-            responsive={CAROUSEL_HORIZONTAL}
-            header={
-              <div
-                style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 10px', alignItems: 'center' }}
-              >
-                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모임에서 가장 많이 읽은 책</div>
-                <div>
-                  <IconButton onClick={() => {}}>
-                    <MoreHorizIcon />
-                  </IconButton>
+          <div style={{ marginTop: '10px' }}>
+            <Carousel
+              responsive={CAROUSEL_VERTICAL}
+              header={
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '0px 10px',
+                    alignItems: 'center',
+                  }}
+                >
+                  <div style={{ fontSize: '15px', fontWeight: 'bold' }}>활동중인 모임</div>
+                  <div>
+                    <IconButton onClick={() => {}}>
+                      <MoreHorizIcon />
+                    </IconButton>
+                  </div>
                 </div>
-              </div>
-            }
-          >
-            {mostViewBooks.map((n, index) => {
-              if (n) {
+              }
+            >
+              {activating.map((n, index) => {
+                if (n) {
+                  return (
+                    <div key={index} style={{ padding: '5px 10px' }}>
+                      <Card image={n.image} imageHeight={180}>
+                        <div
+                          style={{
+                            height: '150px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <div>
+                            <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
+                              {n.title}
+                            </div>
+                            <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
+                          </div>
+                          <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
+                        </div>
+                      </Card>
+                    </div>
+                  );
+                }
+
                 return (
                   <div key={index} style={{ padding: '5px 10px' }}>
-                    <CardMedia image={n.image} onClick={() => {}}>
+                    <Card onClick={() => {}}>
+                      <div
+                        style={{
+                          height: '330px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <NoContent text="활동중인 모임이 없습니다." />
+                      </div>
+                    </Card>
+                  </div>
+                );
+              })}
+            </Carousel>
+          </div>
+
+          <div style={{ marginTop: '10px' }}>
+            <Carousel
+              responsive={CAROUSEL_HORIZONTAL}
+              header={
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '0px 10px',
+                    alignItems: 'center',
+                  }}
+                >
+                  <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모임에서 가장 많이 읽은 책</div>
+                  <div>
+                    <IconButton onClick={() => {}}>
+                      <MoreHorizIcon />
+                    </IconButton>
+                  </div>
+                </div>
+              }
+            >
+              {mostViewBooks.map((n, index) => {
+                if (n) {
+                  return (
+                    <div key={index} style={{ padding: '5px 10px' }}>
+                      <CardMedia image={n.image} onClick={() => {}}>
+                        <div
+                          style={{
+                            height: '300px',
+                            overflow: 'hidden',
+                            display: 'flex',
+                            flexDirection: 'column',
+                          }}
+                        >
+                          <div>
+                            <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{n.title}</div>
+                            <div style={{ marginTop: '10px' }}>{`책장르 : ${n.genre}`}</div>
+                            <div>{`작가 : ${n.author}`}</div>
+                            <div>{`출판일 : ${n.publishDate}`}</div>
+                            <div style={{ marginTop: '10px' }}>{n.desc}</div>
+                          </div>
+                        </div>
+                      </CardMedia>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div key={index} style={{ padding: '5px 10px' }}>
+                    <Card onClick={() => {}}>
                       <div
                         style={{
                           height: '300px',
-                          overflow: 'hidden',
                           display: 'flex',
                           flexDirection: 'column',
+                          justifyContent: 'center',
+                          alignItems: 'center',
                         }}
                       >
-                        <div>
-                          <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{n.title}</div>
-                          <div style={{ marginTop: '10px' }}>{`책장르 : ${n.genre}`}</div>
-                          <div>{`작가 : ${n.author}`}</div>
-                          <div>{`출판일 : ${n.publishDate}`}</div>
-                          <div style={{ marginTop: '10px' }}>{n.desc}</div>
-                        </div>
+                        <NoContent text="책 정보가 없습니다." />
                       </div>
-                    </CardMedia>
+                    </Card>
                   </div>
                 );
-              }
-
-              return (
-                <div key={index} style={{ padding: '5px 10px' }}>
-                  <Card onClick={() => {}}>
-                    <div
-                      style={{
-                        height: '300px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <NoContent text="책 정보가 없습니다." />
-                    </div>
-                  </Card>
-                </div>
-              );
-            })}
-          </Carousel>
+              })}
+            </Carousel>
+          </div>
         </div>
       </div>
-    </div>
+    </PageCard>
   );
 }
 
