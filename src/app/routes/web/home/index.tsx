@@ -19,10 +19,37 @@ const recruiting = [
       '모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1임설명1모임설명1모임설명1모임설명1',
     location: '서울시 강남구',
     image: 'no-image',
+    averageAge: '20',
+    maxNumOfPeople: 4,
+    currNumOfPeople: 3,
   },
-  { title: '모임제목2', desc: '모임설명2', location: '서울시 강서구', image: 'no-image' },
-  { title: '모임제목3', desc: '모임설명3', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목4', desc: '모임설명4', location: '경기도 분당구', image: 'no-image' },
+  {
+    title: '모임제목2',
+    desc: '모임설명2',
+    location: '서울시 강서구',
+    image: 'no-image',
+    averageAge: '20',
+    maxNumOfPeople: 4,
+    currNumOfPeople: 3,
+  },
+  {
+    title: '모임제목3',
+    desc: '모임설명3',
+    location: '경기도 분당구',
+    image: 'no-image',
+    averageAge: '20',
+    maxNumOfPeople: 4,
+    currNumOfPeople: 3,
+  },
+  {
+    title: '모임제목4',
+    desc: '모임설명4',
+    location: '경기도 분당구',
+    image: 'no-image',
+    averageAge: '20',
+    maxNumOfPeople: 4,
+    currNumOfPeople: 3,
+  },
   null,
 ];
 
@@ -45,7 +72,7 @@ const mostViewBooks = [
 function Home() {
   return (
     <PageCard pageTitle="홈">
-      <div className="container-horizontal-center">
+      <div className="container">
         <div style={{ width: '100%' }}>
           <Carousel
             responsive={CAROUSEL_VERTICAL}
@@ -89,7 +116,18 @@ function Home() {
                           </div>
                           <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
                         </div>
-                        <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
+                        <div
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            textAlign: 'right',
+                            fontSize: '11px',
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          <div>{`${n.currNumOfPeople}/${n.maxNumOfPeople}명 (${n.averageAge}대)`}</div>
+                          <div>{n.location}</div>
+                        </div>
                       </div>
                     </Card>
                   </div>

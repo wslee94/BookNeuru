@@ -20,10 +20,37 @@ const recruiting = [
     location: '서울시 강남구',
     image: 'no-image',
     hasNewJoiner: true,
+    averageAge: '20',
+    maxNumOfPeople: 4,
+    currNumOfPeople: 3,
   },
-  { title: '모임제목2', desc: '모임설명2', location: '서울시 강서구', image: 'no-image' },
-  { title: '모임제목3', desc: '모임설명3', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목4', desc: '모임설명4', location: '경기도 분당구', image: 'no-image' },
+  {
+    title: '모임제목2',
+    desc: '모임설명2',
+    location: '서울시 강서구',
+    image: 'no-image',
+    averageAge: '20',
+    maxNumOfPeople: 4,
+    currNumOfPeople: 3,
+  },
+  {
+    title: '모임제목3',
+    desc: '모임설명3',
+    location: '경기도 분당구',
+    image: 'no-image',
+    averageAge: '20',
+    maxNumOfPeople: 4,
+    currNumOfPeople: 3,
+  },
+  {
+    title: '모임제목4',
+    desc: '모임설명4',
+    location: '경기도 분당구',
+    image: 'no-image',
+    averageAge: '20',
+    maxNumOfPeople: 4,
+    currNumOfPeople: 3,
+  },
   null,
 ];
 
@@ -45,9 +72,6 @@ const inActivating = [
   null,
 ];
 
-// 캐로셀 우측 아이콘 클릭 시 전체 목록 보여주는 페이지로 이동 (해당 카테고리)
-// 새로운 가입 신청자 ~~ 문구 위치 및 반응형 고민
-
 function MyHome() {
   const [title, setTitle] = useState('');
   const [isHost, setIsHost] = useState(false);
@@ -57,26 +81,7 @@ function MyHome() {
   return (
     <>
       <PageCard pageTitle="My 홈">
-        <div className="container-horizontal-center">
-          <div
-            style={{
-              width: '100%',
-              padding: '0px 10px',
-              marginBottom: '5px',
-            }}
-          >
-            <div style={{ width: isFullWidth ? '100%' : '350px' }}>
-              <InputBox
-                placeholder="모임제목"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                style={{ width: '100%' }}
-              />
-            </div>
-            <div style={{ marginTop: '5px' }}>
-              <CheckBox value={isHost} onChange={(v) => setIsHost(v)} label="내가 모임장인 모임만 보기" />
-            </div>
-          </div>
+        <div className="container">
           <div style={{ width: '100%' }}>
             <Carousel
               responsive={CAROUSEL_VERTICAL}
@@ -122,13 +127,12 @@ function MyHome() {
                             style={{
                               display: 'flex',
                               justifyContent: 'space-between',
+                              textAlign: 'right',
                               fontSize: '11px',
                               fontWeight: 'bold',
                             }}
                           >
-                            <div style={{ color: 'blue' }}>
-                              {n.hasNewJoiner ? '새로운 가입 신청자가 있습니다.' : ''}
-                            </div>
+                            <div>{`${n.currNumOfPeople}/${n.maxNumOfPeople}명 (${n.averageAge}대)`}</div>
                             <div>{n.location}</div>
                           </div>
                         </div>

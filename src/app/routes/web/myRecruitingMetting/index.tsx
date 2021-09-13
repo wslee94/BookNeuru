@@ -77,8 +77,8 @@ function MyRecruitingMetting() {
   const isFullWidth = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
-    <PageCard pageTitle="모집 중인 모임">
-      <div className="container-horizontal-center">
+    <PageCard pageTitle="My 모집 중인 모임">
+      <div className="container">
         <div
           style={{
             display: 'flex',
@@ -89,9 +89,10 @@ function MyRecruitingMetting() {
             marginBottom: '5px',
           }}
         >
-          <div style={{ width: isFullWidth ? '100%' : '350px' }}>
+          <div style={{ width: isFullWidth ? '100%' : '300px' }}>
             <InputBox
-              placeholder="지역"
+              isSearch
+              placeholder="모임명"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               style={{ width: '100%' }}

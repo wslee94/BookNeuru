@@ -15,13 +15,13 @@ const activating = [
   { title: '모임제목7', desc: '모임설명7', location: '경기도 분당구', image: 'no-image' },
 ];
 
-function ActivatingMetting() {
+function MyActivatingMetting() {
   const [location, setLocation] = useState('');
   const theme = useTheme();
   const isFullWidth = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
-    <PageCard pageTitle="활동 중인 모임">
+    <PageCard pageTitle="My 활동 중인 모임">
       <div className="container">
         <div
           style={{
@@ -72,4 +72,4 @@ function ActivatingMetting() {
   );
 }
 
-export default ActivatingMetting;
+export default MyActivatingMetting;

@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     padding: 15,
   },
   pageTitle: {
-    marginLeft: 5,
+    marginLeft: 10,
     fontSize: 22,
     fontWeight: 'bold',
   },

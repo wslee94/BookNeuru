@@ -7,6 +7,8 @@ import SignUp from 'app/routes/web/signUp';
 import Login from 'app/routes/web/login';
 import RecruitingMetting from './routes/web/recruitingMetting';
 import ActivatingMetting from './routes/web/activatingMetting';
+import MyRecruitingMetting from './routes/web/myRecruitingMetting';
+import MyActivatingMetting from './routes/web/myActivatingMetting';
 
 function MenuRouter() {
   return (
@@ -17,6 +19,8 @@ function MenuRouter() {
       <Route path="/my-home" component={MyHome} />
       <Route path="/recruiting-metting" component={RecruitingMetting} />
       <Route path="/activating-metting" component={ActivatingMetting} />
+      <Route path="/my-recruiting-metting" component={MyRecruitingMetting} />
+      <Route path="/my-activating-metting" component={MyActivatingMetting} />
       <Route path="/" component={Home} />
     </Switch>
   );

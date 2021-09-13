@@ -78,7 +78,7 @@ function RecruitingMetting() {
 
   return (
     <PageCard pageTitle="모집 중인 모임">
-      <div className="container-horizontal-center">
+      <div className="container">
         <div
           style={{
             display: 'flex',
@@ -89,8 +89,9 @@ function RecruitingMetting() {
             marginBottom: '5px',
           }}
         >
-          <div style={{ width: isFullWidth ? '100%' : '350px' }}>
+          <div style={{ width: isFullWidth ? '100%' : '300px' }}>
             <InputBox
+              isSearch
               placeholder="지역"
               value={location}
               onChange={(e) => setLocation(e.target.value)}

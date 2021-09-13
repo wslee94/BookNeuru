@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.down('xs')]: {
         display: 'flex',
         flexDirection: 'column',
-        gridGap: '5px',
       },
     },
     text: {
@@ -54,7 +53,7 @@ function Filed(props: FiledProps) {
         {title}
         {isRequired ? <span style={{ color: 'red' }}>*</span> : null}
       </div>
-      <div>{children}</div>
+      {children}
     </div>
   );
 }

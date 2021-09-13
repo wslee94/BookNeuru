@@ -55,13 +55,13 @@ function Nav(props: NavProps) {
     {
       text: '모집 중인 모임',
       image: 'fas fa-lock-open',
-      link: '/recruiting-metting',
+      link: '/my-recruiting-metting',
       selected: false,
     },
     {
       text: '활동 중인 모임',
       image: 'fas fa-lock',
-      link: '/activating-metting',
+      link: '/my-activating-metting',
       selected: false,
     },
   ]);

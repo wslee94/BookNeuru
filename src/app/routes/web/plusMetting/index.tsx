@@ -17,6 +17,7 @@ function PlusMetting() {
   const [time, setTime] = useState('00:00');
   const [numOfPeople, setNumOfPeople] = useState('');
   const [imageFile, setImageFile] = useState<string | null>(null);
+  const [simpleDescription, setSimpleDescription] = useState('');
   const [description, setDescription] = useState('');
   const [genre, setGenre] = useState<string>('');
 
@@ -51,6 +52,9 @@ function PlusMetting() {
           onChange={(file) => setImageFile(file)}
           previewType="square"
         />
+      </Field>
+      <Field title="모임설명(표시용)" isRequired>
+        <InputBox value={simpleDescription} onChange={(e) => setSimpleDescription(e.target.value)} multiLine={5} />
       </Field>
       <Field title="모임설명" isRequired>
         <Editor value={description} onChange={(value) => setDescription(value)} />
