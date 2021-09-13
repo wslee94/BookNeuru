@@ -1,22 +1,22 @@
 import React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
+import MuiSwitch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-interface CheckBoxProps {
+interface SwitchProps {
   value: boolean;
-  onChange: (e: boolean) => void;
-  color?: 'primary' | 'secondary' | 'default' | undefined;
+  onChange: (arg0: boolean) => void;
   label?: object | string;
+  color?: 'primary' | 'secondary' | 'default' | undefined;
 }
 
-function CheckBox(props: CheckBoxProps) {
-  const { value, onChange, color = 'primary', label } = props;
+function Switch(props: SwitchProps) {
+  const { value, onChange, label, color = 'primary' } = props;
   return (
-    <FormGroup row>
+    <FormGroup style={{ fontSize: '10px' }}>
       <FormControlLabel
         control={
-          <Checkbox
+          <MuiSwitch
             checked={value}
             onChange={(e) => {
               onChange(e.target.checked);
@@ -30,4 +30,4 @@ function CheckBox(props: CheckBoxProps) {
   );
 }
 
-export default CheckBox;
+export default Switch;

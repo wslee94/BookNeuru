@@ -11,6 +11,7 @@ import CheckBox from 'components/web/CheckBox';
 import { CAROUSEL_VERTICAL } from 'helpers/const';
 import Carousel from 'components/web/Carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from 'react-router-dom';
 
 const recruiting = [
   {
@@ -97,9 +98,11 @@ function MyHome() {
                 >
                   <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모집 중인 모임</div>
                   <div>
-                    <IconButton onClick={() => {}}>
-                      <MoreHorizIcon />
-                    </IconButton>
+                    <Link to="/my-recruiting-metting">
+                      <IconButton onClick={() => {}}>
+                        <MoreHorizIcon />
+                      </IconButton>
+                    </Link>
                   </div>
                 </div>
               }
@@ -176,9 +179,11 @@ function MyHome() {
                   >
                     <div style={{ fontSize: '15px', fontWeight: 'bold' }}>활동 중인 모임</div>
                     <div>
-                      <IconButton onClick={() => {}}>
-                        <MoreHorizIcon />
-                      </IconButton>
+                      <Link to="/my-activating-metting">
+                        <IconButton onClick={() => {}}>
+                          <MoreHorizIcon />
+                        </IconButton>
+                      </Link>
                     </div>
                   </div>
                 }

@@ -4,6 +4,7 @@ import InputBox from 'components/web/InputBox';
 import PageCard from 'components/web/PageCard';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import Switch from 'components/web/Switch';
 
 const recruiting = [
   {
@@ -73,6 +74,7 @@ const recruiting = [
 
 function MyRecruitingMetting() {
   const [location, setLocation] = useState('');
+  const [isHost, setIsHost] = useState(false);
   const theme = useTheme();
   const isFullWidth = useMediaQuery(theme.breakpoints.down('xs'));
 
@@ -89,14 +91,29 @@ function MyRecruitingMetting() {
             marginBottom: '5px',
           }}
         >
-          <div style={{ width: isFullWidth ? '100%' : '300px' }}>
-            <InputBox
-              isSearch
-              placeholder="모임명"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              style={{ width: '100%' }}
-            />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: isFullWidth ? 'column' : 'row',
+              width: '100%',
+            }}
+          >
+            <div style={{ width: isFullWidth ? '100%' : '300px' }}>
+              <InputBox isSearch placeholder="모임명" value={location} onChange={(e) => setLocation(e.target.value)} />
+            </div>
+            <div
+              style={{
+                width: isFullWidth ? '100%' : 'auto',
+                marginLeft: isFullWidth ? '0px' : '15px',
+                marginTop: isFullWidth ? '10px' : '0px',
+              }}
+            >
+              <Switch
+                value={isHost}
+                onChange={setIsHost}
+                label={<div style={{ fontSize: '15px', fontWeight: 'bold' }}>내가 모임장인 모임</div>}
+              />
+            </div>
           </div>
         </div>
         <div className="card-container">

@@ -36,7 +36,7 @@ function MyActivatingMetting() {
           <div style={{ width: isFullWidth ? '100%' : '300px' }}>
             <InputBox
               isSearch
-              placeholder="지역"
+              placeholder="모임명"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               style={{ width: '100%' }}
