@@ -1,5 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
 
 interface InputBoxProps {
   value: any;
@@ -15,6 +17,8 @@ interface InputBoxProps {
   helperText?: string;
   style?: object;
   unit?: string;
+  isSearch?: boolean;
+  multiLine?: number;
 }
 
 function InputBox(props: InputBoxProps) {
@@ -32,6 +36,8 @@ function InputBox(props: InputBoxProps) {
     type = 'text',
     style,
     unit,
+    isSearch,
+    multiLine,
   } = props;
   return (
     <>
@@ -58,10 +64,17 @@ function InputBox(props: InputBoxProps) {
           variant="outlined"
           InputProps={{
             readOnly: isReadOnly,
+            startAdornment: isSearch ? (
+              <InputAdornment position="start">
+                <SearchIcon style={{ color: 'rgba(0, 0, 0, 0.54)' }} />
+              </InputAdornment>
+            ) : undefined,
           }}
           placeholder={placeholder}
           helperText={helperText}
           style={style}
+          multiline={!!multiLine}
+          rows={multiLine}
         />
         {unit && <div style={{ fontWeight: 'bold', marginLeft: '5px' }}>{unit}</div>}
       </div>
