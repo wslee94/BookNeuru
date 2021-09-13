@@ -18,7 +18,6 @@ function PlusMetting() {
   const [numOfPeople, setNumOfPeople] = useState('');
   const [imageFile, setImageFile] = useState<string | null>(null);
   const [description, setDescription] = useState('');
-  const [book, setBook] = useState('');
   const [genre, setGenre] = useState<string>('');
 
   return (
@@ -55,9 +54,6 @@ function PlusMetting() {
       </Field>
       <Field title="모임설명" isRequired>
         <Editor value={description} onChange={(value) => setDescription(value)} />
-      </Field>
-      <Field title="첫 모임 책">
-        <InputBox value={book} onChange={(e) => setBook(e.target.value)} />
       </Field>
       <Field title="모임분야">
         <Select value={genre} options={select_genre} style={{ width: 200 }} onChange={(value) => setGenre(value)} />

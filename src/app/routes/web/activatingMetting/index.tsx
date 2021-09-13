@@ -21,7 +21,7 @@ function ActivatingMetting() {
   const isFullWidth = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
-    <PageCard pageTitle="활동중인 모임">
+    <PageCard pageTitle="활동 중인 모임">
       <div className="container-horizontal-center">
         <div
           style={{

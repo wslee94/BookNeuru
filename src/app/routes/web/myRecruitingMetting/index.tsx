@@ -71,7 +71,7 @@ const recruiting = [
   },
 ];
 
-function RecruitingMetting() {
+function MyRecruitingMetting() {
   const [location, setLocation] = useState('');
   const theme = useTheme();
   const isFullWidth = useMediaQuery(theme.breakpoints.down('xs'));
@@ -138,4 +138,4 @@ function RecruitingMetting() {
   );
 }
 
-export default RecruitingMetting;
+export default MyRecruitingMetting;

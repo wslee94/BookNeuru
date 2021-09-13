@@ -7,52 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import NoContent from 'components/web/NoContent';
 import PageCard from 'components/web/PageCard';
-
-const CAROUSEL_VERTICAL = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1280 },
-    items: 5,
-  },
-  labtop: {
-    breakpoint: { max: 1280, min: 1024 },
-    items: 4,
-  },
-  largeTablet: {
-    breakpoint: { max: 1024, min: 768 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 768, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
-
-const CAROUSEL_HORIZONTAL = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1280 },
-    items: 3,
-  },
-  labtop: {
-    breakpoint: { max: 1280, min: 1024 },
-    items: 2,
-  },
-  largeTablet: {
-    breakpoint: { max: 1024, min: 768 },
-    items: 2,
-  },
-  tablet: {
-    breakpoint: { max: 768, min: 464 },
-    items: 1,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+import { CAROUSEL_VERTICAL, CAROUSEL_HORIZONTAL } from 'helpers/const';
+import { Link } from 'react-router-dom';
 
 const banners = [{}];
 
@@ -95,13 +51,21 @@ function Home() {
             responsive={CAROUSEL_VERTICAL}
             header={
               <div
-                style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 10px', alignItems: 'center' }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '0px 10px',
+                  alignItems: 'center',
+                  height: '48px',
+                }}
               >
-                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모집중인 모임</div>
+                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모집 중인 모임</div>
                 <div>
-                  <IconButton onClick={() => {}}>
-                    <MoreHorizIcon />
-                  </IconButton>
+                  <Link to="/recruiting-metting">
+                    <IconButton onClick={() => {}}>
+                      <MoreHorizIcon />
+                    </IconButton>
+                  </Link>
                 </div>
               </div>
             }
@@ -144,7 +108,7 @@ function Home() {
                         alignItems: 'center',
                       }}
                     >
-                      <NoContent text="모집중인 모임이 없습니다." />
+                      <NoContent text="모집 중인 모임이 없습니다." />
                     </div>
                   </Card>
                 </div>
@@ -162,13 +126,16 @@ function Home() {
                     justifyContent: 'space-between',
                     padding: '0px 10px',
                     alignItems: 'center',
+                    height: '48px',
                   }}
                 >
-                  <div style={{ fontSize: '15px', fontWeight: 'bold' }}>활동중인 모임</div>
+                  <div style={{ fontSize: '15px', fontWeight: 'bold' }}>활동 중인 모임</div>
                   <div>
-                    <IconButton onClick={() => {}}>
-                      <MoreHorizIcon />
-                    </IconButton>
+                    <Link to="/activating-metting">
+                      <IconButton onClick={() => {}}>
+                        <MoreHorizIcon />
+                      </IconButton>
+                    </Link>
                   </div>
                 </div>
               }
@@ -211,7 +178,7 @@ function Home() {
                           alignItems: 'center',
                         }}
                       >
-                        <NoContent text="활동중인 모임이 없습니다." />
+                        <NoContent text="활동 중인 모임이 없습니다." />
                       </div>
                     </Card>
                   </div>
@@ -230,14 +197,10 @@ function Home() {
                     justifyContent: 'space-between',
                     padding: '0px 10px',
                     alignItems: 'center',
+                    height: '48px',
                   }}
                 >
                   <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모임에서 가장 많이 읽은 책</div>
-                  <div>
-                    <IconButton onClick={() => {}}>
-                      <MoreHorizIcon />
-                    </IconButton>
-                  </div>
                 </div>
               }
             >

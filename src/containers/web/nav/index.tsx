@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
   menuItem: {
     display: 'flex',
     alignItems: 'center',
-    '& i': {
-      fontSize: '18px',
-    },
   },
 }));
 
@@ -30,13 +27,13 @@ function Nav(props: NavProps) {
       selected: false,
     },
     {
-      text: '모집중인 모임',
+      text: '모집 중인 모임',
       image: 'fas fa-lock-open',
       link: '/recruiting-metting',
       selected: false,
     },
     {
-      text: '활동중인 모임',
+      text: '활동 중인 모임',
       image: 'fas fa-lock',
       link: '/activating-metting',
       selected: false,
@@ -47,18 +44,39 @@ function Nav(props: NavProps) {
       link: '/plus-metting',
       selected: false,
     },
+  ]);
+  const [myMenus, setMyMenus] = useState([
     {
-      text: '나의모임',
-      image: 'fas fa-user-friends',
-      link: '/my-metting',
+      text: '홈',
+      image: 'fas fa-home',
+      link: '/my-home',
+      selected: false,
+    },
+    {
+      text: '모집 중인 모임',
+      image: 'fas fa-lock-open',
+      link: '/recruiting-metting',
+      selected: false,
+    },
+    {
+      text: '활동 중인 모임',
+      image: 'fas fa-lock',
+      link: '/activating-metting',
       selected: false,
     },
   ]);
+
   const classes = useStyles();
 
   useEffect(() => {
     setMenus(
       menus.map((n) => {
+        if (n.link === pathname) return { ...n, selected: true };
+        return { ...n, selected: false };
+      }),
+    );
+    setMyMenus(
+      myMenus.map((n) => {
         if (n.link === pathname) return { ...n, selected: true };
         return { ...n, selected: false };
       }),
@@ -70,18 +88,70 @@ function Nav(props: NavProps) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
+        <div style={{ padding: '8px 16px', fontWeight: 'bold' }}>Menu</div>
         {menus.map((menu, index) => {
           return (
             <Link className={classes.menuItem} to={menu.link} key={index}>
               <ListItem button onClick={handleDrawerToggle}>
                 <ListItemIcon>
-                  <i className={menu.image} style={menu.selected ? { color: '#1976d2' } : undefined}></i>
+                  <i
+                    className={menu.image}
+                    style={menu.selected ? { color: '#1976d2', fontSize: '15px' } : { fontSize: '15px' }}
+                  ></i>
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <span style={menu.selected ? { color: '#1976d2', fontWeight: 'bold' } : undefined}>
+                    <span
+                      style={
+                        menu.selected
+                          ? { color: '#1976d2', fontWeight: 'bold', fontSize: '15px' }
+                          : { fontSize: '15px' }
+                      }
+                    >
                       {menu.text}
                     </span>
+                  }
+                />
+              </ListItem>
+            </Link>
+          );
+        })}
+      </List>
+      <Divider />
+      <List>
+        <div style={{ padding: '8px 16px', fontWeight: 'bold' }}>My Menu</div>
+        {myMenus.map((menu, index) => {
+          return (
+            <Link className={classes.menuItem} to={menu.link} key={index}>
+              <ListItem button onClick={handleDrawerToggle}>
+                <ListItemIcon>
+                  <i
+                    className={menu.image}
+                    style={menu.selected ? { color: '#1976d2', fontSize: '15px' } : { fontSize: '15px' }}
+                  ></i>
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                      <span
+                        style={
+                          menu.selected
+                            ? { color: '#1976d2', fontWeight: 'bold', fontSize: '10px', marginRight: '3px' }
+                            : { fontSize: '10px', marginRight: '3px' }
+                        }
+                      >
+                        My
+                      </span>
+                      <span
+                        style={
+                          menu.selected
+                            ? { color: '#1976d2', fontWeight: 'bold', fontSize: '15px' }
+                            : { fontSize: '15px' }
+                        }
+                      >
+                        {menu.text}
+                      </span>
+                    </div>
                   }
                 />
               </ListItem>
