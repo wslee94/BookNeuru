@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import InputBox from 'components/web/InputBox';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import NoContent from 'components/web/NoContent';
 import Card from 'components/web/Card';
 import PageCard from 'components/web/PageCard';
-import { useTheme } from '@material-ui/core/styles';
-import CheckBox from 'components/web/CheckBox';
 import { CAROUSEL_VERTICAL } from 'helpers/const';
 import Carousel from 'components/web/Carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -74,11 +70,6 @@ const inActivating = [
 ];
 
 function MyHome() {
-  const [title, setTitle] = useState('');
-  const [isHost, setIsHost] = useState(false);
-  const theme = useTheme();
-  const isFullWidth = useMediaQuery(theme.breakpoints.down('xs'));
-
   return (
     <>
       <PageCard pageTitle="My 홈">
@@ -250,9 +241,11 @@ function MyHome() {
                   >
                     <div style={{ fontSize: '15px', fontWeight: 'bold' }}>종결된 모임</div>
                     <div>
-                      <IconButton onClick={() => {}}>
-                        <MoreHorizIcon />
-                      </IconButton>
+                      <Link to="/my-closed-metting">
+                        <IconButton onClick={() => {}}>
+                          <MoreHorizIcon />
+                        </IconButton>
+                      </Link>
                     </div>
                   </div>
                 }

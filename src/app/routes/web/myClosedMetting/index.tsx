@@ -7,23 +7,72 @@ import { useTheme } from '@material-ui/core/styles';
 import Switch from 'components/web/Switch';
 
 const activating = [
-  { title: '모임제목1', desc: '모임설명1', location: '서울시 강남구', image: 'no-image' },
-  { title: '모임제목2', desc: '모임설명2', location: '서울시 강서구', image: 'no-image' },
-  { title: '모임제목3', desc: '모임설명3', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목4', desc: '모임설명4', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목5', desc: '모임설명5', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목6', desc: '모임설명6', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목7', desc: '모임설명7', location: '경기도 분당구', image: 'no-image' },
+  {
+    title: '모임제목1',
+    desc: '모임설명1',
+    location: '서울시 강남구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
+  {
+    title: '모임제목2',
+    desc: '모임설명2',
+    location: '서울시 강서구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
+  {
+    title: '모임제목3',
+    desc: '모임설명3',
+    location: '경기도 분당구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
+  {
+    title: '모임제목4',
+    desc: '모임설명4',
+    location: '경기도 분당구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
+  {
+    title: '모임제목5',
+    desc: '모임설명5',
+    location: '경기도 분당구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
+  {
+    title: '모임제목6',
+    desc: '모임설명6',
+    location: '경기도 분당구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
+  {
+    title: '모임제목7',
+    desc: '모임설명7',
+    location: '경기도 분당구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
 ];
 
-function MyActivatingMetting() {
+function MyClosedMetting() {
   const [location, setLocation] = useState('');
   const [isHost, setIsHost] = useState(false);
   const theme = useTheme();
   const isFullWidth = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
-    <PageCard pageTitle="My 활동 중인 모임">
+    <PageCard pageTitle="My 종료된 모임">
       <div className="container">
         <div
           style={{
@@ -78,6 +127,9 @@ function MyActivatingMetting() {
                     </div>
                     <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
                   </div>
+                  <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>
+                    {`${n.startDate}~${n.endDate}`}
+                  </div>
                   <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
                 </div>
               </Card>
@@ -89,4 +141,4 @@ function MyActivatingMetting() {
   );
 }
 
-export default MyActivatingMetting;
+export default MyClosedMetting;

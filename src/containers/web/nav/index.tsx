@@ -64,6 +64,12 @@ function Nav(props: NavProps) {
       link: '/my-activating-metting',
       selected: false,
     },
+    {
+      text: '종료된 모임',
+      image: 'fas fa-window-close',
+      link: '/my-closed-metting',
+      selected: false,
+    },
   ]);
 
   const classes = useStyles();
