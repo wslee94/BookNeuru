@@ -45,7 +45,7 @@ function InputBox(props: InputBoxProps) {
         </div>
       ) : null}
 
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', ...style }}>
         <TextField
           value={value}
           onChange={onChange}

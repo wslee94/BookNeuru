@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Card from 'components/web/Card';
 import InputBox from 'components/web/InputBox';
 import PageCard from 'components/web/PageCard';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 const activating = [
   { title: '모임제목1', desc: '모임설명1', location: '서울시 강남구', image: 'no-image' },
@@ -15,6 +17,9 @@ const activating = [
 
 function ActivatingMetting() {
   const [location, setLocation] = useState('');
+  const theme = useTheme();
+  const isFullWidth = useMediaQuery(theme.breakpoints.down('xs'));
+
   return (
     <PageCard pageTitle="활동중인 모임">
       <div className="container-horizontal-center">
@@ -25,16 +30,15 @@ function ActivatingMetting() {
             alignItems: 'flex-end',
             justifyContent: 'space-between',
             padding: '0px 10px',
-            height: '43px',
             marginBottom: '5px',
           }}
         >
-          <div>
+          <div style={{ width: isFullWidth ? '100%' : '350px' }}>
             <InputBox
               placeholder="지역"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              style={{ width: '252px' }}
+              style={{ width: '100%' }}
             />
           </div>
         </div>
