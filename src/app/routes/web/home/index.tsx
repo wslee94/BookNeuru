@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Card from 'components/web/Card';
 import CardMedia from 'components/web/CardMedia';
 import Carousel from 'components/web/Carousel';
@@ -9,6 +9,7 @@ import NoContent from 'components/web/NoContent';
 import PageCard from 'components/web/PageCard';
 import { CAROUSEL_VERTICAL, CAROUSEL_HORIZONTAL } from 'helpers/const';
 import { Link } from 'react-router-dom';
+import Ellipsis from 'components/web/Ellipsis';
 
 const banners = [{}];
 
@@ -70,6 +71,33 @@ const mostViewBooks = [
 ];
 
 function Home() {
+  const refCardWidth = useRef<HTMLDivElement>(null);
+  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [cardWidth, setCardWidth] = useState(0);
+
+  const windowSizer = useCallback(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', windowSizer);
+
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    timer = setTimeout(() => {
+      setCardWidth(refCardWidth?.current?.offsetWidth || 0);
+    }, 0);
+
+    return () => {
+      window.removeEventListener('resize', windowSizer);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    // 말줄임표 설정을 위해
+    setCardWidth(refCardWidth?.current?.offsetWidth || 0);
+  }, [windowSize]);
+
   return (
     <PageCard pageTitle="홈">
       <div className="container">
@@ -109,12 +137,15 @@ function Home() {
                           flexDirection: 'column',
                           justifyContent: 'space-between',
                         }}
+                        ref={refCardWidth}
                       >
                         <div>
                           <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                            {n.title}
+                            <Ellipsis text={n.title} line={1} width={cardWidth} />
                           </div>
-                          <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
+                          <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>
+                            <Ellipsis text={n.desc} line={4} width={cardWidth} />
+                          </div>
                         </div>
                         <div
                           style={{
@@ -193,9 +224,11 @@ function Home() {
                         >
                           <div>
                             <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                              {n.title}
+                              <Ellipsis text={n.title} line={1} width={cardWidth} />
                             </div>
-                            <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
+                            <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>
+                              <Ellipsis text={n.desc} line={4} width={cardWidth} />
+                            </div>
                           </div>
                           <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
                         </div>

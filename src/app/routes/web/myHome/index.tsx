@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import NoContent from 'components/web/NoContent';
@@ -8,6 +8,7 @@ import { CAROUSEL_VERTICAL } from 'helpers/const';
 import Carousel from 'components/web/Carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
+import Ellipsis from 'components/web/Ellipsis';
 
 const recruiting = [
   {
@@ -62,14 +63,55 @@ const activating = [
 ];
 
 const inActivating = [
-  { title: '모임제목1', desc: '모임설명1', location: '서울시 강남구', image: 'no-image' },
-  { title: '모임제목2', desc: '모임설명2', location: '서울시 강서구', image: 'no-image' },
+  {
+    title: '모임제목1',
+    desc: '모임설명1',
+    location: '서울시 강남구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
+  {
+    title: '모임제목2',
+    desc: '모임설명2',
+    location: '서울시 강서구',
+    image: 'no-image',
+    startDate: '2021-01-01',
+    endDate: '2021-09-13',
+  },
   null,
   null,
   null,
 ];
 
 function MyHome() {
+  const refCardWidth = useRef<HTMLDivElement>(null);
+  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [cardWidth, setCardWidth] = useState(0);
+
+  const windowSizer = useCallback(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', windowSizer);
+
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    timer = setTimeout(() => {
+      setCardWidth(refCardWidth?.current?.offsetWidth || 0);
+    }, 0);
+
+    return () => {
+      window.removeEventListener('resize', windowSizer);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    // 말줄임표 설정을 위해
+    setCardWidth(refCardWidth?.current?.offsetWidth || 0);
+  }, [windowSize]);
+
   return (
     <>
       <PageCard pageTitle="My 홈">
@@ -110,12 +152,26 @@ function MyHome() {
                             flexDirection: 'column',
                             justifyContent: 'space-between',
                           }}
+                          ref={refCardWidth}
                         >
                           <div>
                             <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                              {n.title}
+                              <Ellipsis text={n.title} line={1} width={cardWidth} />
                             </div>
-                            <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
+                            <div style={{ marginTop: '10px', height: 78, overflow: 'hidden' }}>
+                              <Ellipsis text={n.desc} line={4} width={cardWidth} />
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              textAlign: 'left',
+                              fontSize: '11px',
+                              fontWeight: 'bold',
+                              color: 'blue',
+                              marginBottom: '3px',
+                            }}
+                          >
+                            {n.hasNewJoiner ? '새로운 가입 신청인이 있습니다.' : ''}
                           </div>
                           <div
                             style={{
@@ -194,9 +250,11 @@ function MyHome() {
                           >
                             <div>
                               <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                                {n.title}
+                                <Ellipsis text={n.title} line={1} width={cardWidth} />
                               </div>
-                              <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
+                              <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>
+                                <Ellipsis text={n.desc} line={4} width={cardWidth} />
+                              </div>
                             </div>
                             <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
                           </div>
@@ -265,9 +323,16 @@ function MyHome() {
                           >
                             <div>
                               <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                                {n.title}
+                                <Ellipsis text={n.title} line={1} width={cardWidth} />
                               </div>
-                              <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>{n.desc}</div>
+                              <div style={{ marginTop: '10px', height: 78, overflow: 'hidden' }}>
+                                <Ellipsis text={n.desc} line={4} width={cardWidth} />
+                              </div>
+                            </div>
+                            <div
+                              style={{ textAlign: 'left', fontSize: '11px', fontWeight: 'bold', marginBottom: '3px' }}
+                            >
+                              {`${n.startDate}~${n.endDate}`}
                             </div>
                             <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
                           </div>
