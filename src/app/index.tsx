@@ -10,6 +10,7 @@ import ActivatingMetting from './routes/web/activatingMetting';
 import MyRecruitingMetting from './routes/web/myRecruitingMetting';
 import MyActivatingMetting from './routes/web/myActivatingMetting';
 import MyClosedMetting from './routes/web/myClosedMetting';
+import MyProfile from './routes/web/myProfile';
 
 function MenuRouter() {
   return (
@@ -23,6 +24,7 @@ function MenuRouter() {
       <Route path="/my-recruiting-metting" component={MyRecruitingMetting} />
       <Route path="/my-activating-metting" component={MyActivatingMetting} />
       <Route path="/my-closed-metting" component={MyClosedMetting} />
+      <Route path="/my-profile" component={MyProfile} />
       <Route path="/" component={Home} />
     </Switch>
   );

@@ -70,6 +70,12 @@ function Nav(props: NavProps) {
       link: '/my-closed-metting',
       selected: false,
     },
+    {
+      text: '프로필',
+      image: 'fas fa-user-cog',
+      link: '/my-profile',
+      selected: false,
+    },
   ]);
 
   const classes = useStyles();
