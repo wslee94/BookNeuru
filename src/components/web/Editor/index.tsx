@@ -6,6 +6,7 @@ import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { Editor as ToastEditor } from '@toast-ui/react-editor';
 import { Viewer } from '@toast-ui/react-editor';
+import './custom.scss';
 
 interface EditorProps {
   value: string;
