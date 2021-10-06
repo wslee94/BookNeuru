@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   pageCard: {
-    marginTop: 15,
     padding: 15,
   },
   pageTitle: {
@@ -17,12 +16,13 @@ const useStyles = makeStyles({
 interface PageCardProps {
   pageTitle: string;
   children: object;
+  tabs?: object;
 }
 
 function PageCard(props: PageCardProps) {
   const classes = useStyles();
 
-  const { pageTitle, children } = props;
+  const { pageTitle, children, tabs } = props;
 
   return (
     <>
@@ -30,7 +30,10 @@ function PageCard(props: PageCardProps) {
         <i className="fas fa-book" style={{ fontSize: 22 }}></i>
         <span className={classes.pageTitle}>{pageTitle}</span>
       </div>
-      <Card className={classes.pageCard}>{children}</Card>
+      {tabs ? <div style={{ marginTop: 15 }}>{tabs}</div> : null}
+      <Card className={classes.pageCard} style={tabs ? undefined : { marginTop: 15 }}>
+        {children}
+      </Card>
     </>
   );
 }
