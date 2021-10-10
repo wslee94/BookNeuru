@@ -39,6 +39,18 @@ function InputBox(props: InputBoxProps) {
     isSearch,
     multiLine,
   } = props;
+
+  if (isReadOnly) {
+    if (unit)
+      return (
+        <div style={{ display: 'flex', alignItems: 'center', ...style }}>
+          {value} <div style={{ marginLeft: '5px' }}>{unit}</div>
+        </div>
+      );
+
+    return <>{value}</>;
+  }
+
   return (
     <>
       {label && !isRequired ? (
@@ -60,10 +72,8 @@ function InputBox(props: InputBoxProps) {
           disabled={isDisabled}
           fullWidth={isFullWidth}
           type={type}
-          // variant="filled"
           variant="outlined"
           InputProps={{
-            readOnly: isReadOnly,
             startAdornment: isSearch ? (
               <InputAdornment position="start">
                 <SearchIcon style={{ color: 'rgba(0, 0, 0, 0.54)' }} />

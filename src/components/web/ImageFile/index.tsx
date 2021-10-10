@@ -12,10 +12,21 @@ interface ImageFileProps {
   file: string | undefined | null;
   onChange: (event: string) => void;
   previewType?: 'round' | 'square';
+  isReadOnly?: boolean;
 }
 
 function ImageFile(props: ImageFileProps) {
-  const { isRequired, label, size = 'small', alt, align, file, onChange, previewType = 'round' } = props;
+  const {
+    isRequired,
+    label,
+    size = 'small',
+    alt,
+    align,
+    file,
+    onChange,
+    previewType = 'round',
+    isReadOnly = false,
+  } = props;
 
   let justifyContent = 'left';
   if (align === 'left') justifyContent = 'flex-start';
@@ -50,17 +61,19 @@ function ImageFile(props: ImageFileProps) {
             id="image_file"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(URL.createObjectURL(e.target.files?.[0]))}
           />
-          <label htmlFor="image_file">
-            <MuiButton
-              style={{ minWidth: '0px', padding: '4px 2px' }}
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-            >
-              <AttachFile />
-            </MuiButton>
-          </label>
+          {!isReadOnly && (
+            <label htmlFor="image_file">
+              <MuiButton
+                style={{ minWidth: '0px', padding: '4px 2px' }}
+                size="small"
+                variant="contained"
+                color="primary"
+                component="span"
+              >
+                <AttachFile />
+              </MuiButton>
+            </label>
+          )}
         </div>
       </div>
     </>

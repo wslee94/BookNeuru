@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PageCard from 'components/web/PageCard';
 import { Tab, Tabs } from 'components/web/Tab';
+import Info from './info';
+import RecruitmentStatus from './recruitmentStatus';
+import Activity from './activity';
 
 function MettingInfo() {
   const [tab, setTab] = useState(0);
@@ -16,7 +19,9 @@ function MettingInfo() {
         </Tabs>
       }
     >
-      <div>내용</div>
+      {tab === 0 && <Info />}
+      {tab === 1 && <RecruitmentStatus />}
+      {tab === 2 && <Activity />}
     </PageCard>
   );
 }

@@ -11,10 +11,11 @@ interface SelectProps {
   onChange: (arg0: string) => void;
   options: { key: number | string; text: string }[];
   style?: object;
+  isReadOnly?: boolean;
 }
 
 function Select(props: SelectProps) {
-  const { label, value, options, onChange, style } = props;
+  const { label, value, options, onChange, style, isReadOnly = false } = props;
   const [id, setId] = useState('');
 
   useEffect(() => {
@@ -24,6 +25,10 @@ function Select(props: SelectProps) {
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     onChange(event.target.value as string);
   };
+
+  if (isReadOnly) {
+    return <>{options.filter((n) => n.key === value)[0]?.text}</>;
+  }
 
   return (
     <FormControl variant="outlined">

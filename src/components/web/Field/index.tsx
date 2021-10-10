@@ -6,8 +6,8 @@ const useStyles = makeStyles((theme: Theme) =>
     filed: {
       display: 'grid',
       gridTemplateColumns: '1fr 10fr',
-      gridGap: '10px',
       padding: '5px 0px',
+      gridGap: '10px',
       [theme.breakpoints.down('xl')]: {
         gridTemplateColumns: '1fr 9fr',
       },
@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.down('xs')]: {
         display: 'flex',
         flexDirection: 'column',
+        marginBottom: '10px',
+        gridGap: '0px',
       },
     },
     text: {
@@ -30,9 +32,6 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       fontSize: '15px',
       fontWeight: 'bold',
-      [theme.breakpoints.down('xs')]: {
-        fontSize: '13px',
-      },
     },
   }),
 );
