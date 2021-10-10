@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface FiledProps {
   title: string;
-  children: object;
+  children: object | string;
   isRequired?: boolean;
 }
 

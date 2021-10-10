@@ -86,6 +86,8 @@ function Info() {
         {formMode === 'modify' && (
           <Button label="취소" onClick={() => setFormMode('detail')} style={{ margin: '5px' }} />
         )}
+        <Button label="가입신청" onClick={() => {}} style={{ margin: '5px' }} />
+
         <Button label="종결" onClick={() => {}} style={{ margin: '5px' }} type="warning" />
       </div>
     </>
