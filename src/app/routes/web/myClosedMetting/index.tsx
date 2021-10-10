@@ -142,7 +142,7 @@ function MyClosedMetting() {
         <div className="card-container">
           {activating.map((n, index) => (
             <div key={index} style={{ padding: '10px' }}>
-              <Card image={n.image} imageHeight={180}>
+              <Card image={n.image} imageHeight={180} link="/metting-info">
                 <div
                   style={{
                     height: '150px',

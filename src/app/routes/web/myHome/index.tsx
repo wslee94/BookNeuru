@@ -144,7 +144,7 @@ function MyHome() {
                 if (n) {
                   return (
                     <div key={index} style={{ padding: '5px 10px' }}>
-                      <Card image={n.image} imageHeight={180}>
+                      <Card image={n.image} imageHeight={180} link="/metting-info">
                         <div
                           style={{
                             height: '150px',
@@ -193,7 +193,7 @@ function MyHome() {
 
                 return (
                   <div key={index} style={{ padding: '5px 10px' }}>
-                    <Card onClick={() => {}}>
+                    <Card>
                       <div
                         style={{
                           height: '330px',
@@ -239,7 +239,7 @@ function MyHome() {
                   if (n) {
                     return (
                       <div key={index} style={{ padding: '5px 10px' }}>
-                        <Card image={n.image} imageHeight={180}>
+                        <Card image={n.image} imageHeight={180} link="/metting-info">
                           <div
                             style={{
                               height: '150px',
@@ -265,7 +265,7 @@ function MyHome() {
 
                   return (
                     <div key={index} style={{ padding: '5px 10px' }}>
-                      <Card onClick={() => {}}>
+                      <Card>
                         <div
                           style={{
                             height: '330px',
@@ -312,7 +312,7 @@ function MyHome() {
                   if (n) {
                     return (
                       <div key={index} style={{ padding: '5px 10px' }}>
-                        <Card image={n.image} imageHeight={180}>
+                        <Card image={n.image} imageHeight={180} link="/metting-info">
                           <div
                             style={{
                               height: '150px',
@@ -343,7 +343,7 @@ function MyHome() {
 
                   return (
                     <div key={index} style={{ padding: '5px 10px' }}>
-                      <Card onClick={() => {}}>
+                      <Card>
                         <div
                           style={{
                             height: '330px',

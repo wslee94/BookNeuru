@@ -5,10 +5,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import noneImage from 'public/img/none_image.png';
+import { Link } from 'react-router-dom';
 
 interface CardProps {
   children: object;
-  onClick?: () => void;
+  link?: string;
   image?: string;
   imageHeight?: number;
   imageAlt?: string;
@@ -17,11 +18,33 @@ interface CardProps {
 }
 
 function Card(props: CardProps) {
-  const { onClick, children, image, imageHeight = 140, imageAlt, actionButton, style } = props;
+  const { link, children, image, imageHeight = 140, imageAlt, actionButton, style } = props;
 
+  if (link) {
+    return (
+      <Link to={link}>
+        <MuiCard style={style}>
+          <CardActionArea>
+            {image ? (
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <CardMedia
+                  component="img"
+                  alt={imageAlt}
+                  image={image === 'no-image' ? noneImage : image}
+                  style={{ height: imageHeight, objectFit: 'fill' }}
+                />
+              </div>
+            ) : null}
+            <CardContent>{children}</CardContent>
+          </CardActionArea>
+          {actionButton && <CardActions>{actionButton}</CardActions>}
+        </MuiCard>
+      </Link>
+    );
+  }
   return (
     <MuiCard style={style}>
-      <CardActionArea onClick={onClick}>
+      <CardActionArea>
         {image ? (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <CardMedia

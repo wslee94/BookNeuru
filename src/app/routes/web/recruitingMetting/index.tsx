@@ -132,7 +132,7 @@ function RecruitingMetting() {
         <div className="card-container">
           {recruiting.map((n, index) => (
             <div key={index} style={{ padding: '10px' }}>
-              <Card image={n.image} imageHeight={180}>
+              <Card image={n.image} imageHeight={180} link="/metting-info">
                 <div
                   style={{
                     height: '150px',
