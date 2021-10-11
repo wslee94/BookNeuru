@@ -7,9 +7,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 
 interface TableProps {
-  header: { column: string; name: string; align: 'left' | 'center' | 'right' }[];
+  header: { column: string; name: string; align: 'left' | 'center' | 'right'; useLink?: boolean }[];
   data: any[];
 }
 
@@ -64,6 +65,16 @@ function CustomizedTable(props: TableProps) {
             return (
               <StyledTableRow key={index}>
                 {header.map((n) => {
+                  if (n.useLink) {
+                    return (
+                      <StyledTableCell key={n.column} align={n.align}>
+                        <Link to={row[`${n.column}Link`]}>
+                          <span style={{ color: 'blue' }}>{row[n.column]}</span>
+                        </Link>
+                      </StyledTableCell>
+                    );
+                  }
+
                   return (
                     <StyledTableCell key={n.column} align={n.align}>
                       {row[n.column]}

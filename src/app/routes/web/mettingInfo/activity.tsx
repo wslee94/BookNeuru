@@ -9,7 +9,7 @@ function Activity() {
   return (
     <Table
       header={[
-        { column: 'activityName', name: '활동명', align: 'left' },
+        { column: 'activityName', name: '활동명', align: 'left', useLink: true },
         { column: 'bookName', name: '책', align: 'center' },
         { column: 'location', name: '장소', align: 'center' },
         { column: 'participants', name: '참여인원', align: 'center' },
@@ -18,6 +18,7 @@ function Activity() {
       data={[
         {
           activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: '4명',
@@ -25,6 +26,7 @@ function Activity() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: '4명',
@@ -32,6 +34,7 @@ function Activity() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: '4명',
@@ -39,6 +42,7 @@ function Activity() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: '4명',
@@ -46,6 +50,7 @@ function Activity() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: '4명',
