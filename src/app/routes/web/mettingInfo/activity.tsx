@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from 'components/web/Table';
+import Button from 'components/web/Button';
+import InputBox from 'components/web/InputBox';
 
-// pagenation
 // orderby
-// customColumn
 
 function Activity() {
+  const [searchText, setSearchText] = useState('');
+
   return (
     <Table
-      header={[
+      searchBar={
+        <InputBox
+          isSearch
+          placeholder="활동명, 책"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          style={{ width: '100%' }}
+        />
+      }
+      actionButtons={<Button label="모임활동 등록" onClick={() => {}} />}
+      columns={[
         { column: 'activityName', name: '활동명', align: 'left', useLink: true },
         { column: 'bookName', name: '책', align: 'center' },
         { column: 'location', name: '장소', align: 'center' },
