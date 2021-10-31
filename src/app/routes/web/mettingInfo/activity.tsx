@@ -35,7 +35,39 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 1,
+          mettingDate: '2021-10-19',
+        },
+        {
+          activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
+          bookName: '혁명의 팡파르',
+          location: '분당구 미금역 스타벅스',
+          participants: 20,
+          mettingDate: '2021-12-10',
+        },
+        {
+          activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
+          bookName: '혁명의 팡파르',
+          location: '분당구 미금역 스타벅스',
+          participants: 4,
+          mettingDate: '2021-11-10',
+        },
+        {
+          activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
+          bookName: '혁명의 팡파르',
+          location: '분당구 미금역 스타벅스',
+          participants: 3,
+          mettingDate: '2020-10-10',
+        },
+        {
+          activityName: '혁명의 팡파르 독서 토론',
+          activityNameLink: '/',
+          bookName: '혁명의 팡파르',
+          location: '분당구 미금역 스타벅스',
+          participants: 19,
           mettingDate: '2021-10-10',
         },
         {
@@ -43,7 +75,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -51,7 +83,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -59,7 +91,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -67,7 +99,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -75,7 +107,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -83,7 +115,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -91,7 +123,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -99,7 +131,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -107,7 +139,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -115,7 +147,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -123,7 +155,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -131,7 +163,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -139,7 +171,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -147,7 +179,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -155,7 +187,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -163,7 +195,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -171,7 +203,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -179,7 +211,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -187,7 +219,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -195,7 +227,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -203,7 +235,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -211,7 +243,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -219,7 +251,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
         {
@@ -227,39 +259,7 @@ function Activity() {
           activityNameLink: '/',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
-          participants: '4명',
-          mettingDate: '2021-10-10',
-        },
-        {
-          activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/',
-          bookName: '혁명의 팡파르',
-          location: '분당구 미금역 스타벅스',
-          participants: '4명',
-          mettingDate: '2021-10-10',
-        },
-        {
-          activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/',
-          bookName: '혁명의 팡파르',
-          location: '분당구 미금역 스타벅스',
-          participants: '4명',
-          mettingDate: '2021-10-10',
-        },
-        {
-          activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/',
-          bookName: '혁명의 팡파르',
-          location: '분당구 미금역 스타벅스',
-          participants: '4명',
-          mettingDate: '2021-10-10',
-        },
-        {
-          activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/',
-          bookName: '혁명의 팡파르',
-          location: '분당구 미금역 스타벅스',
-          participants: '4명',
+          participants: 2,
           mettingDate: '2021-10-10',
         },
       ]}

@@ -20,8 +20,8 @@ interface TableProps {
   header?: object;
   searchBar?: object;
   actionButtons?: object;
-  initOrder?: 'asc' | 'desc';
-  initOrderBy?: string;
+  initOrder: 'asc' | 'desc';
+  initOrderBy: string;
 }
 
 const StyledTableRow = withStyles((theme: Theme) =>
@@ -55,8 +55,8 @@ function CustomizedTable(props: TableProps) {
   const { columns, data, searchBar, actionButtons, initOrderBy, initOrder } = props;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [orderBy, setOrderBy] = useState<string | undefined>(undefined);
-  const [order, setOrder] = useState<'asc' | 'desc' | undefined>(undefined);
+  const [orderBy, setOrderBy] = useState<string>('');
+  const [order, setOrder] = useState<'asc' | 'desc'>('desc');
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
   const classes = useStyles();
 
@@ -82,6 +82,31 @@ function CustomizedTable(props: TableProps) {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
+
+  function descendingComparator<T>(a: T, b: T, orderBy: keyof T): number {
+    if (b[orderBy] < a[orderBy]) return -1;
+    if (b[orderBy] > a[orderBy]) return 1;
+    return 0;
+  }
+
+  function getComparator<Key extends keyof any>(
+    order: 'asc' | 'desc',
+    orderBy: Key,
+  ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+    return order === 'desc'
+      ? (a, b) => descendingComparator(a, b, orderBy)
+      : (a, b) => -descendingComparator(a, b, orderBy);
+  }
+
+  function sortData<T>(array: T[], comparator: (a: T, b: T) => number) {
+    const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+    stabilizedThis.sort((a, b) => {
+      const order = comparator(a[0], b[0]);
+      if (order !== 0) return order;
+      return a[1] - b[1]; // 값이 같다면 인덱스 비교
+    });
+    return stabilizedThis.map((el) => el[0]); // element만 꺼내는 작업
+  }
 
   return (
     <>
@@ -133,29 +158,34 @@ function CustomizedTable(props: TableProps) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0 ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : data).map(
-              (row, index) => (
-                <StyledTableRow key={index}>
-                  {columns.map((n) => {
-                    if (n.useLink) {
-                      return (
-                        <TableCell key={n.column} align={n.align}>
-                          <Link to={row[`${n.column}Link`]}>
-                            <span style={{ color: 'blue', fontWeight: 'bold' }}>{row[n.column]}</span>
-                          </Link>
-                        </TableCell>
-                      );
-                    }
-
+            {(rowsPerPage > 0
+              ? sortData(data, getComparator(order, orderBy)).slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage,
+                )
+              : sortData(data, getComparator(order, orderBy))
+            ).map((row, index) => (
+              <StyledTableRow key={index}>
+                {columns.map((n) => {
+                  if (n.useLink) {
+                    const link: any = row[`${n.column}Link`];
                     return (
                       <TableCell key={n.column} align={n.align}>
-                        {row[n.column]}
+                        <Link to={link}>
+                          <span style={{ color: 'blue', fontWeight: 'bold' }}>{row[n.column]}</span>
+                        </Link>
                       </TableCell>
                     );
-                  })}
-                </StyledTableRow>
-              ),
-            )}
+                  }
+
+                  return (
+                    <TableCell key={n.column} align={n.align}>
+                      {row[n.column]}
+                    </TableCell>
+                  );
+                })}
+              </StyledTableRow>
+            ))}
             {emptyRows > 0 && (
               <TableRow style={{ height: 53 * emptyRows }}>
                 <TableCell colSpan={columns.length} />
