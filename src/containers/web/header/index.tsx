@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  AppBar,
-  CssBaseline,
-  Drawer,
-  Hidden,
-  IconButton,
-  Toolbar,
-  Button,
-  Tooltip,
-  useMediaQuery,
-} from '@material-ui/core';
-import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, Help as HelpIcon } from '@material-ui/icons';
+import { Link, useLocation } from 'react-router-dom';
+import { AppBar, CssBaseline, Drawer, Hidden, IconButton, Toolbar, Button, useMediaQuery } from '@material-ui/core';
+import { Menu as MenuIcon, AccountCircle as AccountCircleIcon } from '@material-ui/icons';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
 import logo from 'public/img/logo.png';
 import Nav from '../nav';
 
@@ -65,7 +57,8 @@ export default function ResponsiveDrawer(props: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [auth, setAuth] = useState(false);
+
+  let location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -73,6 +66,10 @@ export default function ResponsiveDrawer(props: Props) {
 
   const container = window !== undefined ? () => window().document.body : undefined;
   const isUpLg = useMediaQuery(theme.breakpoints.up('lg'));
+
+  if (location.pathname === '/login' || location.pathname === '/sign-up') {
+    return <></>;
+  }
 
   return (
     <div className={classes.root}>
@@ -84,33 +81,17 @@ export default function ResponsiveDrawer(props: Props) {
           </IconButton>
 
           <div className={classes.headerContents}>
-            <div>
+            <Link to="/home">
               <img className="header-logo" src={logo} alt="로고" />
+            </Link>
+            <div>
+              <IconButton onClick={() => {}} color="inherit">
+                <AccountCircleIcon />
+              </IconButton>
+              <IconButton onClick={() => {}} color="inherit">
+                <ExitToAppIcon />
+              </IconButton>
             </div>
-            {auth ? (
-              <div>
-                <Tooltip title="나의 정보">
-                  <IconButton onClick={() => {}} color="inherit">
-                    <AccountCircleIcon />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="메뉴얼">
-                  <IconButton onClick={() => {}} color="inherit">
-                    <HelpIcon />
-                  </IconButton>
-                </Tooltip>
-                <Button color="inherit">로그아웃</Button>
-              </div>
-            ) : (
-              <div>
-                <Link to="/login">
-                  <Button color="inherit">로그인</Button>
-                </Link>
-                <Link to="/sign-up">
-                  <Button color="inherit">회원가입</Button>
-                </Link>
-              </div>
-            )}
           </div>
         </Toolbar>
       </AppBar>

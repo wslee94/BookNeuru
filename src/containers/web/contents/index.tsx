@@ -1,5 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
+import { useLocation } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import MenuRouter from 'app/index';
 
@@ -17,12 +18,18 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginLeft: drawerWidth,
     },
   },
+  login: {
+    backgroundColor: theme.palette.primary.main,
+  },
 }));
 
 function Contents() {
+  let location = useLocation();
+  let isContentPage = location.pathname !== '/login' && location.pathname !== '/sign-up';
+
   const classes = useStyles();
   return (
-    <main className={classes.content}>
+    <main className={isContentPage ? classes.content : classes.login}>
       <MenuRouter />
     </main>
   );

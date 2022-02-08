@@ -16,18 +16,18 @@ import MettingInfo from './routes/web/mettingInfo';
 function MenuRouter() {
   return (
     <Switch>
-      <Route path="/sign-up" component={SignUp} />
-      <Route path="/login" component={Login} />
-      <Route path="/plus-metting" component={PlusMetting} />
-      <Route path="/my-home" component={MyHome} />
-      <Route path="/recruiting-metting" component={RecruitingMetting} />
-      <Route path="/activating-metting" component={ActivatingMetting} />
-      <Route path="/my-recruiting-metting" component={MyRecruitingMetting} />
-      <Route path="/my-activating-metting" component={MyActivatingMetting} />
-      <Route path="/my-closed-metting" component={MyClosedMetting} />
-      <Route path="/my-profile" component={MyProfile} />
-      <Route path="/metting-info" component={MettingInfo} />
-      <Route path="/" component={Home} />
+      <Route exact path="/sign-up" component={SignUp} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/plus-metting" component={PlusMetting} />
+      <Route exact path="/my-home" component={MyHome} />
+      <Route exact path="/recruiting-metting" component={RecruitingMetting} />
+      <Route exact path="/activating-metting" component={ActivatingMetting} />
+      <Route exact path="/my-recruiting-metting" component={MyRecruitingMetting} />
+      <Route exact path="/my-activating-metting" component={MyActivatingMetting} />
+      <Route exact path="/my-closed-metting" component={MyClosedMetting} />
+      <Route exact path="/my-profile" component={MyProfile} />
+      <Route exact path="/metting-info" component={MettingInfo} />
+      <Route exact path="/" component={Home} />
     </Switch>
   );
 }

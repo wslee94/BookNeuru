@@ -3,8 +3,6 @@ import Table from 'components/web/Table';
 import Button from 'components/web/Button';
 import InputBox from 'components/web/InputBox';
 
-// orderby
-
 function Activity() {
   const [searchText, setSearchText] = useState('');
 
