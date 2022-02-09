@@ -32,30 +32,10 @@ function Nav(props: NavProps) {
       link: '/plus-metting',
       selected: false,
     },
-  ]);
-  const [myMenus, setMyMenus] = useState([
     {
-      text: '홈',
-      image: 'fas fa-home',
-      link: '/my-home',
-      selected: false,
-    },
-    {
-      text: '모집 중인 모임',
-      image: 'fas fa-lock-open',
-      link: '/my-recruiting-metting',
-      selected: false,
-    },
-    {
-      text: '활동 중인 모임',
-      image: 'fas fa-lock',
+      text: '내가 참여한 모임',
+      image: 'fas fa-users',
       link: '/my-activating-metting',
-      selected: false,
-    },
-    {
-      text: '종료된 모임',
-      image: 'fas fa-window-close',
-      link: '/my-closed-metting',
       selected: false,
     },
   ]);
@@ -65,12 +45,6 @@ function Nav(props: NavProps) {
   useEffect(() => {
     setMenus(
       menus.map((n) => {
-        if (n.link === pathname) return { ...n, selected: true };
-        return { ...n, selected: false };
-      }),
-    );
-    setMyMenus(
-      myMenus.map((n) => {
         if (n.link === pathname) return { ...n, selected: true };
         return { ...n, selected: false };
       }),
@@ -110,49 +84,6 @@ function Nav(props: NavProps) {
           );
         })}
       </List>
-      <Divider />
-      <List>
-        <div style={{ padding: '8px 16px', fontWeight: 'bold' }}>내가 참여한 모임</div>
-        {myMenus.map((menu, index) => {
-          return (
-            <Link className={classes.menuItem} to={menu.link} key={index}>
-              <ListItem button onClick={handleDrawerToggle}>
-                <ListItemIcon>
-                  <i
-                    className={menu.image}
-                    style={menu.selected ? { color: '#1976d2', fontSize: '15px' } : { fontSize: '15px' }}
-                  ></i>
-                </ListItemIcon>
-                <ListItemText
-                  primary={
-                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                      <span
-                        style={
-                          menu.selected
-                            ? { color: '#1976d2', fontWeight: 'bold', fontSize: '10px', marginRight: '3px' }
-                            : { fontSize: '10px', marginRight: '3px' }
-                        }
-                      >
-                        My
-                      </span>
-                      <span
-                        style={
-                          menu.selected
-                            ? { color: '#1976d2', fontWeight: 'bold', fontSize: '15px' }
-                            : { fontSize: '15px' }
-                        }
-                      >
-                        {menu.text}
-                      </span>
-                    </div>
-                  }
-                />
-              </ListItem>
-            </Link>
-          );
-        })}
-      </List>
-      <Divider />
     </>
   );
 }

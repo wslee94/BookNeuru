@@ -45,7 +45,7 @@ function Login() {
               <Button
                 label="로그인"
                 onClick={() => {
-                  history.push('/home');
+                  history.push('/');
                 }}
                 style={{ width: '100%', height: '45px' }}
               />
