@@ -29,24 +29,14 @@ function Info() {
         <Field title="모임명" isRequired={formMode !== 'detail'}>
           <InputBox value={title} onChange={(e) => setTitle(e.target.value)} isReadOnly={formMode === 'detail'} />
         </Field>
-        <Field title="첫 모임장소">
+        <Field title="주 모임장소">
           <InputBox value={location} onChange={(e) => setLocation(e.target.value)} isReadOnly={formMode === 'detail'} />
         </Field>
         <Field title="첫 모임일">
           <DatePicker value={date} onChange={(e) => setDate(e.target.value)} isReadOnly={formMode === 'detail'} />
         </Field>
-        <Field title="첫 모임시간">
+        <Field title="주 모임시간">
           <TimePicker value={time} onChange={(e) => setTime(e.target.value)} isReadOnly={formMode === 'detail'} />
-        </Field>
-        <Field title="모집인원" isRequired={formMode !== 'detail'}>
-          <InputBox
-            type="number"
-            value={numOfPeople}
-            onChange={(e) => setNumOfPeople(e.target.value)}
-            unit="명"
-            style={{ width: '100px' }}
-            isReadOnly={formMode === 'detail'}
-          />
         </Field>
         <Field title="모임이미지">
           <ImageFile
@@ -55,14 +45,6 @@ function Info() {
             file={imageFile}
             onChange={(file) => setImageFile(file)}
             previewType="square"
-            isReadOnly={formMode === 'detail'}
-          />
-        </Field>
-        <Field title="모임설명(표시용)" isRequired={formMode !== 'detail'}>
-          <InputBox
-            value={simpleDescription}
-            onChange={(e) => setSimpleDescription(e.target.value)}
-            multiLine={5}
             isReadOnly={formMode === 'detail'}
           />
         </Field>

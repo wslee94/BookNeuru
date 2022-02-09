@@ -10,64 +10,65 @@ import PageCard from 'components/web/PageCard';
 import { CAROUSEL_VERTICAL, CAROUSEL_HORIZONTAL } from 'helpers/const';
 import { Link } from 'react-router-dom';
 import Ellipsis from 'components/web/Ellipsis';
+import book1 from './sample/book1.jpg';
+import book2 from './sample/book2.jpg';
+import book3 from './sample/book3.jpg';
+import book4 from './sample/book4.jpg';
+import book5 from './sample/book5.jpg';
+import book6 from './sample/book6.jpg';
+import book7 from './sample/book7.jpg';
+import book8 from './sample/book8.jpg';
+import meeting1 from './sample/meeting1.jpg';
+import meeting2 from './sample/meeting2.jpg';
+import meeting_default from './sample/meeting_default.png';
 
-const banners = [{}];
-
-const recruiting = [
+const myMeeting = [
   {
-    title: '모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1모임제목1',
-    desc:
-      '모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1모임설명1임설명1모임설명1모임설명1모임설명1',
+    title: '한 작가 깊게 파기',
     location: '서울시 강남구',
-    image: 'no-image',
-    averageAge: '20',
-    maxNumOfPeople: 4,
-    currNumOfPeople: 3,
+    image: meeting1,
   },
   {
-    title: '모임제목2',
-    desc: '모임설명2',
+    title: '미래 인간 생존 백서',
     location: '서울시 강서구',
-    image: 'no-image',
-    averageAge: '20',
-    maxNumOfPeople: 4,
-    currNumOfPeople: 3,
+    image: meeting2,
   },
   {
-    title: '모임제목3',
-    desc: '모임설명3',
+    title: '현대적인 또는 현재적인 어떤 소설',
     location: '경기도 분당구',
-    image: 'no-image',
-    averageAge: '20',
-    maxNumOfPeople: 4,
-    currNumOfPeople: 3,
+    image: meeting_default,
   },
   {
-    title: '모임제목4',
-    desc: '모임설명4',
+    title: '북씨-리뷰',
     location: '경기도 분당구',
-    image: 'no-image',
-    averageAge: '20',
-    maxNumOfPeople: 4,
-    currNumOfPeople: 3,
+    image: meeting1,
   },
-  null,
+  {
+    title: '체험독서',
+    location: '경기도 분당구',
+    image: meeting2,
+  },
+  {
+    title: '기술은 우리의 삶을 어떻게 바꿀까',
+    location: '경기도 분당구',
+    image: meeting_default,
+  },
+  {
+    title: '책 놀이터',
+    location: '경기도 분당구',
+    image: meeting_default,
+  },
 ];
 
-const activating = [
-  { title: '모임제목1', desc: '모임설명1', location: '서울시 강남구', image: 'no-image' },
-  { title: '모임제목2', desc: '모임설명2', location: '서울시 강서구', image: 'no-image' },
-  { title: '모임제목3', desc: '모임설명3', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목4', desc: '모임설명4', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목5', desc: '모임설명5', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목6', desc: '모임설명6', location: '경기도 분당구', image: 'no-image' },
-  { title: '모임제목7', desc: '모임설명7', location: '경기도 분당구', image: 'no-image' },
-];
-
-const mostViewBooks = [
-  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', desc: '책설명', image: 'no-image' },
-  { title: '책제목', genre: '소설', author: '아무개', publishDate: '2021-08-15', desc: '책설명', image: 'no-image' },
-  null,
+const myReadBooks = [
+  { image: book1 },
+  { image: book2 },
+  { image: book3 },
+  { image: book4 },
+  { image: book5 },
+  { image: book6 },
+  { image: book7 },
+  { image: book8 },
 ];
 
 function Home() {
@@ -114,7 +115,7 @@ function Home() {
                   height: '48px',
                 }}
               >
-                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모집 중인 모임</div>
+                <div style={{ fontSize: '15px', fontWeight: 'bold' }}>내가 참여한 모임</div>
                 <div>
                   <Link to="/recruiting-metting">
                     <IconButton onClick={() => {}}>
@@ -125,138 +126,41 @@ function Home() {
               </div>
             }
           >
-            {recruiting.map((n, index) => {
-              if (n) {
-                return (
-                  <div key={index} style={{ padding: '5px 10px' }}>
-                    <Card image={n.image} imageHeight={180} link="/metting-info">
-                      <div
-                        style={{
-                          height: '150px',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'space-between',
-                        }}
-                        ref={refCardWidth}
-                      >
-                        <div>
-                          <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                            <Ellipsis text={n.title} line={1} width={cardWidth} />
-                          </div>
-                          <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>
-                            <Ellipsis text={n.desc} line={4} width={cardWidth} />
-                          </div>
-                        </div>
-                        <div
-                          style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            textAlign: 'right',
-                            fontSize: '11px',
-                            fontWeight: 'bold',
-                          }}
-                        >
-                          <div>{`${n.currNumOfPeople}/${n.maxNumOfPeople}명 (${n.averageAge}대)`}</div>
-                          <div>{n.location}</div>
-                        </div>
-                      </div>
-                    </Card>
-                  </div>
-                );
-              }
-
+            {myMeeting.map((n, index) => {
               return (
                 <div key={index} style={{ padding: '5px 10px' }}>
-                  <Card>
+                  <Card image={n.image} imageHeight={160} link="/metting-info">
                     <div
                       style={{
-                        height: '330px',
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
+                        justifyContent: 'space-between',
                       }}
+                      ref={refCardWidth}
                     >
-                      <NoContent text="모집 중인 모임이 없습니다." />
+                      <div>
+                        <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
+                          <Ellipsis text={n.title} line={1} width={cardWidth} />
+                        </div>
+                      </div>
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'flex-end',
+                          textAlign: 'right',
+                          fontSize: '12px',
+                          fontWeight: 'bold',
+                          marginTop: '15px',
+                        }}
+                      >
+                        <div>{n.location}</div>
+                      </div>
                     </div>
                   </Card>
                 </div>
               );
             })}
           </Carousel>
-
-          <div style={{ marginTop: '10px' }}>
-            <Carousel
-              responsive={CAROUSEL_VERTICAL}
-              header={
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    padding: '0px 10px',
-                    alignItems: 'center',
-                    height: '48px',
-                  }}
-                >
-                  <div style={{ fontSize: '15px', fontWeight: 'bold' }}>활동 중인 모임</div>
-                  <div>
-                    <Link to="/activating-metting">
-                      <IconButton onClick={() => {}}>
-                        <MoreHorizIcon />
-                      </IconButton>
-                    </Link>
-                  </div>
-                </div>
-              }
-            >
-              {activating.map((n, index) => {
-                if (n) {
-                  return (
-                    <div key={index} style={{ padding: '5px 10px' }}>
-                      <Card image={n.image} imageHeight={180} link="/metting-info">
-                        <div
-                          style={{
-                            height: '150px',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'space-between',
-                          }}
-                        >
-                          <div>
-                            <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                              <Ellipsis text={n.title} line={1} width={cardWidth} />
-                            </div>
-                            <div style={{ marginTop: '10px', height: 90, overflow: 'hidden' }}>
-                              <Ellipsis text={n.desc} line={4} width={cardWidth} />
-                            </div>
-                          </div>
-                          <div style={{ textAlign: 'right', fontSize: '11px', fontWeight: 'bold' }}>{n.location}</div>
-                        </div>
-                      </Card>
-                    </div>
-                  );
-                }
-
-                return (
-                  <div key={index} style={{ padding: '5px 10px' }}>
-                    <Card>
-                      <div
-                        style={{
-                          height: '330px',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <NoContent text="활동 중인 모임이 없습니다." />
-                      </div>
-                    </Card>
-                  </div>
-                );
-              })}
-            </Carousel>
-          </div>
 
           <div style={{ marginTop: '10px' }}>
             <Carousel
@@ -271,51 +175,14 @@ function Home() {
                     height: '48px',
                   }}
                 >
-                  <div style={{ fontSize: '15px', fontWeight: 'bold' }}>모임에서 가장 많이 읽은 책</div>
+                  <div style={{ fontSize: '15px', fontWeight: 'bold' }}>내가 읽은 책</div>
                 </div>
               }
             >
-              {mostViewBooks.map((n, index) => {
-                if (n) {
-                  return (
-                    <div key={index} style={{ padding: '5px 10px' }}>
-                      <CardMedia image={n.image} onClick={() => {}}>
-                        <div
-                          style={{
-                            height: '300px',
-                            overflow: 'hidden',
-                            display: 'flex',
-                            flexDirection: 'column',
-                          }}
-                        >
-                          <div>
-                            <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{n.title}</div>
-                            <div style={{ marginTop: '10px' }}>{`책장르 : ${n.genre}`}</div>
-                            <div>{`작가 : ${n.author}`}</div>
-                            <div>{`출판일 : ${n.publishDate}`}</div>
-                            <div style={{ marginTop: '10px' }}>{n.desc}</div>
-                          </div>
-                        </div>
-                      </CardMedia>
-                    </div>
-                  );
-                }
-
+              {myReadBooks.map((n, index) => {
                 return (
                   <div key={index} style={{ padding: '5px 10px' }}>
-                    <Card>
-                      <div
-                        style={{
-                          height: '300px',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <NoContent text="책 정보가 없습니다." />
-                      </div>
-                    </Card>
+                    <CardMedia imageAlt="도서 사진" image={n.image} onClick={() => {}} />
                   </div>
                 );
               })}

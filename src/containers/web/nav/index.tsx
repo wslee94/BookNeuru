@@ -27,18 +27,6 @@ function Nav(props: NavProps) {
       selected: false,
     },
     {
-      text: '모집 중인 모임',
-      image: 'fas fa-lock-open',
-      link: '/recruiting-metting',
-      selected: false,
-    },
-    {
-      text: '활동 중인 모임',
-      image: 'fas fa-lock',
-      link: '/activating-metting',
-      selected: false,
-    },
-    {
       text: '모임 만들기',
       image: 'fas fa-user-plus',
       link: '/plus-metting',
@@ -70,12 +58,6 @@ function Nav(props: NavProps) {
       link: '/my-closed-metting',
       selected: false,
     },
-    {
-      text: '프로필',
-      image: 'fas fa-user-cog',
-      link: '/my-profile',
-      selected: false,
-    },
   ]);
 
   const classes = useStyles();
@@ -100,7 +82,6 @@ function Nav(props: NavProps) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <div style={{ padding: '8px 16px', fontWeight: 'bold' }}>Menu</div>
         {menus.map((menu, index) => {
           return (
             <Link className={classes.menuItem} to={menu.link} key={index}>
@@ -131,7 +112,7 @@ function Nav(props: NavProps) {
       </List>
       <Divider />
       <List>
-        <div style={{ padding: '8px 16px', fontWeight: 'bold' }}>My Menu</div>
+        <div style={{ padding: '8px 16px', fontWeight: 'bold' }}>내가 참여한 모임</div>
         {myMenus.map((menu, index) => {
           return (
             <Link className={classes.menuItem} to={menu.link} key={index}>

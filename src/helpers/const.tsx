@@ -24,19 +24,19 @@ export const CAROUSEL_VERTICAL = {
 export const CAROUSEL_HORIZONTAL = {
   desktop: {
     breakpoint: { max: 3000, min: 1280 },
-    items: 3,
+    items: 5,
   },
   labtop: {
-    breakpoint: { max: 1280, min: 1024 },
-    items: 2,
+    breakpoint: { max: 1600, min: 1024 },
+    items: 4,
   },
   largeTablet: {
     breakpoint: { max: 1024, min: 768 },
-    items: 2,
+    items: 3,
   },
   tablet: {
     breakpoint: { max: 768, min: 464 },
-    items: 1,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },

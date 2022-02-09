@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { AppBar, CssBaseline, Drawer, Hidden, IconButton, Toolbar, Button, useMediaQuery } from '@material-ui/core';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon } from '@material-ui/icons';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
@@ -59,6 +60,7 @@ export default function ResponsiveDrawer(props: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   let location = useLocation();
+  const history = useHistory();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -88,7 +90,12 @@ export default function ResponsiveDrawer(props: Props) {
               <IconButton onClick={() => {}} color="inherit">
                 <AccountCircleIcon />
               </IconButton>
-              <IconButton onClick={() => {}} color="inherit">
+              <IconButton
+                onClick={() => {
+                  history.push('/login');
+                }}
+                color="inherit"
+              >
                 <ExitToAppIcon />
               </IconButton>
             </div>

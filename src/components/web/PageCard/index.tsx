@@ -25,7 +25,7 @@ function PageCard(props: PageCardProps) {
   const { pageTitle, children, tabs } = props;
 
   return (
-    <>
+    <div style={{ paddingBottom: 15 }}>
       <div>
         <i className="fas fa-book" style={{ fontSize: 22 }}></i>
         <span className={classes.pageTitle}>{pageTitle}</span>
@@ -34,7 +34,7 @@ function PageCard(props: PageCardProps) {
       <Card className={classes.pageCard} style={tabs ? undefined : { marginTop: 15 }}>
         {children}
       </Card>
-    </>
+    </div>
   );
 }
 
