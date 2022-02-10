@@ -6,7 +6,7 @@ import noneImage from 'public/img/none_user_image.png';
 interface ImageFileProps {
   isRequired?: boolean;
   label?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'x-large';
   alt: string;
   align?: undefined | 'left' | 'center' | 'right';
   file: string | undefined | null;

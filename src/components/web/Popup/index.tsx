@@ -8,11 +8,11 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 
 interface PopupProps {
-  handleClose: () => void;
+  handleClose?: () => void;
   isOpen: boolean;
   children: object;
   title: string;
-  actionButton: object;
+  actionButton?: object;
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   contentText?: string;
 }
@@ -23,7 +23,13 @@ function Popup(props: PopupProps) {
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Dialog open={isOpen} onClose={handleClose} maxWidth={maxWidth} fullWidth fullScreen={fullScreen}>
+    <Dialog
+      open={isOpen}
+      onClose={handleClose ? handleClose : undefined}
+      maxWidth={maxWidth}
+      fullWidth
+      fullScreen={fullScreen}
+    >
       <DialogTitle>{title}</DialogTitle>
       <DialogContent dividers>
         <>
@@ -31,7 +37,7 @@ function Popup(props: PopupProps) {
           {children}
         </>
       </DialogContent>
-      <DialogActions>{actionButton}</DialogActions>
+      {actionButton && <DialogActions>{actionButton}</DialogActions>}
     </Dialog>
   );
 }

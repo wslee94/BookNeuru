@@ -5,7 +5,7 @@ interface ButtonProps {
   onClick: () => void;
   label: string;
   isDisabled?: boolean;
-  type?: 'general' | 'warning';
+  type?: 'general' | 'warning' | 'inverted';
   size?: 'large' | 'medium' | 'small';
   style?: object;
 }
@@ -22,6 +22,9 @@ function Button(props: ButtonProps) {
     case 'warning': {
       color = 'secondary';
       break;
+    }
+    case 'inverted': {
+      color = 'default';
     }
   }
 

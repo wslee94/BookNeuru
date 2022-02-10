@@ -1,28 +1,37 @@
 import React, { useState } from 'react';
+import { IconButton } from '@material-ui/core';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded';
 import PageCard from 'components/web/PageCard';
-import { Tab, Tabs } from 'components/web/Tab';
-import Info from './info';
-import RecruitmentStatus from './recruitmentStatus';
+import Popup from 'components/web/Popup';
+import Button from 'components/web/Button';
+import Info from './meetingInfo';
 import Activity from './activity';
 
 function MettingInfo() {
-  const [tab, setTab] = useState(0);
+  const [isOpenInfo, setIsOpenInfo] = useState(false);
 
   return (
-    <PageCard
-      pageTitle="모임정보"
-      tabs={
-        <Tabs value={tab} onChange={(value) => setTab(value)}>
-          <Tab label="상세내용" />
-          <Tab label="모집현황" />
-          <Tab label="모임활동" />
-        </Tabs>
-      }
-    >
-      {tab === 0 && <Info />}
-      {tab === 1 && <RecruitmentStatus />}
-      {tab === 2 && <Activity />}
-    </PageCard>
+    <>
+      <PageCard
+        pageTitle="한 작가 깊게 파기"
+        actionButtons={
+          <>
+            <IconButton onClick={() => setIsOpenInfo(true)} color="inherit">
+              <InfoOutlinedIcon style={{ fontSize: '35px' }} />
+            </IconButton>
+            <IconButton onClick={() => {}} color="inherit">
+              <PersonAddRoundedIcon style={{ fontSize: '35px' }} />
+            </IconButton>
+          </>
+        }
+      >
+        <Activity />
+      </PageCard>
+      <Popup maxWidth="lg" isOpen={isOpenInfo} title="한 작가 깊게 파기 모임 정보">
+        <Info closeDialog={() => setIsOpenInfo(false)} />
+      </Popup>
+    </>
   );
 }
 
