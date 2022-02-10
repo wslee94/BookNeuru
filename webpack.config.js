@@ -21,7 +21,8 @@ const rules = [
     test: /\.(jpg|jpeg|gif|png|svg|ico)/i,
     loader: 'url-loader',
     options: {
-      name: 'img/[name].[ext]?[hash]',
+      // name: 'img/[name].[ext]?[hash]',
+      name: 'img/[name].[ext]',
       fallback: 'file-loader',
       limit: 8192,
     },

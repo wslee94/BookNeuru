@@ -31,9 +31,7 @@ function PageCard(props: PageCardProps) {
         <i className="fas fa-book" style={{ fontSize: 22 }}></i>
         <span className={classes.pageTitle}>{pageTitle}</span>
       </div>
-      {actionButtons ? (
-        <div style={{ marginTop: 15, display: 'flex', justifyContent: 'end' }}>{actionButtons}</div>
-      ) : null}
+      {actionButtons ? <div style={{ marginTop: 15 }}>{actionButtons}</div> : null}
       {tabs ? <div style={{ marginTop: 15 }}>{tabs}</div> : null}
       <Card className={classes.pageCard} style={tabs ? undefined : { marginTop: 15 }}>
         {children}
