@@ -7,7 +7,7 @@ import PageCard from 'components/web/PageCard';
 import Popup from 'components/web/Popup';
 import Info from './meetingInfo';
 import Invitation from './invitation';
-import Activity from './activity';
+import Activities from './activities';
 import ActivityInfo from './activityInfo';
 
 function MettingInfo() {
@@ -37,7 +37,7 @@ function MettingInfo() {
           </div>
         }
       >
-        <Activity />
+        <Activities />
       </PageCard>
       <Popup maxWidth="lg" isOpen={isOpenMettingInfo} title="한 작가 깊게 파기 모임 정보">
         <Info closeDialog={() => setIsOpenMettingInfo(false)} />

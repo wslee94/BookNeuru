@@ -6,6 +6,7 @@ import SignUp from 'app/routes/web/signUp';
 import Login from 'app/routes/web/login';
 import MyProfile from './routes/web/myProfile';
 import MettingInfo from './routes/web/mettingInfo';
+import Activity from './routes/web/mettingInfo/activity';
 
 function MenuRouter() {
   return (
@@ -15,6 +16,8 @@ function MenuRouter() {
       <Route exact path="/plus-metting" component={MettingCreate} />
       <Route exact path="/my-profile" component={MyProfile} />
       <Route exact path="/metting-info" component={MettingInfo} />
+      <Route exact path="/metting-info/activity" component={Activity} />
+      <Route exact path="/activity" component={Activity} />
       <Route exact path="/" component={Home} />
     </Switch>
   );

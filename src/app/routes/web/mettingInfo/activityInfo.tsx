@@ -27,14 +27,12 @@ function ActivityInfo({ closeDialog }: ActivityInfoProps) {
   const [description, setDescription] = useState('');
   const [genre, setGenre] = useState<string>('');
 
-  console.log(participants);
-
   return (
     <>
       <Field title="활동명" isRequired>
         <InputBox value={title} onChange={(e) => setTitle(e.target.value)} />
       </Field>
-      <Field title="책 제목" isRequired>
+      <Field title="책" isRequired>
         <InputBox value={book} onChange={(e) => setBook(e.target.value)} />
       </Field>
       <Field title="일자">
