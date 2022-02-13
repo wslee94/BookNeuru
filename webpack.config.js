@@ -45,6 +45,7 @@ module.exports = (env, arg) => {
     mode: arg.mode,
     entry: './src/index.tsx',
     output: {
+      publicPath: '/', // bundle.js의 기본 경로 지정 (이게 없으면 refresh 시 404 error 발생)
       path: path.resolve(__dirname, 'dist'),
       filename: 'bundle.js',
     },
