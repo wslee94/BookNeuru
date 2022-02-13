@@ -117,7 +117,7 @@ function Home() {
               >
                 <div style={{ fontSize: '15px', fontWeight: 'bold' }}>내가 참여한 모임</div>
                 <div>
-                  <Link to="/recruiting-metting">
+                  <Link to="/">
                     <IconButton onClick={() => {}}>
                       <MoreHorizIcon />
                     </IconButton>
