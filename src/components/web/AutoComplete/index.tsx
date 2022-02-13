@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
 interface AutoComplteProps {
-  onChange: (obj: { key: string | number; text: string } | null) => void;
+  value: any;
+  onChange: (obj: any) => void;
   options: { key: string | number; text: string }[];
   width?: number;
+  multiple?: boolean;
 }
 
 function AutoComplete(props: AutoComplteProps) {
-  const { width, options, onChange } = props;
+  const { value, width, options, onChange, multiple } = props;
+  const [inputValue, setInputValue] = React.useState('');
+
   return (
     <Autocomplete
+      value={value}
       autoHighlight
+      multiple={multiple}
       options={options}
       getOptionLabel={(option) => option.text}
-      onChange={(_e, v) => onChange(v)}
+      getOptionSelected={(option, value) => option.key === value.key}
+      onChange={(_e, newValue) => onChange(newValue)}
+      inputValue={inputValue}
+      onInputChange={(_e, newInputValue) => setInputValue(newInputValue)}
       style={{ width: width || '100%' }}
       renderInput={(params) => <TextField {...params} variant="outlined" margin="dense" />}
       noOptionsText="검색결과가 없습니다."

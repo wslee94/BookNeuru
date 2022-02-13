@@ -8,10 +8,12 @@ import Popup from 'components/web/Popup';
 import Info from './meetingInfo';
 import Invitation from './invitation';
 import Activity from './activity';
+import ActivityInfo from './activityInfo';
 
 function MettingInfo() {
-  const [isOpenInfo, setIsOpenInfo] = useState(false);
+  const [isOpenMettingInfo, setIsOpenMettingInfo] = useState(false);
   const [isOpenInvitation, setIsOpenInvitation] = useState(false);
+  const [isOpenActivityInfo, setIsOpenActivityInfo] = useState(false);
 
   return (
     <>
@@ -20,7 +22,7 @@ function MettingInfo() {
         actionButtons={
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <div>
-              <IconButton onClick={() => setIsOpenInfo(true)} color="inherit">
+              <IconButton onClick={() => setIsOpenMettingInfo(true)} color="inherit">
                 <InfoOutlinedIcon style={{ fontSize: '35px' }} />
               </IconButton>
             </div>
@@ -28,12 +30,7 @@ function MettingInfo() {
               <IconButton onClick={() => setIsOpenInvitation(true)} color="inherit">
                 <PersonAddRoundedIcon style={{ fontSize: '35px' }} />
               </IconButton>
-              <IconButton
-                onClick={() => {
-                  // 팝업 처리하자
-                }}
-                color="inherit"
-              >
+              <IconButton onClick={() => setIsOpenActivityInfo(true)} color="inherit">
                 <CreateNewFolderOutlinedIcon style={{ fontSize: '35px' }} />
               </IconButton>
             </div>
@@ -42,11 +39,14 @@ function MettingInfo() {
       >
         <Activity />
       </PageCard>
-      <Popup maxWidth="lg" isOpen={isOpenInfo} title="한 작가 깊게 파기 모임 정보">
-        <Info closeDialog={() => setIsOpenInfo(false)} />
+      <Popup maxWidth="lg" isOpen={isOpenMettingInfo} title="한 작가 깊게 파기 모임 정보">
+        <Info closeDialog={() => setIsOpenMettingInfo(false)} />
       </Popup>
       <Popup maxWidth="sm" isOpen={isOpenInvitation} title="모임 구성원 초대">
         <Invitation closeDialog={() => setIsOpenInvitation(false)} />
+      </Popup>
+      <Popup maxWidth="lg" isOpen={isOpenActivityInfo} title="활동 만들기">
+        <ActivityInfo closeDialog={() => setIsOpenActivityInfo(false)} />
       </Popup>
     </>
   );
