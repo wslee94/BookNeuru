@@ -6,6 +6,11 @@ const useStyles = makeStyles({
   pageCard: {
     padding: 15,
   },
+
+  noPageCard: {
+    margin: '10px 0px',
+  },
+
   pageTitle: {
     marginLeft: 10,
     fontSize: 22,
@@ -18,12 +23,13 @@ interface PageCardProps {
   children: object;
   tabs?: object;
   actionButtons?: object;
+  isNoCard?: boolean;
 }
 
 function PageCard(props: PageCardProps) {
   const classes = useStyles();
 
-  const { pageTitle, children, tabs, actionButtons } = props;
+  const { pageTitle, children, tabs, actionButtons, isNoCard } = props;
 
   return (
     <div style={{ paddingBottom: 15 }}>
@@ -33,9 +39,13 @@ function PageCard(props: PageCardProps) {
       </div>
       {actionButtons ? <div style={{ marginTop: 15 }}>{actionButtons}</div> : null}
       {tabs ? <div style={{ marginTop: 15 }}>{tabs}</div> : null}
-      <Card className={classes.pageCard} style={tabs ? undefined : { marginTop: 15 }}>
-        {children}
-      </Card>
+      {isNoCard ? (
+        <div className={classes.noPageCard}>{children}</div>
+      ) : (
+        <Card className={classes.pageCard} style={tabs ? undefined : { marginTop: 15 }}>
+          {children}
+        </Card>
+      )}
     </div>
   );
 }

@@ -46,7 +46,7 @@ function MettingInfo() {
         <Invitation closeDialog={() => setIsOpenInvitation(false)} />
       </Popup>
       <Popup maxWidth="lg" isOpen={isOpenActivityInfo} title="활동 만들기">
-        <ActivityInfo closeDialog={() => setIsOpenActivityInfo(false)} />
+        <ActivityInfo dialogMode closeDialog={() => setIsOpenActivityInfo(false)} />
       </Popup>
     </>
   );

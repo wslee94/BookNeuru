@@ -2,17 +2,28 @@ import React, { useState } from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 
+type option = { key: string | number; text: string };
+
 interface AutoComplteProps {
   value: any;
   onChange: (obj: any) => void;
-  options: { key: string | number; text: string }[];
+  options: option[];
   width?: number;
   multiple?: boolean;
+  isReadOnly?: boolean;
 }
 
 function AutoComplete(props: AutoComplteProps) {
-  const { value, width, options, onChange, multiple } = props;
+  const { value, width, options, onChange, multiple, isReadOnly } = props;
   const [inputValue, setInputValue] = React.useState('');
+
+  if (isReadOnly && multiple) {
+    return <div>{value.map((n: option) => n.text).join(',')}</div>;
+  }
+
+  if (isReadOnly) {
+    return <div>{value.text}</div>;
+  }
 
   return (
     <Autocomplete
