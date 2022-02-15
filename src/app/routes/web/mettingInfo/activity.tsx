@@ -4,6 +4,7 @@ import { withTheme, withStyles, Theme } from '@material-ui/core/styles';
 import PageCard from 'components/web/PageCard';
 import ActivityInfo from './activityInfo';
 import Comment from 'components/web/Comment';
+import ChatWidget from 'components/web/ChatWidget';
 import userImage from './sample/comment_user.png';
 
 type formMode = 'detail' | 'modify';
@@ -55,7 +56,14 @@ function Activity({ classes }: ActivityProps) {
           />
         </Card>
 
-        <div className={classes.chat}>chat area</div>
+        <div className={classes.chat}>
+          <ChatWidget
+            title="한 작가 깊게 파기"
+            subTitle="혁명의 팡파르 독서 토론"
+            profileAvatar={userImage}
+            chatId="1"
+          />
+        </div>
         <Card className={classes.comment}>{<Comment comments={comments} onSubmit={addComment} />}</Card>
       </div>
     </PageCard>
@@ -76,7 +84,6 @@ const styles = (theme: Theme) => ({
     padding: 15,
   },
   chat: {
-    backgroundColor: 'green',
     padding: 15,
     gridRow: 'span 2',
     [theme.breakpoints.down('md')]: {
