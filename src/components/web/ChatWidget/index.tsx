@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Widget, addResponseMessage, addUserMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
+import './style.css';
 
 interface ChatWidget {
   title: string;

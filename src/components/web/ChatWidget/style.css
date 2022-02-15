@@ -1,0 +1,15 @@
+.rcw-messages-container {
+  background-color: #fff;
+  height: 60vh;
+  max-height: 600px;
+  overflow-y: scroll;
+  padding-top: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (max-width: 800px) {
+  .rcw-messages-container {
+    height: 100%;
+    max-height: none;
+  }
+}
