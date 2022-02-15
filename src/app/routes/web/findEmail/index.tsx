@@ -36,7 +36,13 @@ function FindEmail(props: FindEmailProps) {
       title="이메일 찾기"
       actionButton={
         <>
-          <Button label="전화번호로 이메일 전송" isDisabled={!name || !phoneNumber || isErrPhone} onClick={() => {}} />
+          <Button
+            label="전화번호로 이메일 전송"
+            isDisabled={!name || !phoneNumber || isErrPhone}
+            onClick={() => {
+              //
+            }}
+          />
           <Button label="취소" onClick={handleClose} />
         </>
       }
