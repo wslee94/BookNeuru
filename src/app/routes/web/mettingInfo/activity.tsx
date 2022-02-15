@@ -46,40 +46,23 @@ function Activity({ classes }: ActivityProps) {
   };
 
   return (
-    <PageCard pageTitle="한 작가 깊게 파기" isNoCard>
-      <div className={classes.container}>
-        <Card className={classes.info}>
-          <ActivityInfo
-            dialogMode={false}
-            formMode={formMode}
-            setFormMode={(formMode: formMode) => setFormMode(formMode)}
-          />
-        </Card>
-
-        <div className={classes.chat}>
-          <ChatWidget
-            title="한 작가 깊게 파기"
-            subTitle="혁명의 팡파르 독서 토론"
-            profileAvatar={userImage}
-            chatId="1"
-          />
-        </div>
-        <Card className={classes.comment}>{<Comment comments={comments} onSubmit={addComment} />}</Card>
-      </div>
-    </PageCard>
+    <>
+      <PageCard pageTitle="한 작가 깊게 파기">
+        <ActivityInfo
+          dialogMode={false}
+          formMode={formMode}
+          setFormMode={(formMode: formMode) => setFormMode(formMode)}
+        />
+      </PageCard>
+      <Card className={classes.comment}>
+        <Comment comments={comments} onSubmit={addComment} />
+      </Card>
+      <ChatWidget title="한 작가 깊게 파기" subTitle="혁명의 팡파르 독서 토론" profileAvatar={userImage} chatId="1" />
+    </>
   );
 }
 
 const styles = (theme: Theme) => ({
-  container: {
-    display: 'grid',
-    gridTemplateColumns: '3fr 1fr',
-    gridGap: '10px',
-    [theme.breakpoints.down('md')]: {
-      gridTemplateColumns: '1fr',
-    },
-    minHeight: '800px',
-  },
   info: {
     padding: 15,
   },

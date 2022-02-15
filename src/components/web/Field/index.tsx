@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
     filed: {
       display: 'grid',
       gridTemplateColumns: '1fr 10fr',
-      padding: '5px 0px',
+      padding: '15px 0px',
       gridGap: '10px',
       [theme.breakpoints.down('xl')]: {
         gridTemplateColumns: '1fr 9fr',

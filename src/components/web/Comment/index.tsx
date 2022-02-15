@@ -14,15 +14,20 @@ interface CommentProps {
 
 function Comment({ comments, onSubmit }: CommentProps) {
   useEffect(() => {
-    document.getElementsByClassName('css-u55gqp')[0].removeAttribute('placeholder');
-    document.getElementsByClassName('css-oot9fd')[0].innerHTML = '등록';
+    document
+      .getElementsByClassName('css-u55gqp')[0]
+      .setAttribute('placeholder', '입력 후 엔터(Enter) 키를 눌러주세요.');
+    const button = document.getElementsByClassName('css-oot9fd')[0];
+    button.innerHTML = '등록';
 
     const parentForm: any = document.getElementsByClassName('css-oot9fd')[0].parentNode;
-    parentForm.style.textAlign = 'right';
+    parentForm.removeChild(button);
+    // parentForm.style.textAlign = 'right';
   }, []);
 
   return (
     <div>
+      <h2>댓글</h2>
       <CommentsBlock comments={comments} isLoggedIn onSubmit={onSubmit} />
     </div>
   );
