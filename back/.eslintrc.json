@@ -17,6 +17,22 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "class-methods-use-this": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["library", "./src/library/"]],
+        "extensions": [".ts"]
+      }
+    }
   }
 }
