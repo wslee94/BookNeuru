@@ -11,7 +11,7 @@
       "config/*": ["src/config/*"],
       "data/*": ["src/data/*"]
 		},
-    "target": "es5",
+    "target": "esnext",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,

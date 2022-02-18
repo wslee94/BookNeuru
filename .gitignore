@@ -3,3 +3,7 @@ node_modules
 front/dist/*
 front/*.log
 front/node_modules
+
+back/dist/*
+back/*.log
+back/node_modules

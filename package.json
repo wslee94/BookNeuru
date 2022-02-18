@@ -5,6 +5,7 @@
   "author": "wslee3 <leemuo123@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "fdev": "cd front && yarn dev"
+    "fdev": "cd front && yarn dev",
+    "bdev": "cd back && yarn dev"
   }
 }
