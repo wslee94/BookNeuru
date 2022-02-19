@@ -1,3 +1,6 @@
-export default function routes(app) {
-  // app.use('/api', )
+import auth from "api/auth";
+import { Application } from "express";
+
+export default function routes(app: Application) {
+  app.use("/api/auth", auth);
 }

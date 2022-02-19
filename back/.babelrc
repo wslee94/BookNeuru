@@ -6,7 +6,8 @@
       {
         "root": ["./src"],
         "alias": {
-          "library": "./src/library"
+          "library": "./src/library",
+          "api": "./src/api"
         }
       }
     ]

@@ -31,7 +31,7 @@
   "settings": {
     "import/resolver": {
       "alias": {
-        "map": [["library", "./src/library/"]],
+        "map": [["library", "./src/library/"], ["api", "./src/api"]],
         "extensions": [".ts"]
       }
     }
