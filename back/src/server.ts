@@ -23,7 +23,7 @@ export default class ExpressServer {
     return this;
   }
 
-  router(route) {
+  router(route: any) {
     route(app);
   }
 
