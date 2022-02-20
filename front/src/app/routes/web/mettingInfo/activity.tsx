@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import { withTheme, withStyles, Theme } from '@material-ui/core/styles';
 import PageCard from 'components/web/PageCard';
-import ActivityInfo from './activityInfo';
 import Comment from 'components/web/Comment';
 import ChatWidget from 'components/web/ChatWidget';
+import ActivityInfo from './activityInfo';
 import userImage from './sample/comment_user.png';
 
 type formMode = 'detail' | 'modify';

@@ -5,7 +5,6 @@ import Carousel from 'components/web/Carousel';
 import 'react-multi-carousel/lib/styles.css';
 import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import NoContent from 'components/web/NoContent';
 import PageCard from 'components/web/PageCard';
 import { CAROUSEL_VERTICAL, CAROUSEL_HORIZONTAL } from 'helpers/const';
 import { Link } from 'react-router-dom';
@@ -20,55 +19,62 @@ import book7 from './sample/book7.jpg';
 import book8 from './sample/book8.jpg';
 import meeting1 from './sample/meeting1.jpg';
 import meeting2 from './sample/meeting2.jpg';
-import meeting_default from './sample/meeting_default.png';
+import meetingDefault from './sample/meeting_default.png';
 
 const myMeeting = [
   {
+    meetingID: 1,
     title: '한 작가 깊게 파기',
     location: '서울시 강남구',
     image: meeting1,
   },
   {
+    meetingID: 2,
     title: '미래 인간 생존 백서',
     location: '서울시 강서구',
     image: meeting2,
   },
   {
+    meetingID: 3,
     title: '현대적인 또는 현재적인 어떤 소설',
     location: '경기도 분당구',
-    image: meeting_default,
+    image: meetingDefault,
   },
   {
+    meetingID: 4,
     title: '북씨-리뷰',
     location: '경기도 분당구',
     image: meeting1,
   },
   {
+    meetingID: 5,
     title: '체험독서',
     location: '경기도 분당구',
     image: meeting2,
   },
   {
+    meetingID: 6,
     title: '기술은 우리의 삶을 어떻게 바꿀까',
     location: '경기도 분당구',
-    image: meeting_default,
+    image: meetingDefault,
   },
   {
+    meetingID: 7,
     title: '책 놀이터',
     location: '경기도 분당구',
-    image: meeting_default,
+    image: meetingDefault,
   },
 ];
 
 const myReadBooks = [
-  { image: book1 },
-  { image: book2 },
-  { image: book3 },
-  { image: book4 },
-  { image: book5 },
-  { image: book6 },
-  { image: book7 },
-  { image: book8 },
+  { image: book1, bookID: 1 },
+  { image: book2, bookID: 2 },
+  { image: book3, bookID: 3 },
+  { image: book4, bookID: 4 },
+  { image: book5, bookID: 5 },
+  { image: book6, bookID: 6 },
+  { image: book7, bookID: 7 },
+  { image: book8, bookID: 8 },
 ];
 
 function Home() {
@@ -118,7 +124,11 @@ function Home() {
                 <div style={{ fontSize: '15px', fontWeight: 'bold' }}>내가 참여한 모임</div>
                 <div>
                   <Link to="/">
-                    <IconButton onClick={() => {}}>
+                    <IconButton
+                      onClick={() => {
+                        //
+                      }}
+                    >
                       <MoreHorizIcon />
                     </IconButton>
                   </Link>
@@ -126,9 +136,9 @@ function Home() {
               </div>
             }
           >
-            {myMeeting.map((n, index) => {
+            {myMeeting.map((n) => {
               return (
-                <div key={index} style={{ padding: '5px 10px' }}>
+                <div key={n.meetingID} style={{ padding: '5px 10px' }}>
                   <Card image={n.image} imageHeight={160} link="/metting-info">
                     <div
                       style={{
@@ -179,10 +189,16 @@ function Home() {
                 </div>
               }
             >
-              {myReadBooks.map((n, index) => {
+              {myReadBooks.map((n) => {
                 return (
-                  <div key={index} style={{ padding: '5px 10px' }}>
-                    <CardMedia imageAlt="도서 사진" image={n.image} onClick={() => {}} />
+                  <div key={n.bookID} style={{ padding: '5px 10px' }}>
+                    <CardMedia
+                      imageAlt="도서 사진"
+                      image={n.image}
+                      onClick={() => {
+                        //
+                      }}
+                    />
                   </div>
                 );
               })}

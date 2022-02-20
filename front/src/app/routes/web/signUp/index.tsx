@@ -135,7 +135,13 @@ function SignUp() {
               />
             </div>
             <div className="item">
-              <Button label="회원가입" onClick={() => {}} style={{ width: '100%', height: '45px' }} />
+              <Button
+                label="회원가입"
+                onClick={() => {
+                  //
+                }}
+                style={{ width: '100%', height: '45px' }}
+              />
             </div>
             <Link to="/login">
               <div style={{ marginTop: '5px', textAlign: 'left', color: '#777777' }}>← 로그인 화면으로 돌아가기</div>

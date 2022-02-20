@@ -1,5 +1,5 @@
 // 나중에 DB 코드로 관리할 예정
-export const select_genre = [
+export const selectGenre = [
   { key: '1', text: '문학도서' },
   { key: '2', text: '장르소설' },
   { key: '3', text: '자기계발서' },

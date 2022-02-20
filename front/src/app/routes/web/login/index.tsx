@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import Card from '@material-ui/core/Card';
@@ -58,11 +58,31 @@ function Login() {
                 <div style={{ cursor: 'pointer' }}>회원가입</div>
               </Link>
               <div>&nbsp;|&nbsp;</div>
-              <div style={{ cursor: 'pointer' }} onClick={() => {}}>
+              <div
+                tabIndex={0}
+                role="button"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  //
+                }}
+                onKeyDown={() => {
+                  // onClick 함수와 동일하게 작성
+                }}
+              >
                 이메일 찾기
               </div>
               <div>&nbsp;|&nbsp;</div>
-              <div style={{ cursor: 'pointer' }} onClick={() => {}}>
+              <div
+                tabIndex={0}
+                role="button"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  //
+                }}
+                onKeyDown={() => {
+                  // onClick 함수와 동일하게 작성 web standard
+                }}
+              >
                 비밀번호 찾기
               </div>
             </div>

@@ -8,14 +8,14 @@ import Editor from 'components/web/Editor';
 import Select from 'components/web/Select';
 import Autocomplete from 'components/web/AutoComplete';
 import Button from 'components/web/Button';
-import { select_genre } from 'data/index';
+import { selectGenre } from 'data/index';
 
 type formMode = 'detail' | 'modify';
 
 interface ActivityInfoProps {
-  closeDialog?: () => void;
   dialogMode: boolean;
   formMode?: formMode;
+  closeDialog?: () => void;
   setFormMode?: (arg0: formMode) => void;
 }
 
@@ -69,7 +69,7 @@ function ActivityInfo({ dialogMode, closeDialog, formMode, setFormMode }: Activi
         <Field title="활동분야">
           <Select
             value={genre}
-            options={select_genre}
+            options={selectGenre}
             style={{ width: 200 }}
             onChange={(value) => setGenre(value)}
             isReadOnly={isDetail}
@@ -78,45 +78,63 @@ function ActivityInfo({ dialogMode, closeDialog, formMode, setFormMode }: Activi
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <>
-          {dialogMode ? (
-            <>
-              <Button size="large" label="저장" onClick={() => {}} style={{ margin: '5px' }} />
+        {dialogMode ? (
+          <>
+            <Button
+              size="large"
+              label="저장"
+              onClick={() => {
+                //
+              }}
+              style={{ margin: '5px' }}
+            />
+            <Button
+              type="inverted"
+              size="large"
+              label="닫기"
+              onClick={() => closeDialog && closeDialog()}
+              style={{ margin: '5px' }}
+            />
+          </>
+        ) : (
+          <>
+            {formMode === 'detail' && (
               <Button
-                type="inverted"
                 size="large"
-                label="닫기"
-                onClick={() => closeDialog && closeDialog()}
+                label="수정"
+                onClick={() => setFormMode && setFormMode('modify')}
                 style={{ margin: '5px' }}
               />
-            </>
-          ) : (
-            <>
-              {formMode === 'detail' && (
+            )}
+            {formMode === 'modify' && (
+              <>
                 <Button
                   size="large"
-                  label="수정"
-                  onClick={() => setFormMode && setFormMode('modify')}
+                  label="저장"
+                  onClick={() => {
+                    //
+                  }}
                   style={{ margin: '5px' }}
                 />
-              )}
-              {formMode === 'modify' && (
-                <>
-                  <Button size="large" label="저장" onClick={() => {}} style={{ margin: '5px' }} />
-                  <Button
-                    size="large"
-                    label="취소"
-                    onClick={() => setFormMode && setFormMode('detail')}
-                    style={{ margin: '5px' }}
-                  />
-                </>
-              )}
-            </>
-          )}
-        </>
+                <Button
+                  size="large"
+                  label="취소"
+                  onClick={() => setFormMode && setFormMode('detail')}
+                  style={{ margin: '5px' }}
+                />
+              </>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
 }
 
 export default ActivityInfo;
+
+ActivityInfo.defaultProps = {
+  closeDialog: undefined,
+  formMode: undefined,
+  setFormMode: undefined,
+};

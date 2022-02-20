@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import moment from 'moment';
 import Field from 'components/web/Field';
 import InputBox from 'components/web/InputBox';
-import DatePicker from 'components/web/DatePicker';
-import TimePicker from 'components/web/TimePicker';
 import ImageFile from 'components/web/ImageFile';
 import Editor from 'components/web/Editor';
 import Select from 'components/web/Select';
-import { select_genre } from 'data/index';
+import { selectGenre } from 'data/index';
 import Button from 'components/web/Button';
 import meeting1 from '../home/sample/meeting1.jpg';
 
@@ -42,7 +39,7 @@ function Info({ closeDialog }: InfoProps) {
         <Field title="모임분야">
           <Select
             value={genre}
-            options={select_genre}
+            options={selectGenre}
             style={{ width: 200 }}
             onChange={(value) => setGenre(value)}
             isReadOnly={formMode === 'detail'}

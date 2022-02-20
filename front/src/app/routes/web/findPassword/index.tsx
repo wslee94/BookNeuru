@@ -45,7 +45,9 @@ function FindPassword(props: FindPasswordProps) {
           <Button
             label="전화번호로 임시비밀번호 전송"
             isDisabled={!email || !phoneNumber || isErrEmail || isErrPhone}
-            onClick={() => {}}
+            onClick={() => {
+              //
+            }}
           />
           <Button label="취소" onClick={handleClose} />
         </>
