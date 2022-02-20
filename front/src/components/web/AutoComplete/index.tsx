@@ -36,7 +36,7 @@ function AutoComplete(props: AutoComplteProps) {
       onChange={(_e, newValue) => onChange(newValue)}
       inputValue={inputValue}
       onInputChange={(_e, newInputValue) => setInputValue(newInputValue)}
-      style={{ width: width || '100%' }}
+      style={{ width }}
       renderInput={(params) => <TextField {...params} variant="outlined" margin="dense" />}
       noOptionsText="검색결과가 없습니다."
     />
@@ -44,3 +44,9 @@ function AutoComplete(props: AutoComplteProps) {
 }
 
 export default AutoComplete;
+
+AutoComplete.defaultProps = {
+  width: '100%',
+  multiple: false,
+  isReadOnly: false,
+};
