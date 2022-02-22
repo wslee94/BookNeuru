@@ -16,17 +16,7 @@ interface ImageFileProps {
 }
 
 function ImageFile(props: ImageFileProps) {
-  const {
-    isRequired,
-    label,
-    size = 'small',
-    alt,
-    align,
-    file,
-    onChange,
-    previewType = 'round',
-    isReadOnly = false,
-  } = props;
+  const { isRequired, label, size, alt, align, file, onChange, previewType, isReadOnly } = props;
 
   let justifyContent = 'left';
   if (align === 'left') justifyContent = 'flex-start';
@@ -79,5 +69,14 @@ function ImageFile(props: ImageFileProps) {
     </>
   );
 }
+
+ImageFile.defaultProps = {
+  isRequired: false,
+  label: '',
+  size: 'small',
+  align: undefined,
+  previewType: 'round',
+  isReadOnly: false,
+};
 
 export default ImageFile;
