@@ -26,8 +26,8 @@ function ChatWidget(props: ChatWidget) {
   return (
     <div className="App">
       <Widget
-        emojis={true}
-        resizable={true}
+        emojis
+        resizable
         title={title}
         subtitle={subTitle}
         senderPlaceHolder=""

@@ -43,4 +43,8 @@ function Ellipsis(props: EllipsisProps) {
   );
 }
 
+Ellipsis.defaultProps = {
+  style: undefined,
+};
+
 export default Ellipsis;

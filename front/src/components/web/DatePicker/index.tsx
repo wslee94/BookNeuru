@@ -25,7 +25,7 @@ function DatePicker(props: DatePickerProps) {
   const classes = useStyles();
   const { value, onChange, label, isReadOnly = false } = props;
 
-  if (isReadOnly) return <>{value}</>;
+  if (isReadOnly) return <div>{value}</div>;
 
   return (
     <form className={classes.container} noValidate>
@@ -42,5 +42,10 @@ function DatePicker(props: DatePickerProps) {
     </form>
   );
 }
+
+DatePicker.defaultProps = {
+  label: undefined,
+  isReadOnly: false,
+};
 
 export default DatePicker;

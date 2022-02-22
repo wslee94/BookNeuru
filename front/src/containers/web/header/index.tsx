@@ -59,7 +59,7 @@ export default function ResponsiveDrawer(props: Props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  let location = useLocation();
+  const location = useLocation();
   const history = useHistory();
 
   const handleDrawerToggle = () => {
@@ -70,7 +70,7 @@ export default function ResponsiveDrawer(props: Props) {
   const isUpLg = useMediaQuery(theme.breakpoints.up('lg'));
 
   if (location.pathname === '/login' || location.pathname === '/sign-up') {
-    return <></>;
+    return null;
   }
 
   return (
@@ -87,7 +87,12 @@ export default function ResponsiveDrawer(props: Props) {
               <img className="header-logo" src={logo} alt="로고" />
             </Link>
             <div>
-              <IconButton onClick={() => {}} color="inherit">
+              <IconButton
+                onClick={() => {
+                  //
+                }}
+                color="inherit"
+              >
                 <AccountCircleIcon />
               </IconButton>
               <IconButton
@@ -126,3 +131,7 @@ export default function ResponsiveDrawer(props: Props) {
     </div>
   );
 }
+
+ResponsiveDrawer.defaultProps = {
+  window: null,
+};

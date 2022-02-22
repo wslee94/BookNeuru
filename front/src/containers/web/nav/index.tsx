@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 type NavProps = {
   handleDrawerToggle?: () => void;
@@ -56,15 +55,15 @@ function Nav(props: NavProps) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {menus.map((menu, index) => {
+        {menus.map((menu) => {
           return (
-            <Link className={classes.menuItem} to={menu.link} key={index}>
+            <Link className={classes.menuItem} to={menu.link} key={menu.link}>
               <ListItem button onClick={handleDrawerToggle}>
                 <ListItemIcon>
                   <i
                     className={menu.image}
                     style={menu.selected ? { color: '#1976d2', fontSize: '15px' } : { fontSize: '15px' }}
-                  ></i>
+                  />
                 </ListItemIcon>
                 <ListItemText
                   primary={
@@ -87,5 +86,9 @@ function Nav(props: NavProps) {
     </>
   );
 }
+
+Nav.defaultProps = {
+  handleDrawerToggle: undefined,
+};
 
 export default Nav;

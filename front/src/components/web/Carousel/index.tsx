@@ -21,8 +21,8 @@ interface CarouselProps {
   header?: object;
 }
 
-const CustomBottomButton = (obj: any) => {
-  const { next, previous, goToSlide, ...rest } = obj;
+function CustomBottomButton(obj: any) {
+  const { next, previous, ...rest } = obj;
   const {
     carouselState: { currentSlide, slidesToShow, totalItems },
   } = rest;
@@ -35,23 +35,23 @@ const CustomBottomButton = (obj: any) => {
       <IconButton onClick={() => previous()} style={isFirst ? { visibility: 'hidden' } : undefined}>
         <ArrowBackIcon />
       </IconButton>
-      <IconButton onClick={() => obj.next()} style={isLast ? { visibility: 'hidden' } : undefined}>
+      <IconButton onClick={() => next()} style={isLast ? { visibility: 'hidden' } : undefined}>
         <ArrowForwardIcon />
       </IconButton>
     </div>
   );
-};
+}
 
 function Carousel(props: CarouselProps) {
   const { children, header, responsive } = props;
 
   return (
     <div>
-      {header ? header : null}
+      {header || null}
       <RMCarousel
         responsive={responsive}
         arrows={false}
-        renderButtonGroupOutside={true}
+        renderButtonGroupOutside
         customButtonGroup={<CustomBottomButton />}
       >
         {children}
@@ -59,5 +59,9 @@ function Carousel(props: CarouselProps) {
     </div>
   );
 }
+
+Carousel.defaultProps = {
+  header: null,
+};
 
 export default Carousel;

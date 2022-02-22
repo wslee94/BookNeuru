@@ -19,7 +19,7 @@ function Container(props: ContainerProps) {
   return (
     <>
       <Typography align="left" variant="h5">
-        <i style={{ marginRight: '10px' }} className="fas fa-dumbbell"></i>
+        <i style={{ marginRight: '10px' }} className="fas fa-dumbbell" />
         {pageTitle}
       </Typography>
       <Card className={classes.card}>{children}</Card>

@@ -30,4 +30,9 @@ function CheckBox(props: CheckBoxProps) {
   );
 }
 
+CheckBox.defaultProps = {
+  color: undefined,
+  label: undefined,
+};
+
 export default CheckBox;

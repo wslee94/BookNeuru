@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 function Contents() {
-  let location = useLocation();
-  let isContentPage = location.pathname !== '/login' && location.pathname !== '/sign-up';
+  const location = useLocation();
+  const isContentPage = location.pathname !== '/login' && location.pathname !== '/sign-up';
 
   const classes = useStyles();
   return (

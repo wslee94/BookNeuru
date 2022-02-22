@@ -4,8 +4,8 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
-import { Editor as ToastEditor } from '@toast-ui/react-editor';
-import { Viewer } from '@toast-ui/react-editor';
+import { Editor as ToastEditor, Viewer } from '@toast-ui/react-editor';
+
 import './custom.scss';
 
 interface EditorProps {
@@ -16,7 +16,7 @@ interface EditorProps {
 }
 
 function Editor(props: EditorProps) {
-  const { value, height = 600, isReadOnly, onChange } = props;
+  const { value, height, isReadOnly, onChange } = props;
 
   if (isReadOnly) return <Viewer initialValue={value} />;
 
@@ -35,11 +35,16 @@ function Editor(props: EditorProps) {
       plugins={[colorSyntax]}
       previewStyle="vertical"
       initialEditType="wysiwyg"
-      useCommandShortcut={true}
+      useCommandShortcut
       usageStatistics={false}
-      hideModeSwitch={true}
+      hideModeSwitch
     />
   );
 }
+
+Editor.defaultProps = {
+  height: 600,
+  isReadOnly: false,
+};
 
 export default Editor;

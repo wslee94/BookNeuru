@@ -57,4 +57,8 @@ function Filed(props: FiledProps) {
   );
 }
 
+Filed.defaultProps = {
+  isRequired: false,
+};
+
 export default Filed;

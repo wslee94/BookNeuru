@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "commonjs",
   "scripts": {
-    "build": "node build.js && babel --extensions .ts src -d dist",
+    "build": "node build.js && babel --extensions .ts src -d dist --copy-files",
     "start": "npm run build && node ./dist/index.js",
     "dev": "babel-watch --extensions .ts src/index.ts"
   },
