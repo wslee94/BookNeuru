@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { AppBar, CssBaseline, Drawer, Hidden, IconButton, Toolbar, Button, useMediaQuery } from '@material-ui/core';
+import { AppBar, CssBaseline, Drawer, Hidden, IconButton, Toolbar, useMediaQuery } from '@material-ui/core';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon } from '@material-ui/icons';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -133,5 +133,5 @@ export default function ResponsiveDrawer(props: Props) {
 }
 
 ResponsiveDrawer.defaultProps = {
-  window: null,
+  window: undefined,
 };

@@ -12,7 +12,7 @@ interface ToggleButtonGroupProps {
 }
 
 function ToggleButtonGroup(props: ToggleButtonGroupProps) {
-  const { value, onChange, isRequired = false, size = 'large', children, label, style } = props;
+  const { value, onChange, isRequired, size, children, label, style } = props;
   return (
     <>
       {label && !isRequired ? (
@@ -30,5 +30,12 @@ function ToggleButtonGroup(props: ToggleButtonGroupProps) {
     </>
   );
 }
+
+ToggleButtonGroup.defaultProps = {
+  isRequired: false,
+  size: 'large',
+  label: '',
+  style: undefined,
+};
 
 export default ToggleButtonGroup;

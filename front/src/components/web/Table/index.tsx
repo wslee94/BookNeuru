@@ -17,7 +17,6 @@ import TablePaginationActions from './Pagination';
 interface TableProps {
   columns: { column: string; name: string; align: 'left' | 'center' | 'right'; useLink?: boolean }[];
   data: any[];
-  header?: object;
   searchBar?: object;
   actionButtons?: object;
   initOrder: 'asc' | 'desc';
@@ -132,10 +131,10 @@ function CustomizedTable(props: TableProps) {
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              {columns.map((n, index) => {
+              {columns.map((n) => {
                 return (
                   <TableCell
-                    key={index}
+                    key={n.column}
                     align="center"
                     style={{ fontSize: 14, fontWeight: 'bold' }}
                     sortDirection={orderBy === n.column ? order : false}
@@ -165,6 +164,7 @@ function CustomizedTable(props: TableProps) {
                 )
               : sortData(data, getComparator(order, orderBy))
             ).map((row, index) => (
+              // eslint-disable-next-line react/no-array-index-key
               <StyledTableRow key={index}>
                 {columns.map((n) => {
                   if (n.useLink) {
@@ -215,5 +215,10 @@ function CustomizedTable(props: TableProps) {
     </>
   );
 }
+
+CustomizedTable.defaultProps = {
+  searchBar: undefined,
+  actionButtons: undefined,
+};
 
 export default CustomizedTable;

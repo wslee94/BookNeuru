@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps) {
-  const { onClick, isDisabled = false, label, type = 'general', size = 'medium', style } = props;
+  const { onClick, isDisabled = false, label, type, size, style } = props;
 
   let color: 'primary' | 'secondary' | 'inherit' | 'default' | undefined = 'primary';
   switch (type) {
@@ -25,7 +25,10 @@ function Button(props: ButtonProps) {
     }
     case 'inverted': {
       color = 'default';
+      break;
     }
+    default:
+      color = 'primary';
   }
 
   return (
@@ -34,5 +37,12 @@ function Button(props: ButtonProps) {
     </MuiButton>
   );
 }
+
+Button.defaultProps = {
+  isDisabled: false,
+  type: 'general',
+  size: 'medium',
+  style: undefined,
+};
 
 export default Button;

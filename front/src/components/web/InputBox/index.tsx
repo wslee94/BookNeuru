@@ -25,15 +25,15 @@ function InputBox(props: InputBoxProps) {
   const {
     value,
     onChange,
-    isRequired = false,
-    isDisabled = false,
-    isFullWidth = true,
-    isReadOnly = false,
-    isError = false,
+    isRequired,
+    isDisabled,
+    isFullWidth,
+    isReadOnly,
+    isError,
     label,
     placeholder,
     helperText,
-    type = 'text',
+    type,
     style,
     unit,
     isSearch,
@@ -48,7 +48,7 @@ function InputBox(props: InputBoxProps) {
         </div>
       );
 
-    return <>{value}</>;
+    return value;
   }
 
   return (
@@ -91,5 +91,21 @@ function InputBox(props: InputBoxProps) {
     </>
   );
 }
+
+InputBox.defaultProps = {
+  isRequired: false,
+  isDisabled: false,
+  isFullWidth: true,
+  isReadOnly: false,
+  isError: false,
+  type: 'text',
+  label: '',
+  placeholder: '',
+  helperText: '',
+  style: undefined,
+  unit: '',
+  isSearch: false,
+  multiLine: 0,
+};
 
 export default InputBox;

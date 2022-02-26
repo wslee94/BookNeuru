@@ -18,18 +18,12 @@ interface PopupProps {
 }
 
 function Popup(props: PopupProps) {
-  const { handleClose, isOpen, children, title, actionButton, maxWidth = 'xs', contentText } = props;
+  const { handleClose, isOpen, children, title, actionButton, maxWidth, contentText } = props;
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Dialog
-      open={isOpen}
-      onClose={handleClose ? handleClose : undefined}
-      maxWidth={maxWidth}
-      fullWidth
-      fullScreen={fullScreen}
-    >
+    <Dialog open={isOpen} onClose={handleClose} maxWidth={maxWidth} fullWidth fullScreen={fullScreen}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent dividers>
         <>
@@ -41,5 +35,12 @@ function Popup(props: PopupProps) {
     </Dialog>
   );
 }
+
+Popup.defaultProps = {
+  handleClose: undefined,
+  actionButton: undefined,
+  maxWidth: 'xs',
+  contentText: '',
+};
 
 export default Popup;

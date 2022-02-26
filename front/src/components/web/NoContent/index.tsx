@@ -9,10 +9,14 @@ function NoContent(props: NoContentProps) {
   const { text } = props;
   return (
     <>
-      <img src={noneContents} style={{ height: 100, width: 'auto' }} />
+      <img alt="no-contents" src={noneContents} style={{ height: 100, width: 'auto' }} />
       {text ? <div style={{ marginTop: '10px', fontWeight: 'bold' }}>{text}</div> : null}
     </>
   );
 }
+
+NoContent.defaultProps = {
+  text: '',
+};
 
 export default NoContent;

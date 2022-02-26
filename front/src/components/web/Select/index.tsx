@@ -27,15 +27,15 @@ function Select(props: SelectProps) {
   };
 
   if (isReadOnly) {
-    return <>{options.filter((n) => n.key === value)[0]?.text}</>;
+    return <div>{options.filter((n) => n.key === value)[0]?.text}</div>;
   }
 
   return (
     <FormControl variant="outlined">
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <MuiSelect value={value} onChange={handleChange} style={style} margin="dense">
-        {options.map((n, index) => (
-          <MenuItem key={index} value={n.key}>
+        {options.map((n) => (
+          <MenuItem key={n.key} value={n.key}>
             {n.text}
           </MenuItem>
         ))}
@@ -43,5 +43,11 @@ function Select(props: SelectProps) {
     </FormControl>
   );
 }
+
+Select.defaultProps = {
+  label: '',
+  style: undefined,
+  isReadOnly: false,
+};
 
 export default Select;

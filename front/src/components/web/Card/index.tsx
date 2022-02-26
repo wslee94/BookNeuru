@@ -18,7 +18,7 @@ interface CardProps {
 }
 
 function Card(props: CardProps) {
-  const { link, children, image, imageHeight = 140, imageAlt, actionButton, style } = props;
+  const { link, children, image, imageHeight, imageAlt, actionButton, style } = props;
 
   if (link) {
     return (
@@ -61,5 +61,14 @@ function Card(props: CardProps) {
     </MuiCard>
   );
 }
+
+Card.defaultProps = {
+  link: '',
+  image: '',
+  imageHeight: 140,
+  imageAlt: '',
+  actionButton: undefined,
+  style: undefined,
+};
 
 export default Card;

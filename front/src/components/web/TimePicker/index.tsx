@@ -30,7 +30,7 @@ function TimePicker(props: TimePickerProps) {
     const minute = value.split(':')[1];
 
     if (hour < 12) return <>{`오전 ${value}`} </>;
-    if (hour === 12) return <>{`오후 ${value}`}</>;
+    if (hour === 12) return <>{`오후 ${value}`} </>;
     return <>{`오후 ${hour - 12 < 10 ? `0${hour - 12}` : hour - 12}:${minute}`} </>;
   }
 
@@ -52,5 +52,10 @@ function TimePicker(props: TimePickerProps) {
     </form>
   );
 }
+
+TimePicker.defaultProps = {
+  label: '',
+  isReadOnly: false,
+};
 
 export default TimePicker;

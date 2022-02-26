@@ -34,7 +34,7 @@ function PageCard(props: PageCardProps) {
   return (
     <div style={{ paddingBottom: 15 }}>
       <div>
-        <i className="fas fa-book" style={{ fontSize: 22 }}></i>
+        <i className="fas fa-book" style={{ fontSize: 22 }} />
         <span className={classes.pageTitle}>{pageTitle}</span>
       </div>
       {actionButtons ? <div style={{ marginTop: 15 }}>{actionButtons}</div> : null}
@@ -49,5 +49,11 @@ function PageCard(props: PageCardProps) {
     </div>
   );
 }
+
+PageCard.defaultProps = {
+  tabs: undefined,
+  actionButtons: undefined,
+  isNoCard: false,
+};
 
 export default PageCard;

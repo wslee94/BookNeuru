@@ -11,7 +11,7 @@ interface SwitchProps {
 }
 
 function Switch(props: SwitchProps) {
-  const { value, onChange, label, color = 'primary' } = props;
+  const { value, onChange, label, color } = props;
   return (
     <FormGroup style={{ fontSize: '10px' }}>
       <FormControlLabel
@@ -29,5 +29,10 @@ function Switch(props: SwitchProps) {
     </FormGroup>
   );
 }
+
+Switch.defaultProps = {
+  label: '',
+  color: 'primary',
+};
 
 export default Switch;

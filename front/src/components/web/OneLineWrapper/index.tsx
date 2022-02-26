@@ -25,4 +25,10 @@ function OneLineWrapper(props: OneLineWrapperProps) {
   );
 }
 
+OneLineWrapper.defaultProps = {
+  label: '',
+  isRequired: false,
+  style: undefined,
+};
+
 export default OneLineWrapper;

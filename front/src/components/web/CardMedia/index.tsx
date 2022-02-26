@@ -9,12 +9,11 @@ interface CardMediaProps {
   image: string;
   imageWidth?: number;
   imageHeight?: number;
-  contentWidth?: number;
   imageAlt?: string;
 }
 
 function CardMedia(props: CardMediaProps) {
-  const { image, imageWidth = '220px', imageHeight = '320px', onClick, imageAlt } = props;
+  const { image, imageWidth, imageHeight, onClick, imageAlt } = props;
   return (
     <MuiCard style={{ width: imageWidth }}>
       <CardActionArea onClick={onClick}>
@@ -28,5 +27,12 @@ function CardMedia(props: CardMediaProps) {
     </MuiCard>
   );
 }
+
+CardMedia.defaultProps = {
+  onClick: undefined,
+  imageWidth: 220,
+  imageHeight: 320,
+  imageAlt: '',
+};
 
 export default CardMedia;

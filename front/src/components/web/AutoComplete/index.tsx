@@ -15,7 +15,7 @@ interface AutoComplteProps {
 
 function AutoComplete(props: AutoComplteProps) {
   const { value, width, options, onChange, multiple, isReadOnly } = props;
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = useState('');
 
   if (isReadOnly && multiple) {
     return <div>{value.map((n: option) => n.text).join(',')}</div>;
