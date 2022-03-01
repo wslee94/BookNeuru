@@ -1,5 +1,8 @@
+import mysql from "mysql2/promise";
 import sqlString from "sqlstring";
 import { Request, Response } from "express";
+import { sqlConn } from "library/sql";
+import logger from "library/logger";
 
 const checkToken = () => {
   return { token: {}, user: { email: "", userID: "" } };
@@ -26,8 +29,8 @@ const escapeParam = (param: any) => {
   return clone;
 };
 
-export const apiWithToken =
-  (func: (arg0: any, arg1: any, arg2: any) => object) => async (req: Request, res: Response) => {
+export const apiWithToken = (func: any) => async (req: Request, res: Response) => {
+  try {
     // 토큰 체크 로직
     const token = checkToken();
 
@@ -37,17 +40,25 @@ export const apiWithToken =
     params.token = token.token;
 
     // null = db connection 생성 후 전달 예정
-    const result = func(null, params, token.user);
+    const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params, token.user));
 
     res.json(result);
-  };
+  } catch (error: any) {
+    logger.error(error.message);
+    throw error;
+  }
+};
 
-export const apiWithNoToken = (func: (arg0: any, arg1: any) => object) => (req: Request, res: Response) => {
-  const params = escapeParam(req.body);
-  params.original = req.body;
+export const apiWithNoToken = (func: any) => async (req: Request, res: Response) => {
+  try {
+    const params = escapeParam(req.body);
+    params.original = req.body;
 
-  // null = db connection 생성 후 전달 예정
-  const result = func(null, params);
+    const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params));
 
-  res.json(result);
+    res.json(result);
+  } catch (error: any) {
+    logger.error(error.message);
+    throw error;
+  }
 };

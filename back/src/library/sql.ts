@@ -8,7 +8,6 @@ const pool = mysql.createPool({
   database: process.env.BN_DB_DB,
   charset: "utf8",
   multipleStatements: false,
-  timezone: "UTC",
 });
 
 const connect = (func: any) => async () => {
