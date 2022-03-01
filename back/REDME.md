@@ -2,3 +2,7 @@
 
 - ### <b> PORT </b>
 - ### <b> NODE_ENV: production | development  <b/>
+- ### <b> BN_DB_HOST </b>
+- ### <b> BN_DB_USER </b>
+- ### <b> BN_DB_PW </b>
+- ### <b> BN_DB_DB </b>
