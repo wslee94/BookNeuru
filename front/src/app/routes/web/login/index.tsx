@@ -6,6 +6,7 @@ import InputBox from 'components/web/InputBox';
 import Button from 'components/web/Button';
 import CheckBox from 'components/web/CheckBox';
 import logo from 'public/img/logo.png';
+import { apiCall } from 'helpers/ajax';
 import FindEmail from '../findEmail';
 import FindPassword from '../findPassword';
 
@@ -17,6 +18,11 @@ function Login() {
   const [isRemember, setIsRemember] = useState(false);
 
   const history = useHistory();
+
+  const login = async () => {
+    await apiCall({ method: 'post', url: '/auth/login', params: { id: 'wslee94@email.com', password: '1234' } });
+    history.push('/');
+  };
 
   return (
     <div className="container-vertical-center">
@@ -45,7 +51,7 @@ function Login() {
               <Button
                 label="로그인"
                 onClick={() => {
-                  history.push('/');
+                  login();
                 }}
                 style={{ width: '100%', height: '45px' }}
               />
