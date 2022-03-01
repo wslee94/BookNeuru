@@ -29,7 +29,7 @@ export default class ExpressServer {
 
   listen(port = process.env.PORT || 3001) {
     const welcome = (): void => {
-      logger.info(`Running in ${process.env.NODE_ENV || "local"} port:${port}`);
+      logger.info(`Running in ${process.env.MODE || "local"} port:${port}`);
     };
 
     http.createServer(app).listen(port, welcome);
