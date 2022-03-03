@@ -4,5 +4,9 @@ POST http://localhost:3001/api/user HTTP/1.1
 content-type: application/json
 
 {
-  "email": "onething2"
+  "email": "onething3@gmail.com",
+  "password": "1111",
+  "name": "이원섭",
+  "gender": "m",
+  "profileImageURL": null
 }

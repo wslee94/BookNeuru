@@ -25,6 +25,8 @@ const connect = (func: any) => async () => {
 export const sqlConn = (func: any) => connect(func)();
 
 export const execQuery = async (conn: mysql.PoolConnection, sql: string) => {
-  // 쿼리 실행 전 실행해야할 쿼리가 있다면 여기 작성
+  // not null 컬럼 default data가 설정되어있지 않으면 insert error 발생해서 아래 설정 추가
+  await conn.query("set session sql_mode = 'NO_ENGINE_SUBSTITUTION';");
+
   return conn.query(sql);
 };

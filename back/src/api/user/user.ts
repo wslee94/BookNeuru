@@ -1,10 +1,10 @@
 import express from "express";
 import mysql from "mysql2/promise";
-import { apiWithNoToken, apiWithToken } from "library/api";
+import { apiWithNoToken } from "library/api";
 import * as userQuery from "./userQuery";
 
 const signup = apiWithNoToken(async (conn: mysql.PoolConnection, param: any) => {
-  const result = await userQuery.selectUser(conn, { userID: 1 });
+  const result = await userQuery.insertUser(conn, param);
   return result;
 });
 
