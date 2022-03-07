@@ -13,3 +13,10 @@ export function checkPassword(passowrd: string) {
 export function checkPhoneNumber(phoneNumber: string) {
   return REG_PHONE_NUMBER.test(phoneNumber);
 }
+
+export function checkBlank(value: string) {
+  if (!value) return true;
+  if (typeof value !== 'string') return true;
+  if (value.trim() === '') return true;
+  return false;
+}
