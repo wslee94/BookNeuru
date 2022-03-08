@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface ConfirmProps {
   isOpen: boolean;
   handleClose: () => void;
-  handleOK?: () => void;
+  handleOK?: null | (() => void);
   title: string | object;
   text: string | object;
 }
@@ -69,9 +69,18 @@ function Confirm({ isOpen, handleClose, handleOK, title, text }: ConfirmProps) {
           </div>
           <p>{text}</p>
           <div className={classes.buttonArea}>
-            <Button onClick={handleOK} variant="contained" color="primary">
-              확인
-            </Button>
+            {handleOK && (
+              <Button
+                onClick={() => {
+                  handleOK();
+                  handleClose();
+                }}
+                variant="contained"
+                color="primary"
+              >
+                확인
+              </Button>
+            )}
             <Button onClick={handleClose} variant="contained" color="default">
               취소
             </Button>
@@ -83,9 +92,7 @@ function Confirm({ isOpen, handleClose, handleOK, title, text }: ConfirmProps) {
 }
 
 Confirm.defaultProps = {
-  handleOK: () => {
-    // default 빈 함수
-  },
+  handleOK: null,
 };
 
 export default Confirm;

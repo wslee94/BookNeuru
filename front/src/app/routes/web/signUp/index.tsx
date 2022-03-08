@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 import ImageFile from 'components/web/ImageFile';
 import customeTheme from 'config/theme';
 import Alert from 'components/web/Alert';
+import Confirm from 'components/web/Confirm';
 import * as func from 'helpers/func';
 
 function SignUp() {
@@ -22,6 +23,17 @@ function SignUp() {
   const [gender, setGender] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<string | null>(null);
   const [alert, setAlert] = useState({ isOpen: false, title: '', text: '' });
+  const [confirm, setConfrim] = useState<{
+    isOpen: boolean;
+    title: string | object;
+    text: string | object;
+    handleOK: null | (() => void);
+  }>({
+    isOpen: false,
+    title: '',
+    text: '',
+    handleOK: null,
+  });
 
   function cleanState() {
     setEmail('');
@@ -179,21 +191,21 @@ function SignUp() {
               >
                 <MuiToggleButton
                   style={
-                    gender === 'M'
+                    gender === 'm'
                       ? { width: '50%', backgroundColor: customeTheme.main, color: customeTheme.font }
                       : { width: '50%' }
                   }
-                  value="M"
+                  value="m"
                 >
                   남성
                 </MuiToggleButton>
                 <MuiToggleButton
                   style={
-                    gender === 'F'
+                    gender === 'f'
                       ? { width: '50%', backgroundColor: customeTheme.main, color: customeTheme.font }
                       : { width: '50%' }
                   }
-                  value="F"
+                  value="f"
                 >
                   여성
                 </MuiToggleButton>
@@ -215,10 +227,15 @@ function SignUp() {
                 label="회원가입"
                 onClick={() => {
                   if (!checkValidation()) return;
-                  // !!! confirm 컴포넌트 개발하기 !!!
-                  if (confirm('회원가입하시겠습니까?')) {
-                    saveUser();
-                  }
+
+                  setConfrim({
+                    isOpen: true,
+                    title: '회원가입 요청',
+                    text: '회원가입하시겠습니까?',
+                    handleOK: () => {
+                      saveUser();
+                    },
+                  });
                 }}
                 style={{ width: '100%', height: '45px' }}
               />
@@ -234,6 +251,13 @@ function SignUp() {
         handleClose={() => setAlert({ ...alert, isOpen: false })}
         title={alert.title}
         text={alert.text}
+      />
+      <Confirm
+        isOpen={confirm.isOpen}
+        handleOK={confirm.handleOK}
+        handleClose={() => setConfrim({ ...confirm, isOpen: false })}
+        title={confirm.title}
+        text={confirm.text}
       />
     </div>
   );
