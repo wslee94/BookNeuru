@@ -8,6 +8,7 @@ import Button from 'components/web/Button';
 import Card from '@material-ui/core/Card';
 import ImageFile from 'components/web/ImageFile';
 import customeTheme from 'config/theme';
+import Alert from 'components/web/Alert';
 import * as func from 'helpers/func';
 
 function SignUp() {
@@ -20,6 +21,7 @@ function SignUp() {
   const [name, setName] = useState('');
   const [gender, setGender] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<string | null>(null);
+  const [alert, setAlert] = useState({ isOpen: false, title: '', text: '' });
 
   function cleanState() {
     setEmail('');
@@ -52,40 +54,52 @@ function SignUp() {
     else setIsErrPwdCheck(false);
   }, [password, checkPassword]);
 
-  // !!!  confirm, alert 전용 컴포넌트 만들기  !!!
   const checkValidation = () => {
     if (func.checkBlank(email)) {
-      alert('이메일을 입력해 주세요.');
+      setAlert({ isOpen: true, title: '필수 값을 입력해 주세요.', text: '이메일을 입력해 주세요.' });
       return false;
     }
 
     if (func.checkBlank(name)) {
-      alert('이름을 입력해 주세요.');
+      setAlert({ isOpen: true, title: '필수 값을 입력해 주세요.', text: '이름을 입력해 주세요.' });
       return false;
     }
 
     if (func.checkBlank(password)) {
-      alert('비밀번호를 입력해 주세요.');
+      setAlert({ isOpen: true, title: '필수 값을 입력해 주세요.', text: '비밀번호를 입력해 주세요.' });
       return false;
     }
 
     if (func.checkBlank(checkPassword)) {
-      alert('비밀번호 확인을 입력해 주세요.');
+      setAlert({ isOpen: true, title: '필수 값을 입력해 주세요.', text: '비밀번호 확인을 입력해 주세요.' });
       return false;
     }
 
     if (isErrEmail) {
-      alert('올바른 이메일 형식으로 입력해 주세요.');
+      setAlert({
+        isOpen: true,
+        title: '입력한 데이터를 확인해 주세요.',
+        text: '올바른 이메일 형식으로 입력해 주세요.',
+      });
       return false;
     }
 
     if (isErrPwd) {
-      alert('올바른 비밀번호 형식으로 입력해 주세요.');
+      setAlert({
+        isOpen: true,
+        title: '입력한 데이터를 확인해 주세요.',
+        text: '올바른 비밀번호 형식으로 입력해 주세요.',
+      });
+
       return false;
     }
 
     if (isErrPwdCheck) {
-      alert('비밀번호가 일치하지 않습니다. 다시 입력해 주세요.');
+      setAlert({
+        isOpen: true,
+        title: '입력한 데이터를 확인해 주세요.',
+        text: '비밀번호가 일치하지 않습니다. 다시 입력해 주세요.',
+      });
       return false;
     }
 
@@ -215,6 +229,12 @@ function SignUp() {
           </Card>
         </div>
       </div>
+      <Alert
+        isOpen={alert.isOpen}
+        handleClose={() => setAlert({ ...alert, isOpen: false })}
+        title={alert.title}
+        text={alert.text}
+      />
     </div>
   );
 }
