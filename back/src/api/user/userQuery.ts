@@ -1,5 +1,6 @@
 import { execQuery } from "library/sql";
 import mysql from "mysql2/promise";
+import Response from "library/response";
 import { createSalt, createHashedPassword } from "library/util";
 import sqlString from "sqlstring";
 
@@ -50,12 +51,21 @@ SELECT  UserID AS userID,
         Gender AS gender,
         ProfileImageURL AS profileImageURL
 FROM    Auth.User
-WHERE   UserID = ${userID}
+WHERE   UserID = ${userID};
+`;
+
+const qIsExistUserEmail = (email: string) => `
+SELECT EXISTS (SELECT UserID FROM Auth.User WHERE Email = ${email}) AS isExist;
 `;
 
 export const insertUser = async (conn: mysql.PoolConnection, param: any) => {
   const { email, password, name, gender, profileImageURL } = param;
   try {
+    const [isExistResult]: any = await execQuery(conn, qIsExistUserEmail(email));
+    const { isExist } = isExistResult[0];
+    if (isExist) {
+      return new Response("FAIL", { email: param.original.email }, "이미 등록된 이메일입니다. 다시 입력해 주세요.");
+    }
     const passwordSalt = await createSalt();
     const hashedPassword = await createHashedPassword(password, passwordSalt);
 
@@ -63,6 +73,8 @@ export const insertUser = async (conn: mysql.PoolConnection, param: any) => {
 
     await execQuery(conn, qInsertUser(email, name, gender, profileImageURL));
     await execQuery(conn, qInsertPassword(sqlString.escape(hashedPassword), sqlString.escape(passwordSalt)));
+
+    return new Response("SUCCESS", null, "");
 
     await conn.commit();
   } catch (error) {

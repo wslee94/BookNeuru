@@ -15,14 +15,14 @@ export default class ExpressServer {
   router(route: (arg0: express.Application) => void) {
     route(app);
 
-    app.use((req: Request, res: Response) => {
-      res.status(404).send("page not found");
+    app.use((_req: Request, res: Response) => {
+      res.status(404).send("요청한 주소를 찾을 수 없습니다.");
     });
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
       logger.error(err.stack);
-      res.status(500).send("internal server error");
+      res.status(500).send(err.message || "내부 서버 오류로 인해 요청에 실패했습니다. 잠시 후 다시 시도해 주세요.");
     };
     app.use(errorHandler);
   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { apiCall } from 'helpers/ajax';
+import { apiCall, getAjaxData } from 'helpers/ajax';
 import { handleAjaxError } from 'helpers/error';
 import InputBox from 'components/web/InputBox';
 import ToggleButtonGroup from 'components/web/ToggleButtonGroup';
@@ -121,8 +121,8 @@ function SignUp() {
 
   const saveUser = async () => {
     try {
-      await apiCall({
-        url: '/use',
+      const result: any = await apiCall({
+        url: '/user',
         method: 'post',
         params: {
           email,
@@ -132,7 +132,8 @@ function SignUp() {
           profileImageURL: imageFile,
         },
       });
-      cleanState();
+      getAjaxData(result);
+      if (result.status === 'SUCCESS') cleanState();
     } catch (error) {
       handleAjaxError(error);
     }

@@ -1,4 +1,4 @@
-type statusType = "ERROR" | "FAILE" | "SUCCESS";
+type statusType = "FAIL" | "SUCCESS";
 type dataType = object | null;
 type messageType = string;
 
