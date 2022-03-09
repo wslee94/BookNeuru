@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { apiCall } from 'helpers/ajax';
+import { handleAjaxError } from 'helpers/error';
 import InputBox from 'components/web/InputBox';
 import ToggleButtonGroup from 'components/web/ToggleButtonGroup';
 import MuiToggleButton from '@material-ui/lab/ToggleButton';
@@ -121,7 +122,7 @@ function SignUp() {
   const saveUser = async () => {
     try {
       await apiCall({
-        url: '/user',
+        url: '/use',
         method: 'post',
         params: {
           email,
@@ -133,9 +134,7 @@ function SignUp() {
       });
       cleanState();
     } catch (error) {
-      // !!! 공통 에러 핸들링 함수 작성하기 !!!
-      console.log(error);
-      throw error;
+      handleAjaxError(error);
     }
   };
 

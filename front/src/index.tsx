@@ -1,11 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import * as Sentry from '@sentry/browser';
+import { BrowserTracing } from '@sentry/tracing';
 import { MuiThemeProvider, createTheme } from '@material-ui/core';
 import Header from 'containers/web/header';
 import Main from 'containers/web/contents';
 import customeTheme from 'config/theme';
 import 'styles/index.scss';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+Sentry.init({
+  dsn: 'https://f2e8b8136540415394ebbea9b3dfdd1a@o1162941.ingest.sentry.io/6250577',
+  integrations: [new BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 const theme = createTheme({
   typography: {
@@ -41,11 +51,13 @@ ReactDOM.render(
         <>
           <Header />
           <Main />
+          <ToastContainer />
         </>
       ) : (
         <>
           <Header />
           <Main />
+          <ToastContainer />
         </>
       )}
     </Router>
