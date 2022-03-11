@@ -6,3 +6,4 @@
 - ### <b> BN_DB_USER </b>
 - ### <b> BN_DB_PW </b>
 - ### <b> BN_DB_DB </b>
+- ### <b> JWT_SECRET </b>
