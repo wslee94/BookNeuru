@@ -3,10 +3,8 @@ import sqlString from "sqlstring";
 import { Request, Response } from "express";
 import { sqlConn } from "library/sql";
 import logger from "library/logger";
-
-const checkToken = () => {
-  return { token: {}, user: { email: "", userID: "" } };
-};
+import ResponseJson from "library/response";
+import { checkToken, getToken } from "./token";
 
 const escapeParam = (param: any) => {
   let clone = JSON.parse(JSON.stringify(param));
@@ -31,18 +29,17 @@ const escapeParam = (param: any) => {
 
 export const apiWithToken = (func: any) => async (req: Request, res: Response) => {
   try {
-    // 토큰 체크 로직
-    const token = checkToken();
+    const token = checkToken(getToken(req));
 
-    // 토큰 유효한 경우
-    const params = escapeParam(req.body);
-    params.original = req.body;
-    params.token = token.token;
-
-    // null = db connection 생성 후 전달 예정
-    const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params, token.user));
-
-    res.json(result);
+    if (token.status === "SUCCESS") {
+      const params = escapeParam(req.body);
+      params.original = req.body;
+      params.token = token.token;
+      const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params, token.userInfo));
+      res.json(result);
+    } else {
+      res.json(new ResponseJson("FAIL", null, "토큰 정보가 유요하지 않습니다. 다시 로그인해 주세요."));
+    }
   } catch (error: any) {
     logger.error(error.message);
     throw error;
