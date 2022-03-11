@@ -9,7 +9,8 @@
   },
   "paths": {
     "library/*": ["library/*"],
-    "api/*": ["api/*"]
+    "api/*": ["api/*"],
+    "config/*": ["config/*"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
