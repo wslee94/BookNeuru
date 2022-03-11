@@ -8,4 +8,9 @@ const signup = apiWithNoToken(async (conn: mysql.PoolConnection, param: any) => 
   return result;
 });
 
-export default express.Router().post("", signup);
+const login = apiWithNoToken(async (conn: mysql.PoolConnection, param: any) => {
+  const result = await userQuery.login(conn, param);
+  return result;
+});
+
+export default express.Router().post("", signup).post("/login", login);
