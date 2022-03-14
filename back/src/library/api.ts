@@ -29,16 +29,16 @@ const escapeParam = (param: any) => {
 
 export const apiWithToken = (func: any) => async (req: Request, res: Response) => {
   try {
-    const token = checkToken(getToken(req));
+    const { accessToken, refreshToken } = getToken(req);
+    const token = checkToken({ accessToken, refreshToken });
 
     if (token.status === "SUCCESS") {
       const params = escapeParam(req.body);
       params.original = req.body;
-      params.token = token.token;
       const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params, token.userInfo));
       res.json(result);
     } else {
-      res.json(new ResponseJson("FAIL", null, "토큰 정보가 유요하지 않습니다. 다시 로그인해 주세요."));
+      res.json(new ResponseJson("FAIL", null, "토큰 정보가 유효하지 않습니다. 다시 로그인해 주세요."));
     }
   } catch (error: any) {
     logger.error(error.message);
@@ -51,7 +51,7 @@ export const apiWithNoToken = (func: any) => async (req: Request, res: Response)
     const params = escapeParam(req.body);
     params.original = req.body;
 
-    const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params));
+    const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params, { req, res }));
 
     res.json(result);
   } catch (error: any) {

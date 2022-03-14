@@ -1,9 +1,10 @@
+import { Request, Response } from "express";
 import { execQuery } from "library/sql";
 import mysql from "mysql2/promise";
 import sqlString from "sqlstring";
-import Response from "library/response";
+import ResponseJson from "library/response";
 import { createSalt, createHashedPassword } from "library/util";
-import { generateToken } from "library/token";
+import { generateAccessToken, generateRefreshToken, setToken } from "library/token";
 
 const qInsertUser = (email: string, name: string, gender: string, profileImageURL: string) => `
 INSERT INTO Auth.User
@@ -75,7 +76,7 @@ export const insertUser = async (conn: mysql.PoolConnection, param: any) => {
     const [isExistResult]: any = await execQuery(conn, qIsExistUserEmail(email));
     const { isExist } = isExistResult[0];
     if (isExist) {
-      return new Response("FAIL", { email: param.original.email }, "이미 등록된 이메일입니다. 다시 입력해 주세요.");
+      return new ResponseJson("FAIL", { email: param.original.email }, "이미 등록된 이메일입니다. 다시 입력해 주세요.");
     }
     const passwordSalt = await createSalt();
     const hashedPassword = await createHashedPassword(password, passwordSalt);
@@ -87,19 +88,19 @@ export const insertUser = async (conn: mysql.PoolConnection, param: any) => {
 
     await conn.commit();
 
-    return new Response("SUCCESS", null, "");
+    return new ResponseJson("SUCCESS", null, "");
   } catch (error) {
     conn.rollback();
     throw error;
   }
 };
 
-export const login = async (conn: mysql.PoolConnection, param: any) => {
+export const login = async (conn: mysql.PoolConnection, param: any, http: { req: Request; res: Response }) => {
   const { email, password } = param;
   const [userInfo]: any = await execQuery(conn, qSelectUser(email));
 
   if (!userInfo[0]) {
-    return new Response(
+    return new ResponseJson(
       "FAIL",
       { email: param.original.email },
       "로그인에 실패했습니다. 이메일과 비밀번호를 확인해 주세요.",
@@ -114,14 +115,17 @@ export const login = async (conn: mysql.PoolConnection, param: any) => {
   const { isValid } = passwordInfo[0];
 
   if (!isValid) {
-    return new Response(
+    return new ResponseJson(
       "FAIL",
       { email: param.original.email },
       "로그인에 실패했습니다. 이메일과 비밀번호를 확인해 주세요.",
     );
   }
 
-  const token = generateToken({ userID, email: param.original.email, name });
+  const accessToken = generateAccessToken({ userID, email: param.original.email, name });
+  const refreshToken = generateRefreshToken();
 
-  return new Response("SUCCESS", { ...userInfo[0], token }, "");
+  setToken({ res: http.res, accessToken, refreshToken });
+
+  return new ResponseJson("SUCCESS", { ...userInfo[0] }, "");
 };
