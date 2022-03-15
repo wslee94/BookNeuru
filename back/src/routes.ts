@@ -10,6 +10,7 @@ export default function routes(app: Application) {
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, Content-Length, X-Requested-With"); // X-Requested-With: 커스텀 헤더, ajax 통신 여부를 나타냄
     res.header("Cache-control", "no-cache");
+
     next();
   });
 
