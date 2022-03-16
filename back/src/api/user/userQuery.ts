@@ -132,3 +132,24 @@ export const login = async (conn: mysql.PoolConnection, param: any, http: { req:
 
   return new ResponseJson("SUCCESS", { ...userInfo[0] }, "");
 };
+
+export const loginWithToken = async (
+  conn: mysql.PoolConnection,
+  param: any,
+  userInfo: any,
+  http: { req: Request; res: Response },
+) => {
+  const { email } = userInfo;
+  const [userInfoDB]: any = await execQuery(conn, qSelectUser(sqlString.escape(email)));
+
+  const { userID, name } = userInfoDB[0];
+
+  const accessToken = generateAccessToken({ userID, email: param.original.email, name });
+  const refreshToken = generateRefreshToken();
+
+  setToken({ res: http.res, accessToken, refreshToken });
+
+  await execQuery(conn, qUpsertToken(userID, sqlString.escape(refreshToken)));
+
+  return new ResponseJson("SUCCESS", { ...userInfo[0] }, "");
+};

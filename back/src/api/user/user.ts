@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import mysql from "mysql2/promise";
-import { apiWithNoToken } from "library/api";
+import { apiWithNoToken, apiWithToken } from "library/api";
 import * as userQuery from "./userQuery";
 
 const signup = apiWithNoToken(async (conn: mysql.PoolConnection, param: any) => {
@@ -13,4 +13,11 @@ const login = apiWithNoToken(async (conn: mysql.PoolConnection, param: any, http
   return result;
 });
 
-export default express.Router().post("", signup).post("/login", login);
+const loginWithToken = apiWithToken(
+  async (conn: mysql.PoolConnection, param: any, userInfo: any, http: { req: Request; res: Response }) => {
+    const result = await userQuery.loginWithToken(conn, param, userInfo, http);
+    return result;
+  },
+);
+
+export default express.Router().post("", signup).post("/login", login).post("/loginWithToken", loginWithToken);

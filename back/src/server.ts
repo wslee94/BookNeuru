@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import http from "http";
 import type { ErrorRequestHandler, Request, Response } from "express";
+import cookieParser from "cookie-parser";
 import logger from "library/logger";
 
 const app = express();
@@ -13,6 +14,8 @@ export default class ExpressServer {
   }
 
   router(route: (arg0: express.Application) => void) {
+    app.use(cookieParser());
+
     route(app);
 
     app.use((_req: Request, res: Response) => {

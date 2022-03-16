@@ -15,7 +15,7 @@ const verifyToken = (token: string) => {
 };
 
 export const getToken = (req: Request) => {
-  return { accessToken: req.cookies.accessToken, refreshToken: req.cookies.refreshToken };
+  return { accessToken: req?.cookies?.accessToken, refreshToken: req?.cookies?.refreshToken };
 };
 
 interface setTokenArgs {

@@ -36,7 +36,7 @@ export const apiWithToken = (func: any) => async (req: Request, res: Response) =
       if (token.status === "SUCCESS") {
         const params = escapeParam(req.body);
         params.original = req.body;
-        const result = await func(conn, params, token.userInfo);
+        const result = await func(conn, params, token.userInfo, { req, res });
         res.json(result);
       } else {
         res.json(new ResponseJson("FAIL", null, "토큰 정보가 유효하지 않습니다. 다시 로그인해 주세요."));
