@@ -75,5 +75,9 @@ export const checkToken = async ({ accessToken, refreshToken, conn, res }: check
     return { status: "SUCCESS", userInfo: accessInfo };
   }
 
+  if (!accessInfo && !refreshInfo) {
+    return { status: "FAIL", token: null, userInfo: null };
+  }
+
   return { status: "SUCCESS", userInfo: accessInfo };
 };

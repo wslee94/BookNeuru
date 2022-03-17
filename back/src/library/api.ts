@@ -1,8 +1,7 @@
 import mysql from "mysql2/promise";
 import sqlString from "sqlstring";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { sqlConn } from "library/sql";
-import logger from "library/logger";
 import { checkToken, getToken } from "./token";
 
 const escapeParam = (param: any) => {
@@ -26,7 +25,7 @@ const escapeParam = (param: any) => {
   return clone;
 };
 
-export const apiWithToken = (func: any) => async (req: Request, res: Response) => {
+export const apiWithToken = (func: any) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     await sqlConn(async (conn: mysql.PoolConnection) => {
       const { accessToken, refreshToken } = getToken(req);
@@ -42,21 +41,18 @@ export const apiWithToken = (func: any) => async (req: Request, res: Response) =
       }
     });
   } catch (error: any) {
-    logger.error(error.message);
-    throw error;
+    next(error);
   }
 };
 
-export const apiWithNoToken = (func: any) => async (req: Request, res: Response) => {
+export const apiWithNoToken = (func: any) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     const params = escapeParam(req.body);
     params.original = req.body;
 
     const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params, { req, res }));
-
     res.json(result);
   } catch (error: any) {
-    logger.error(error.message);
-    throw error;
+    next(error);
   }
 };
