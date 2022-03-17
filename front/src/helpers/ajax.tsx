@@ -4,9 +4,6 @@ import { toast } from 'react-toastify';
 const isDev = process.env.NODE_ENV === 'development';
 const baseURL = isDev ? 'http://localhost:3001/api' : '/api';
 
-// Bearer: JWT 대한 토큰을 사용 시 Type
-const tempToken = 'askldasjdhakdsdflksjdflkasjdfklaslfkj';
-axios.defaults.headers.common.Authorization = `Bearer ${tempToken}`;
 axios.defaults.withCredentials = true;
 
 interface apiCallArgs {
