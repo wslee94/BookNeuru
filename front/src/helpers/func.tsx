@@ -20,3 +20,19 @@ export function checkBlank(value: string) {
   if (value.trim() === '') return true;
   return false;
 }
+
+export function setDataInLocalStorage(key: string, value: any) {
+  localStorage.setItem(key, value);
+}
+
+export function getDataInLocalStorage(key: string) {
+  return localStorage.getItem(key);
+}
+
+export function setDataInSessionStorage(key: string, value: any) {
+  sessionStorage.setItem(key, value);
+}
+
+export function getDataInSessionStorage(key: string) {
+  return sessionStorage.getItem(key);
+}
