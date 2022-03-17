@@ -142,12 +142,11 @@ export const loginWithToken = async (
   const { email } = userInfo;
   const [userInfoDB]: any = await execQuery(conn, qSelectUser(sqlString.escape(email)));
 
-  const { userID, name } = userInfoDB[0];
+  const { userID } = userInfoDB[0];
 
-  const accessToken = generateAccessToken({ userID, email: param.original.email, name });
   const refreshToken = generateRefreshToken();
 
-  setToken({ res: http.res, accessToken, refreshToken });
+  setToken({ res: http.res, refreshToken });
 
   await execQuery(conn, qUpsertToken(userID, sqlString.escape(refreshToken)));
 

@@ -21,8 +21,9 @@ content-type: application/json
 }
 
 ### loginWithToken 
-POST http://localhost:3001/api/user/loginWithToken HTTP/1.1
+POST http://localhost:3001/api/user/login-token HTTP/1.1
 content-type: application/json
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDc0MzU1NTQsImV4cCI6MTY0ODY0NTE1NH0.dQq9p7b7P_Zvx6KmOnO2y_nNv7nCpIOteggDYR8hKZs; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE0LCJlbWFpbCI6Im9uZXRoaW5nMTBAZ21haWwuY29tIiwibmFtZSI6IuydtOybkOyErSIsImlhdCI6MTY0NzQzNTU1NCwiZXhwIjoxNjQ3NDM5MTU0fQ.N7Nddbli7dpyVTTBpKJJvKaox1CJdj-gnUo_u_Z_X4o
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDc0MzU1NTQsImV4cCI6MTY0ODY0NTE1NH0.dQq9p7b7P_Zvx6KmOnO2y_nNv7nCpIOteggDYR8hKZs; accessToken={ }
+
 
 { }

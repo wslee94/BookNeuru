@@ -20,4 +20,4 @@ const loginWithToken = apiWithToken(
   },
 );
 
-export default express.Router().post("", signup).post("/login", login).post("/loginWithToken", loginWithToken);
+export default express.Router().post("", signup).post("/login", login).post("/login-token", loginWithToken);

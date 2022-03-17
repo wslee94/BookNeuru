@@ -7,16 +7,17 @@ import Button from 'components/web/Button';
 import CheckBox from 'components/web/CheckBox';
 import logo from 'public/img/logo.png';
 import { apiCall, getAjaxData } from 'helpers/ajax';
+import { setDataInLocalStorage, getDataInLocalStorage, setDataInSessionStorage } from 'helpers/func';
 import { handleAjaxError } from 'helpers/error';
 import FindEmail from '../findEmail';
 import FindPassword from '../findPassword';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(getDataInLocalStorage('email') || '');
   const [password, setPassword] = useState('');
   const [isOpenFindEmail, setIsOpenFindEmail] = useState(false);
   const [isOpenFindPassword, setIsOpenFindPassword] = useState(false);
-  const [isRemember, setIsRemember] = useState(false);
+  const [isRemember, setIsRemember] = useState(getDataInLocalStorage('isRemember') === 'true');
 
   const history = useHistory();
 
@@ -27,6 +28,10 @@ function Login() {
 
       if (res.data.status === 'SUCCESS') {
         // recoil로 유저 정보 저장하기
+        setDataInLocalStorage('isRemember', isRemember);
+        setDataInSessionStorage('isLogined', true);
+        if (isRemember) setDataInLocalStorage('email', email);
+        else setDataInLocalStorage('email', '');
         history.push('/');
       }
     } catch (error) {

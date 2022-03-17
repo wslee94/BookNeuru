@@ -11,7 +11,7 @@ axios.defaults.withCredentials = true;
 
 interface apiCallArgs {
   method: 'get' | 'post' | 'put' | 'delete';
-  params: object;
+  params?: object;
   url: string;
   config?: object;
 }
