@@ -6,7 +6,8 @@ import InputBox from 'components/web/InputBox';
 import Button from 'components/web/Button';
 import CheckBox from 'components/web/CheckBox';
 import logo from 'public/img/logo.png';
-import { apiCall } from 'helpers/ajax';
+import { apiCall, getAjaxData } from 'helpers/ajax';
+import { handleAjaxError } from 'helpers/error';
 import FindEmail from '../findEmail';
 import FindPassword from '../findPassword';
 
@@ -20,8 +21,17 @@ function Login() {
   const history = useHistory();
 
   const login = async () => {
-    await apiCall({ method: 'post', url: '/auth/login', params: { id: 'wslee94@email.com', password: '1234' } });
-    history.push('/');
+    try {
+      const res = await apiCall({ method: 'post', url: '/user/login', params: { email, password } });
+      const userInfo = getAjaxData(res);
+
+      if (res.data.status === 'SUCCESS') {
+        // recoil로 유저 정보 저장하기
+        history.push('/');
+      }
+    } catch (error) {
+      handleAjaxError(error);
+    }
   };
 
   return (

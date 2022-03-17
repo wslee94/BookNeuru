@@ -3,7 +3,6 @@ import sqlString from "sqlstring";
 import { Request, Response } from "express";
 import { sqlConn } from "library/sql";
 import logger from "library/logger";
-import ResponseJson from "library/response";
 import { checkToken, getToken } from "./token";
 
 const escapeParam = (param: any) => {
@@ -39,7 +38,7 @@ export const apiWithToken = (func: any) => async (req: Request, res: Response) =
         const result = await func(conn, params, token.userInfo, { req, res });
         res.json(result);
       } else {
-        res.json(new ResponseJson("FAIL", null, "토큰 정보가 유효하지 않습니다. 다시 로그인해 주세요."));
+        res.status(401).send("토큰 정보가 유효하지 않습니다. 다시 로그인해 주세요.");
       }
     });
   } catch (error: any) {
