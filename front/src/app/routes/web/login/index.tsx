@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import { useSetRecoilState } from 'recoil';
 import Card from '@material-ui/core/Card';
 import InputBox from 'components/web/InputBox';
 import Button from 'components/web/Button';
@@ -9,6 +10,7 @@ import logo from 'public/img/logo.png';
 import { apiCall, getAjaxData } from 'helpers/ajax';
 import { setDataInLocalStorage, getDataInLocalStorage, setDataInSessionStorage } from 'helpers/func';
 import { handleAjaxError } from 'helpers/error';
+import { userState } from 'atoms/userState';
 import FindEmail from '../findEmail';
 import FindPassword from '../findPassword';
 
@@ -19,6 +21,8 @@ function Login() {
   const [isOpenFindPassword, setIsOpenFindPassword] = useState(false);
   const [isRemember, setIsRemember] = useState(getDataInLocalStorage('isRemember') === 'true');
 
+  const setUser = useSetRecoilState(userState);
+
   const history = useHistory();
 
   const login = async () => {
@@ -27,7 +31,7 @@ function Login() {
       const userInfo = getAjaxData(res);
 
       if (res.data.status === 'SUCCESS') {
-        // recoil로 유저 정보 저장하기
+        setUser(userInfo);
         setDataInLocalStorage('isRemember', isRemember);
         setDataInSessionStorage('isLogined', true);
         if (isRemember) setDataInLocalStorage('email', email);

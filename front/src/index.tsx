@@ -10,6 +10,7 @@ import customeTheme from 'config/theme';
 import 'styles/index.scss';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { RecoilRoot } from 'recoil';
 
 Sentry.init({
   dsn: 'https://f2e8b8136540415394ebbea9b3dfdd1a@o1162941.ingest.sentry.io/6250577',
@@ -47,19 +48,21 @@ const isMobile = false;
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     <Router>
-      {isMobile ? (
-        <>
-          <Header />
-          <Main />
-          <ToastContainer />
-        </>
-      ) : (
-        <>
-          <Header />
-          <Main />
-          <ToastContainer />
-        </>
-      )}
+      <RecoilRoot>
+        {isMobile ? (
+          <>
+            <Header />
+            <Main />
+            <ToastContainer />
+          </>
+        ) : (
+          <>
+            <Header />
+            <Main />
+            <ToastContainer />
+          </>
+        )}
+      </RecoilRoot>
     </Router>
   </MuiThemeProvider>,
   document.getElementById('root'),

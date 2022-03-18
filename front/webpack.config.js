@@ -62,6 +62,8 @@ module.exports = (env, arg) => {
         helpers: path.resolve(__dirname, 'src', 'helpers'),
         config: path.resolve(__dirname, 'src', 'config'),
         data: path.resolve(__dirname, 'src', 'data'),
+        atoms: path.resolve(__dirname, 'src', 'recoil', 'atoms'),
+        selectors: path.resolve(__dirname, 'src', 'recoil', 'selectors'),
       },
     },
     devServer: {

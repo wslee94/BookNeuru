@@ -150,5 +150,5 @@ export const loginWithToken = async (
 
   await execQuery(conn, qUpsertToken(userID, sqlString.escape(refreshToken)));
 
-  return new ResponseJson("SUCCESS", { ...userInfo[0] }, "");
+  return new ResponseJson("SUCCESS", { ...userInfoDB[0] }, "");
 };

@@ -1,23 +1,28 @@
 import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import { useSetRecoilState } from 'recoil';
 import Home from 'app/routes/web/home';
-import { apiCall } from 'helpers/ajax';
+import { apiCall, getAjaxData } from 'helpers/ajax';
 import MettingCreate from 'app/routes/web/mettingCreate';
 import SignUp from 'app/routes/web/signUp';
 import Login from 'app/routes/web/login';
 import { getDataInLocalStorage, getDataInSessionStorage, setDataInSessionStorage } from 'helpers/func';
 import { handleAjaxError } from 'helpers/error';
+import { userState } from 'atoms/userState';
 import MyProfile from './routes/web/myProfile';
 import MettingInfo from './routes/web/mettingInfo';
 import Activity from './routes/web/mettingInfo/activity';
 
 function MenuRouter() {
   const history = useHistory();
+  const setUser = useSetRecoilState(userState);
 
   const loginWithToken = async () => {
     try {
-      await apiCall({ method: 'post', url: '/user/login-token' });
+      const res = await apiCall({ method: 'post', url: '/user/login-token' });
+      const userInfo = getAjaxData(res);
+      setUser(userInfo);
       setDataInSessionStorage('isLogined', true);
       history.push('/');
     } catch (error) {

@@ -9,7 +9,9 @@
       "containers/*": ["src/containers/*"],
       "helpers/*": ["src/helpers/*"],
       "config/*": ["src/config/*"],
-      "data/*": ["src/data/*"]
+      "data/*": ["src/data/*"],
+      "atoms/*": ["src/recoil/atoms/*"],
+      "selectors/*": ["src/recoil/selectors/*"]
 		},
     "target": "esnext",
     "module": "commonjs",
