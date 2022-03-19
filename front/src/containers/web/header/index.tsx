@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { AppBar, CssBaseline, Drawer, Hidden, IconButton, Toolbar, useMediaQuery } from '@material-ui/core';
+import { apiCall } from 'helpers/ajax';
+import { setDataInSessionStorage, setDataInLocalStorage } from 'helpers/func';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon } from '@material-ui/icons';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import { userState } from 'atoms/userState';
+import { useRecoilValue } from 'recoil';
 import logo from 'public/img/logo.png';
 import Nav from '../nav';
 
@@ -61,6 +64,7 @@ export default function ResponsiveDrawer(props: Props) {
 
   const location = useLocation();
   const history = useHistory();
+  const user = useRecoilValue<any>(userState);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -72,6 +76,23 @@ export default function ResponsiveDrawer(props: Props) {
   if (location.pathname === '/login' || location.pathname === '/sign-up') {
     return null;
   }
+
+  const logout = async () => {
+    try {
+      /* 
+        DB 토큰 삭제 및 쿠키 삭제, 만약 user에 정보가 존재하지 않으면 finally 구문으로 로그아웃 수행
+        finally 구문 만으로도 로그아웃 가능, 다시 로그인 시 DB 토큰, 쿠키 덮어쓰게 되어있음
+      */
+      if (user && user.userID) await apiCall({ method: 'post', url: '/user/logout', params: { userID: user.userID } });
+    } catch (error) {
+      //
+    } finally {
+      setDataInLocalStorage('isRemember', false);
+      setDataInLocalStorage('email', '');
+      setDataInSessionStorage('isLogined', false);
+      history.push('/login');
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -97,7 +118,7 @@ export default function ResponsiveDrawer(props: Props) {
               </IconButton>
               <IconButton
                 onClick={() => {
-                  history.push('/login');
+                  logout();
                 }}
                 color="inherit"
               >

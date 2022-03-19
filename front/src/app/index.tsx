@@ -27,6 +27,7 @@ function MenuRouter() {
       history.push('/');
     } catch (error) {
       handleAjaxError(error);
+      setDataInSessionStorage('isLogined', false);
       history.push('/login');
     }
   };
