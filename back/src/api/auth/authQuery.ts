@@ -18,6 +18,12 @@ UPDATE  Token = ${refreshToken},
         UpdateDate = NOW();
 `;
 
+export const qDeleteToken = (userID: number | string) => `
+DELETE
+FROM    Auth.Token
+WHERE   UserID = ${userID};
+`;
+
 export const qIsValidToken = (refreshToken: string) => `
 SELECT EXISTS (SELECT UserID FROM Auth.Token WHERE Token = ${refreshToken}) AS isValid;
 `;

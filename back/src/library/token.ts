@@ -28,6 +28,11 @@ export const setToken = ({ res, accessToken, refreshToken }: setTokenArgs) => {
   if (refreshToken) res.cookie("refreshToken", refreshToken, { httpOnly: true });
 };
 
+export const clearToken = (res: Response) => {
+  res.clearCookie("accessToken");
+  res.clearCookie("refreshToken");
+};
+
 export const generateAccessToken = (userInfo: { userID: number; email: string; name: string }) => {
   const token = jwt.sign(userInfo, jwtSecret, { expiresIn: "1h" });
   return token;

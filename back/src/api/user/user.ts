@@ -20,4 +20,14 @@ const loginWithToken = apiWithToken(
   },
 );
 
-export default express.Router().post("", signup).post("/login", login).post("/login-token", loginWithToken);
+const logout = apiWithNoToken(async (conn: mysql.PoolConnection, param: any, http: { req: Request; res: Response }) => {
+  const result = await userQuery.logout(conn, param, http);
+  return result;
+});
+
+export default express
+  .Router()
+  .post("", signup)
+  .post("/login", login)
+  .post("/login-token", loginWithToken)
+  .post("/logout", logout);

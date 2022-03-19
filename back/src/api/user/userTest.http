@@ -20,10 +20,18 @@ content-type: application/json
   "password": "1111"
 }
 
-### loginWithToken 
+### login-token 
 POST http://localhost:3001/api/user/login-token HTTP/1.1
 content-type: application/json
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDc0MzU1NTQsImV4cCI6MTY0ODY0NTE1NH0.dQq9p7b7P_Zvx6KmOnO2y_nNv7nCpIOteggDYR8hKZs; accessToken={ }
-
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE0LCJlbWFpbCI6Im9uZXRoaW5nMTBAZ21haWwuY29tIiwibmFtZSI6IuydtOybkOyErSIsImlhdCI6MTY0NzY1OTQ2NiwiZXhwIjoxNjQ3NjYzMDY2fQ.JhKdFJ5KKk12weGWp8Is5gARO9SmXaCfLafnWnPNqYk; Path=/; HttpOnly,refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDc2NTk0NjYsImV4cCI6MTY0ODg2OTA2Nn0.h4m5c4UCtLZV-yCUjCs5G1Hc_M5OIP4M11j14sxqNjE; Path=/; HttpOnly
 
 { }
+
+### logout
+POST http://localhost:3001/api/user/logout HTTP/1.1
+content-type: application/json
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE0LCJlbWFpbCI6Im9uZXRoaW5nMTBAZ21haWwuY29tIiwibmFtZSI6IuydtOybkOyErSIsImlhdCI6MTY0NzY1OTQ2NiwiZXhwIjoxNjQ3NjYzMDY2fQ.JhKdFJ5KKk12weGWp8Is5gARO9SmXaCfLafnWnPNqYk; Path=/; HttpOnly,refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDc2NTk0NjYsImV4cCI6MTY0ODg2OTA2Nn0.h4m5c4UCtLZV-yCUjCs5G1Hc_M5OIP4M11j14sxqNjE; Path=/; HttpOnly
+
+{ 
+  "userID": 14
+}

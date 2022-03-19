@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { execQuery } from "library/sql";
 import mysql from "mysql2/promise";
 import sqlString from "sqlstring";
 import ResponseJson from "library/response";
 import { createSalt, createHashedPassword } from "library/util";
-import { generateAccessToken, generateRefreshToken, setToken } from "library/token";
-import { qUpsertToken } from "api/auth/authQuery";
+import { generateAccessToken, generateRefreshToken, setToken, clearToken } from "library/token";
+import { qUpsertToken, qDeleteToken } from "api/auth/authQuery";
 
 const qInsertUser = (email: string, name: string, gender: string, profileImageURL: string) => `
 INSERT INTO Auth.User
@@ -151,4 +151,12 @@ export const loginWithToken = async (
   await execQuery(conn, qUpsertToken(userID, sqlString.escape(refreshToken)));
 
   return new ResponseJson("SUCCESS", { ...userInfoDB[0] }, "");
+};
+
+export const logout = async (conn: mysql.PoolConnection, param: any, http: { req: Request; res: Response }) => {
+  const { userID } = param;
+  await execQuery(conn, qDeleteToken(userID));
+  clearToken(http.res);
+
+  return new ResponseJson("SUCCESS", null, "");
 };
