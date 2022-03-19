@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node build.js && babel --extensions .ts src -d dist --copy-files",
     "start": "npm run build && node ./dist/index.js",
-    "dev": "babel-watch --extensions .ts src/index.ts"
+    "dev": "yarn && babel-watch --extensions .ts src/index.ts"
   },
   "author": "wslee",
   "license": "UNLICENSED",
