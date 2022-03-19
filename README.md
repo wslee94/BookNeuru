@@ -14,8 +14,8 @@
   <b>✋ Service introduce</b>
 </h2>
 <b>팀 단위 독서모임 관리 및 독서활동을 기록하는 웹애플리케이션 입니다.</b><br />
-<b>현재 열심히 개발 중 입니다.</b>
-<b>(😭속마음: 현재 독서모임을 하고 있지만 기록하고 있지 않아 만든 웹애플리케이션 입니다.)</b><br />
+<b>현재 열심히 개발 중 입니다.</b><br />
+<b>(😭속마음: 현재 독서모임을 하고 있지만 기록하고 있지 않아 만들고있는 서비스 입니다.)</b><br />
 
 <br />
 <h2 id="1">
@@ -35,7 +35,10 @@
 
 <br />
 <h2 id="3">
-  <b>📸 Pages</b>
+  <b>📸 Pages (개발 중)</b>
 </h2>
 
-- 개발중입니다.
+<img src="public/img/pages/login.png" style="border:2px solid #9F81F7; border-radius:25px;">
+<img src="public/img/pages/signup.png" style="border:2px solid #9F81F7; border-radius:25px;">
+<img src="public/img/pages/home.png" style="border:2px solid #9F81F7; border-radius:25px;">
+<img src="public/img/pages/metting_create.png" style="border:2px solid #9F81F7; border-radius:25px;">
