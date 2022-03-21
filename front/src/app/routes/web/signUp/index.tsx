@@ -121,7 +121,7 @@ function SignUp() {
 
   const saveUser = async () => {
     try {
-      const result: any = await apiCall({
+      const res: any = await apiCall({
         url: '/user',
         method: 'post',
         params: {
@@ -132,8 +132,8 @@ function SignUp() {
           profileImageURL: imageFile,
         },
       });
-      getAjaxData(result);
-      if (result.status === 'SUCCESS') cleanState();
+      getAjaxData(res);
+      if (res.data.status === 'SUCCESS') cleanState();
     } catch (error) {
       handleAjaxError(error);
     }
