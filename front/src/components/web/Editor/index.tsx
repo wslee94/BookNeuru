@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
@@ -25,6 +25,14 @@ function Editor(props: EditorProps) {
   const handleChange = () => {
     onChange(editorRef.current.getInstance().getHTML());
   };
+
+  const init = () => {
+    editorRef.current.getInstance().setHTML('');
+  };
+
+  useEffect(() => {
+    if (!value) init();
+  }, [value]);
 
   return (
     <ToastEditor
