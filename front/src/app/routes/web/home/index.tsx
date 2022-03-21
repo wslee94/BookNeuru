@@ -139,7 +139,7 @@ function Home() {
             {myMeeting.map((n) => {
               return (
                 <div key={n.meetingID} style={{ padding: '5px 10px' }}>
-                  <Card image={n.image} imageHeight={160} link="/metting-info">
+                  <Card image={n.image} imageHeight={160} link="/meeting-info">
                     <div
                       style={{
                         display: 'flex',

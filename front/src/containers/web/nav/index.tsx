@@ -28,13 +28,13 @@ function Nav(props: NavProps) {
     {
       text: '모임 만들기',
       image: 'fas fa-user-plus',
-      link: '/plus-metting',
+      link: '/plus-meeting',
       selected: false,
     },
     {
       text: '내가 참여한 모임',
       image: 'fas fa-users',
-      link: '/my-activating-metting',
+      link: '/my-activating-meeting',
       selected: false,
     },
   ]);

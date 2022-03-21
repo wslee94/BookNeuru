@@ -1,4 +1,4 @@
-### insert metting 
+### insert meeting 
 POST http://localhost:3001/api/meeting HTTP/1.1
 content-type: application/json
 Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE0LCJlbWFpbCI6Im9uZXRoaW5nMTBAZ21haWwuY29tIiwibmFtZSI6IuydtOybkOyErSIsImlhdCI6MTY0Nzg3MTMwOCwiZXhwIjoxNjQ3ODc0OTA4fQ._5xOQTrkGNLPa8WhgB37U-X4ldbJY98SxVKR4gx-2k4; Path=/; HttpOnly,refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDc4NzEzMDgsImV4cCI6MTY0OTA4MDkwOH0.6qeCs5R1qE0QAzEr00HKOdSOvW7GiSFegcbjT9qZffg; Path=/; HttpOnly

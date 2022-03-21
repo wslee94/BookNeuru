@@ -41,4 +41,4 @@
 <img src="public/img/pages/login.png" style="border:2px solid #9F81F7; border-radius:25px;">
 <img src="public/img/pages/signup.png" style="border:2px solid #9F81F7; border-radius:25px;">
 <img src="public/img/pages/home.png" style="border:2px solid #9F81F7; border-radius:25px;">
-<img src="public/img/pages/metting_create.png" style="border:2px solid #9F81F7; border-radius:25px;">
+<img src="public/img/pages/meeting_create.png" style="border:2px solid #9F81F7; border-radius:25px;">

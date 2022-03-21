@@ -4,15 +4,15 @@ import { useHistory } from 'react-router';
 import { useSetRecoilState } from 'recoil';
 import Home from 'app/routes/web/home';
 import { apiCall, getAjaxData } from 'helpers/ajax';
-import MettingCreate from 'app/routes/web/mettingCreate';
+import MeetingCreate from 'app/routes/web/meetingCreate';
 import SignUp from 'app/routes/web/signUp';
 import Login from 'app/routes/web/login';
 import { getDataInLocalStorage, getDataInSessionStorage, setDataInSessionStorage } from 'helpers/func';
 import { handleAjaxError } from 'helpers/error';
 import { userState } from 'atoms/userState';
 import MyProfile from './routes/web/myProfile';
-import MettingInfo from './routes/web/mettingInfo';
-import Activity from './routes/web/mettingInfo/activity';
+import MeetingInfo from './routes/web/meetingInfo';
+import Activity from './routes/web/meetingInfo/activity';
 
 function MenuRouter() {
   const history = useHistory();
@@ -46,10 +46,10 @@ function MenuRouter() {
     <Switch>
       <Route exact path="/sign-up" component={SignUp} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/plus-metting" component={MettingCreate} />
+      <Route exact path="/plus-meeting" component={MeetingCreate} />
       <Route exact path="/my-profile" component={MyProfile} />
-      <Route exact path="/metting-info" component={MettingInfo} />
-      <Route exact path="/metting-info/activity" component={Activity} />
+      <Route exact path="/meeting-info" component={MeetingInfo} />
+      <Route exact path="/meeting-info/activity" component={Activity} />
       <Route exact path="/activity" component={Activity} />
       <Route exact path="/" component={Home} />
     </Switch>

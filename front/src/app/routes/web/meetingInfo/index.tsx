@@ -10,8 +10,8 @@ import Invitation from './invitation';
 import Activities from './activities';
 import ActivityInfo from './activityInfo';
 
-function MettingInfo() {
-  const [isOpenMettingInfo, setIsOpenMettingInfo] = useState(false);
+function MeetingInfo() {
+  const [isOpenMeetingInfo, setIsOpenMeetingInfo] = useState(false);
   const [isOpenInvitation, setIsOpenInvitation] = useState(false);
   const [isOpenActivityInfo, setIsOpenActivityInfo] = useState(false);
 
@@ -22,7 +22,7 @@ function MettingInfo() {
         actionButtons={
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <div>
-              <IconButton onClick={() => setIsOpenMettingInfo(true)} color="inherit">
+              <IconButton onClick={() => setIsOpenMeetingInfo(true)} color="inherit">
                 <InfoOutlinedIcon style={{ fontSize: '35px' }} />
               </IconButton>
             </div>
@@ -39,8 +39,8 @@ function MettingInfo() {
       >
         <Activities />
       </PageCard>
-      <Popup maxWidth="lg" isOpen={isOpenMettingInfo} title="한 작가 깊게 파기 모임 정보">
-        <Info closeDialog={() => setIsOpenMettingInfo(false)} />
+      <Popup maxWidth="lg" isOpen={isOpenMeetingInfo} title="한 작가 깊게 파기 모임 정보">
+        <Info closeDialog={() => setIsOpenMeetingInfo(false)} />
       </Popup>
       <Popup maxWidth="sm" isOpen={isOpenInvitation} title="모임 구성원 초대">
         <Invitation closeDialog={() => setIsOpenInvitation(false)} />
@@ -52,4 +52,4 @@ function MettingInfo() {
   );
 }
 
-export default MettingInfo;
+export default MeetingInfo;
