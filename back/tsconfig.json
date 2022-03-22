@@ -10,7 +10,8 @@
   "paths": {
     "library/*": ["library/*"],
     "api/*": ["api/*"],
-    "config/*": ["config/*"]
+    "config/*": ["config/*"],
+    "helper/*": ["helper/*"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

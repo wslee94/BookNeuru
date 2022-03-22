@@ -1,6 +1,7 @@
 import { execQuery } from "library/sql";
 import mysql from "mysql2/promise";
 import ResponseJson from "library/response";
+import { checkIsNumber } from "helper/func";
 
 const qInsertMeeting = (
   title: string,
@@ -8,6 +9,7 @@ const qInsertMeeting = (
   location: string,
   meetingImageURL: string,
   description: string,
+  userID: number,
 ) => `
 INSERT INTO Book.Meeting
 (
@@ -17,7 +19,9 @@ INSERT INTO Book.Meeting
   MeetingImageURL,
   Description,
   CreateDate,
-  UpdateDate
+  CreateUserID,
+  UpdateDate,
+  UpdateUserID
 )
 VALUES
 (
@@ -27,7 +31,9 @@ VALUES
   ${meetingImageURL},
   ${description},
   NOW(),
-  NOW()
+  ${userID},
+  NOW(),
+  ${userID}
 );
 `;
 
@@ -38,7 +44,9 @@ INSERT INTO Book.MeetingParticipant
   UserID,
   IsOwner,
   CreateDate,
-  UpdateDate
+  CreateUserID,
+  UpdateDate,
+  UpdateUserID
 )
 VALUES
 (
@@ -46,8 +54,30 @@ VALUES
   ${userID},
   ${isOwner},
   NOW(),
-  NOW()
+  ${userID},
+  NOW(),
+  ${userID}
 );
+`;
+
+const qUpdateMeeting = (
+  meetingID: string,
+  title: string,
+  category: string,
+  location: string,
+  meetingImageURL: string,
+  description: string,
+  userID: number,
+) => `
+UPDATE  Book.Meeting
+SET     Title=${title},
+        Category=${category}, 
+        Location=${location},
+        MeetingImageURL=${meetingImageURL},
+        Description=${description},
+        UpdateDate=NOW(),
+        UpdateUserID=${userID}
+WHERE   MeetingID=${meetingID};
 `;
 
 export const insertMeeting = async (conn: mysql.PoolConnection, param: any, userInfo: any) => {
@@ -56,7 +86,7 @@ export const insertMeeting = async (conn: mysql.PoolConnection, param: any, user
   try {
     await conn.beginTransaction();
 
-    await execQuery(conn, qInsertMeeting(title, category, location, meetingImageURL, description));
+    await execQuery(conn, qInsertMeeting(title, category, location, meetingImageURL, description, userID));
     await execQuery(conn, qInsertMeetingParticipant(userID, true));
 
     await conn.commit();
@@ -65,4 +95,16 @@ export const insertMeeting = async (conn: mysql.PoolConnection, param: any, user
     conn.rollback();
     throw error;
   }
+};
+
+export const updateMeeting = async (conn: mysql.PoolConnection, param: any, userInfo: any) => {
+  const { userID } = userInfo;
+  const { id } = param.original;
+  const { title, category, location, meetingImageURL, description } = param;
+
+  if (!checkIsNumber(id)) return new ResponseJson("FAIL", null, "ㄴㄴㄴ");
+
+  await execQuery(conn, qUpdateMeeting(id, title, category, location, meetingImageURL, description, userID));
+
+  return new ResponseJson("SUCCESS", null, "");
 };
