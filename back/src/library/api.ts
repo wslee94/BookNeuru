@@ -32,8 +32,15 @@ export const apiWithToken = (func: any) => async (req: Request, res: Response, n
       const token = await checkToken({ accessToken, refreshToken, conn, res });
 
       if (token.status === "SUCCESS") {
-        const params = escapeParam(req.body);
-        params.original = req.body;
+        const escapedBody = escapeParam(req.body) || {};
+        const originalBody = req.body || {};
+        const escapedParams = escapeParam(req.params) || {};
+        const originalParams = req.params || {};
+        const escapedQuery = escapeParam(req.query) || {};
+        const originalQuery = req.query || {};
+
+        const params = { ...escapedBody, ...escapedParams, ...escapedQuery };
+        params.original = { ...originalBody, ...originalParams, ...originalQuery };
         const result = await func(conn, params, token.userInfo, { req, res });
         res.json(result);
       } else {
@@ -47,8 +54,15 @@ export const apiWithToken = (func: any) => async (req: Request, res: Response, n
 
 export const apiWithNoToken = (func: any) => async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const params = escapeParam(req.body);
-    params.original = req.body;
+    const escapedBody = escapeParam(req.body) || {};
+    const originalBody = req.body || {};
+    const escapedParams = escapeParam(req.params) || {};
+    const originalParams = req.params || {};
+    const escapedQuery = escapeParam(req.query) || {};
+    const originalQuery = req.query || {};
+
+    const params = { ...escapedBody, ...escapedParams, ...escapedQuery };
+    params.original = { ...originalBody, ...originalParams, ...originalQuery };
 
     const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params, { req, res }));
     res.json(result);
