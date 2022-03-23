@@ -23,3 +23,8 @@ Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE0LCJlbWF
   "meetingImageURL": "", 
   "description": "모임 설명 ~"
 }
+
+### select meetings
+GET http://localhost:3001/api/meeting HTTP/1.1
+content-type: application/json
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE0LCJlbWFpbCI6Im9uZXRoaW5nMTBAZ21haWwuY29tIiwibmFtZSI6IuydtOybkOyErSIsImlhdCI6MTY0ODAxOTU0NCwiZXhwIjoxNjQ4MDIzMTQ0fQ.HVCBmHtxSm4dexFwRRObz9VrWvg9PvEiyn_pbeQ-rs0; Path=/; HttpOnly,refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDgwMTk1NDQsImV4cCI6MTY0OTIyOTE0NH0.O4cZivdyDkZqKjsgt5G80mMUPUkf2hdkcgE3v4MajTs; Path=/; HttpOnly

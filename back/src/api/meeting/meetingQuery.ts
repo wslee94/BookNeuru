@@ -60,6 +60,20 @@ VALUES
 );
 `;
 
+const qSelectMeetings = (userID: number) => `
+SELECT  M.MeetingID AS meetingID,
+        M.Title AS title,
+        M.Category AS category, 
+        M.Location AS location,
+        M.MeetingImageURL AS meetingImangeURL,
+        M.Description AS description
+FROM    Book.Meeting M
+INNER JOIN Book.MeetingParticipant MP
+  ON  M.MeetingID = MP.MeetingID
+  AND MP.UserID = ${userID}
+ORDER BY MP.UpdateDate DESC;
+`;
+
 const qUpdateMeeting = (
   meetingID: string,
   title: string,
@@ -107,4 +121,11 @@ export const updateMeeting = async (conn: mysql.PoolConnection, param: any, user
   await execQuery(conn, qUpdateMeeting(id, title, category, location, meetingImageURL, description, userID));
 
   return new ResponseJson("SUCCESS", null, "");
+};
+
+export const selectMeetings = async (conn: mysql.PoolConnection, param: any, userInfo: any) => {
+  const { userID } = userInfo;
+  const [result] = await execQuery(conn, qSelectMeetings(userID));
+
+  return result;
 };
