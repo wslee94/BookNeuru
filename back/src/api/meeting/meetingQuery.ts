@@ -60,20 +60,6 @@ VALUES
 );
 `;
 
-const qSelectMeetings = (userID: number) => `
-SELECT  M.MeetingID AS meetingID,
-        M.Title AS title,
-        M.Category AS category, 
-        M.Location AS location,
-        M.MeetingImageURL AS meetingImangeURL,
-        M.Description AS description
-FROM    Book.Meeting M
-INNER JOIN Book.MeetingParticipant MP
-  ON  M.MeetingID = MP.MeetingID
-  AND MP.UserID = ${userID}
-ORDER BY MP.UpdateDate DESC;
-`;
-
 const qUpdateMeeting = (
   meetingID: string,
   title: string,
@@ -92,6 +78,35 @@ SET     Title=${title},
         UpdateDate=NOW(),
         UpdateUserID=${userID}
 WHERE   MeetingID=${meetingID};
+`;
+
+const qSelectMeetings = (userID: number) => `
+SELECT  M.MeetingID AS meetingID,
+        M.Title AS title,
+        M.Location AS location,
+        M.MeetingImageURL AS meetingImangeURL
+FROM    Book.Meeting M
+INNER JOIN Book.MeetingParticipant MP
+  ON  M.MeetingID = MP.MeetingID
+  AND MP.UserID = ${userID}
+ORDER BY MP.UpdateDate DESC;
+`;
+
+const qSelectMeeting = (meetingID: string) => `
+SELECT  M.MeetingID AS meetingID,
+        M.Title AS title,
+        M.Category AS category, 
+        M.Location AS location,
+        M.MeetingImageURL AS meetingImangeURL,
+        M.Description AS description,
+        GROUP_CONCAT(U.Name) AS userNames
+FROM    Book.Meeting M
+INNER JOIN Book.MeetingParticipant MP
+  ON  M.MeetingID = MP.MeetingID
+INNER JOIN Auth.User U
+  ON  MP.UserID = U.UserID
+WHERE M.MeetingID = ${meetingID}
+GROUP BY M.MeetingID
 `;
 
 export const insertMeeting = async (conn: mysql.PoolConnection, param: any, userInfo: any) => {
@@ -116,7 +131,9 @@ export const updateMeeting = async (conn: mysql.PoolConnection, param: any, user
   const { id } = param.original;
   const { title, category, location, meetingImageURL, description } = param;
 
-  if (!checkIsNumber(id)) return new ResponseJson("FAIL", null, "ㄴㄴㄴ");
+  if (!checkIsNumber(id)) {
+    return new ResponseJson("FAIL", null, "잘못된 형식의 요청으로 인해 데이터를 불러올 수 없습니다.");
+  }
 
   await execQuery(conn, qUpdateMeeting(id, title, category, location, meetingImageURL, description, userID));
 
@@ -127,5 +144,16 @@ export const selectMeetings = async (conn: mysql.PoolConnection, param: any, use
   const { userID } = userInfo;
   const [result] = await execQuery(conn, qSelectMeetings(userID));
 
-  return result;
+  return new ResponseJson("SUCCESS", result, "");
+};
+
+export const selectMeeting = async (conn: mysql.PoolConnection, param: any) => {
+  const { id } = param.original;
+
+  if (!checkIsNumber(id)) {
+    return new ResponseJson("FAIL", null, "잘못된 형식의 요청으로 인해 데이터를 불러올 수 없습니다.");
+  }
+  const [result] = await execQuery(conn, qSelectMeeting(id));
+
+  return new ResponseJson("SUCCESS", result, "");
 };
