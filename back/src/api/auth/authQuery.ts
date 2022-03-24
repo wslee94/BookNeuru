@@ -37,3 +37,20 @@ INNER JOIN Auth.User U
   ON  T.UserID = U.UserID
 WHERE T.Token = ${refreshToken};
 `;
+
+export const qInsertLoginLog = (email: string, ip: string, isSuccess: boolean) => `
+INSERT INTO Auth.LoginLog
+(
+  LoginDate, 
+  Email,
+  IP, 
+  IsSuccess
+)
+VALUES
+(
+  NOW(),
+  ${email},
+  ${ip},
+  ${isSuccess}
+);
+`;

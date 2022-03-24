@@ -2,6 +2,7 @@ import mysql from "mysql2/promise";
 import sqlString from "sqlstring";
 import { Request, Response, NextFunction } from "express";
 import { sqlConn } from "library/sql";
+import requestIP from "request-ip";
 import { checkToken, getToken } from "./token";
 
 const escapeParam = (param: any) => {
@@ -39,8 +40,10 @@ export const apiWithToken = (func: any) => async (req: Request, res: Response, n
         const escapedQuery = escapeParam(req.query) || {};
         const originalQuery = req.query || {};
 
-        const params = { ...escapedBody, ...escapedParams, ...escapedQuery };
-        params.original = { ...originalBody, ...originalParams, ...originalQuery };
+        const ip = requestIP.getClientIp(req);
+
+        const params = { ...escapedBody, ...escapedParams, ...escapedQuery, ip: sqlString.escape(ip) };
+        params.original = { ...originalBody, ...originalParams, ...originalQuery, ip };
         const result = await func(conn, params, token.userInfo, { req, res });
         res.json(result);
       } else {
@@ -61,8 +64,10 @@ export const apiWithNoToken = (func: any) => async (req: Request, res: Response,
     const escapedQuery = escapeParam(req.query) || {};
     const originalQuery = req.query || {};
 
-    const params = { ...escapedBody, ...escapedParams, ...escapedQuery };
-    params.original = { ...originalBody, ...originalParams, ...originalQuery };
+    const ip = requestIP.getClientIp(req);
+
+    const params = { ...escapedBody, ...escapedParams, ...escapedQuery, ip: sqlString.escape(ip) };
+    params.original = { ...originalBody, ...originalParams, ...originalQuery, ip };
 
     const result = await sqlConn(async (conn: mysql.PoolConnection) => func(conn, params, { req, res }));
     res.json(result);

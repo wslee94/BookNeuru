@@ -5,7 +5,7 @@ import sqlString from "sqlstring";
 import ResponseJson from "library/response";
 import { createSalt, createHashedPassword } from "library/util";
 import { generateAccessToken, generateRefreshToken, setToken, clearToken } from "library/token";
-import { qUpsertToken, qDeleteToken } from "api/auth/authQuery";
+import { qUpsertToken, qDeleteToken, qInsertLoginLog } from "api/auth/authQuery";
 
 const qInsertUser = (email: string, name: string, gender: string, profileImageURL: string) => `
 INSERT INTO Auth.User
@@ -98,10 +98,11 @@ export const insertUser = async (conn: mysql.PoolConnection, param: any) => {
 };
 
 export const login = async (conn: mysql.PoolConnection, param: any, http: { req: Request; res: Response }) => {
-  const { email, password } = param;
+  const { email, password, ip } = param;
   const [userInfo]: any = await execQuery(conn, qSelectUser(email));
 
   if (!userInfo[0]) {
+    await execQuery(conn, qInsertLoginLog(email, ip, false));
     return new ResponseJson(
       "FAIL",
       { email: param.original.email },
@@ -117,6 +118,7 @@ export const login = async (conn: mysql.PoolConnection, param: any, http: { req:
   const { isValid } = passwordInfo[0];
 
   if (!isValid) {
+    await execQuery(conn, qInsertLoginLog(email, ip, false));
     return new ResponseJson(
       "FAIL",
       { email: param.original.email },
@@ -130,6 +132,7 @@ export const login = async (conn: mysql.PoolConnection, param: any, http: { req:
   setToken({ res: http.res, accessToken, refreshToken });
 
   await execQuery(conn, qUpsertToken(userID, sqlString.escape(refreshToken)));
+  await execQuery(conn, qInsertLoginLog(email, ip, true));
 
   return new ResponseJson("SUCCESS", { ...userInfo[0] }, "");
 };
@@ -140,10 +143,12 @@ export const loginWithToken = async (
   userInfo: any,
   http: { req: Request; res: Response },
 ) => {
+  const { ip } = param;
   const { email } = userInfo;
   const [userInfoDB]: any = await execQuery(conn, qSelectUser(sqlString.escape(email)));
 
   if (!userInfoDB[0]) {
+    await execQuery(conn, qInsertLoginLog(email, ip, false));
     return new ResponseJson("FAIL", null, "로그인에 실패했습니다. 다시 로그인해 주세요.");
   }
 
@@ -154,6 +159,7 @@ export const loginWithToken = async (
   setToken({ res: http.res, refreshToken });
 
   await execQuery(conn, qUpsertToken(userID, sqlString.escape(refreshToken)));
+  await execQuery(conn, qInsertLoginLog(sqlString.escape(email), ip, true));
 
   return new ResponseJson("SUCCESS", { ...userInfoDB[0] }, "");
 };
