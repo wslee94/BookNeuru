@@ -55,6 +55,7 @@ SELECT  UserID AS userID,
         ProfileImageURL AS profileImageURL
 FROM    Auth.User U
 WHERE   Email = ${email}
+AND     IsActive = 1
 `;
 
 const qSelectPasswordSalt = (userID: number) => `
@@ -141,6 +142,10 @@ export const loginWithToken = async (
 ) => {
   const { email } = userInfo;
   const [userInfoDB]: any = await execQuery(conn, qSelectUser(sqlString.escape(email)));
+
+  if (!userInfoDB[0]) {
+    return new ResponseJson("FAIL", null, "로그인에 실패했습니다. 다시 로그인해 주세요.");
+  }
 
   const { userID } = userInfoDB[0];
 

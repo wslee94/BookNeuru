@@ -22,9 +22,17 @@ function MenuRouter() {
     try {
       const res = await apiCall({ method: 'post', url: '/user/login-token' });
       const userInfo = getAjaxData(res);
-      setUser(userInfo);
-      setDataInSessionStorage('isLogined', true);
-      history.push('/');
+
+      if (res.data.status === 'FAIL') {
+        setDataInSessionStorage('isLogined', false);
+        history.push('/login');
+      }
+
+      if (res.data.status === 'SUCCESS') {
+        setUser(userInfo);
+        setDataInSessionStorage('isLogined', true);
+        history.push('/');
+      }
     } catch (error) {
       handleAjaxError(error);
       setDataInSessionStorage('isLogined', false);

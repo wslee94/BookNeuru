@@ -89,6 +89,7 @@ FROM    Book.Meeting M
 INNER JOIN Book.MeetingParticipant MP
   ON  M.MeetingID = MP.MeetingID
   AND MP.UserID = ${userID}
+WHERE   M.IsActive = 1
 ORDER BY MP.UpdateDate DESC;
 `;
 
@@ -105,7 +106,8 @@ INNER JOIN Book.MeetingParticipant MP
   ON  M.MeetingID = MP.MeetingID
 INNER JOIN Auth.User U
   ON  MP.UserID = U.UserID
-WHERE M.MeetingID = ${meetingID}
+WHERE   M.MeetingID = ${meetingID}
+AND     M.IsActive = 1
 GROUP BY M.MeetingID
 `;
 
@@ -153,7 +155,11 @@ export const selectMeeting = async (conn: mysql.PoolConnection, param: any) => {
   if (!checkIsNumber(id)) {
     return new ResponseJson("FAIL", null, "잘못된 형식의 요청으로 인해 데이터를 불러올 수 없습니다.");
   }
-  const [result] = await execQuery(conn, qSelectMeeting(id));
+  const [result]: any = await execQuery(conn, qSelectMeeting(id));
 
-  return new ResponseJson("SUCCESS", result, "");
+  if (!result[0]) {
+    return new ResponseJson("FAIL", null, "해당 데이터를 찾을 수 없습니다.");
+  }
+
+  return new ResponseJson("SUCCESS", result[0], "");
 };
