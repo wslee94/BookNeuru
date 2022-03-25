@@ -148,7 +148,7 @@ export const loginWithToken = async (
   const [userInfoDB]: any = await execQuery(conn, qSelectUser(sqlString.escape(email)));
 
   if (!userInfoDB[0]) {
-    await execQuery(conn, qInsertLoginLog(email, ip, false));
+    await execQuery(conn, qInsertLoginLog(sqlString.escape(email), ip, false));
     return new ResponseJson("FAIL", null, "로그인에 실패했습니다. 다시 로그인해 주세요.");
   }
 

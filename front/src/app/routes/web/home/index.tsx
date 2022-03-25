@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import PageCard from 'components/web/PageCard';
 import { CAROUSEL_VERTICAL, CAROUSEL_HORIZONTAL } from 'helpers/const';
+import { apiCall, getAjaxData } from 'helpers/ajax';
+import { handleAjaxError } from 'helpers/error';
 import { Link } from 'react-router-dom';
 import Ellipsis from 'components/web/Ellipsis';
 import book1 from './sample/book1.jpg';
@@ -17,54 +19,7 @@ import book5 from './sample/book5.jpg';
 import book6 from './sample/book6.jpg';
 import book7 from './sample/book7.jpg';
 import book8 from './sample/book8.jpg';
-import meeting1 from './sample/meeting1.jpg';
-import meeting2 from './sample/meeting2.jpg';
 import meetingDefault from './sample/meeting_default.png';
-
-const myMeeting = [
-  {
-    meetingID: 1,
-    title: '한 작가 깊게 파기',
-    location: '서울시 강남구',
-    image: meeting1,
-  },
-  {
-    meetingID: 2,
-    title: '미래 인간 생존 백서',
-    location: '서울시 강서구',
-    image: meeting2,
-  },
-  {
-    meetingID: 3,
-    title: '현대적인 또는 현재적인 어떤 소설',
-    location: '경기도 분당구',
-    image: meetingDefault,
-  },
-  {
-    meetingID: 4,
-    title: '북씨-리뷰',
-    location: '경기도 분당구',
-    image: meeting1,
-  },
-  {
-    meetingID: 5,
-    title: '체험독서',
-    location: '경기도 분당구',
-    image: meeting2,
-  },
-  {
-    meetingID: 6,
-    title: '기술은 우리의 삶을 어떻게 바꿀까',
-    location: '경기도 분당구',
-    image: meetingDefault,
-  },
-  {
-    meetingID: 7,
-    title: '책 놀이터',
-    location: '경기도 분당구',
-    image: meetingDefault,
-  },
-];
 
 const myReadBooks = [
   { image: book1, bookID: 1 },
@@ -77,10 +32,18 @@ const myReadBooks = [
   { image: book8, bookID: 8 },
 ];
 
+interface meetingType {
+  meetingID: number;
+  title: string;
+  location: string;
+  meetingImageURL: string;
+}
+
 function Home() {
   const refCardWidth = useRef<HTMLDivElement>(null);
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
   const [cardWidth, setCardWidth] = useState(0);
+  const [myMeetings, setMyMeetings] = useState([]);
 
   const windowSizer = useCallback(() => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
@@ -94,6 +57,8 @@ function Home() {
       setCardWidth(refCardWidth?.current?.offsetWidth || 0);
     }, 0);
 
+    fetchMeetings();
+
     return () => {
       window.removeEventListener('resize', windowSizer);
       if (timer) clearTimeout(timer);
@@ -104,6 +69,21 @@ function Home() {
     // 말줄임표 설정을 위해
     setCardWidth(refCardWidth?.current?.offsetWidth || 0);
   }, [windowSize]);
+
+  const fetchMeetings = async () => {
+    try {
+      const res = await apiCall({ method: 'get', url: '/meeting' });
+      const myMeetings = getAjaxData(res);
+      setMyMeetings(
+        myMeetings.map((meeting: meetingType) => ({
+          ...meeting,
+          meetingImageURL: meeting.meetingImageURL || meetingDefault,
+        })),
+      );
+    } catch (error) {
+      handleAjaxError(error);
+    }
+  };
 
   return (
     <PageCard pageTitle="홈">
@@ -136,10 +116,10 @@ function Home() {
               </div>
             }
           >
-            {myMeeting.map((n) => {
+            {myMeetings.map((meeting: meetingType) => {
               return (
-                <div key={n.meetingID} style={{ padding: '5px 10px' }}>
-                  <Card image={n.image} imageHeight={160} link="/meeting-info">
+                <div key={meeting.meetingID} style={{ padding: '5px 10px' }}>
+                  <Card image={meeting.meetingImageURL} imageHeight={160} link="/meeting-info">
                     <div
                       style={{
                         display: 'flex',
@@ -150,7 +130,7 @@ function Home() {
                     >
                       <div>
                         <div style={{ fontSize: '16px', fontWeight: 'bold', height: 20, overflow: 'hidden' }}>
-                          <Ellipsis text={n.title} line={1} width={cardWidth} />
+                          <Ellipsis text={meeting.title} line={1} width={cardWidth} />
                         </div>
                       </div>
                       <div
@@ -163,7 +143,7 @@ function Home() {
                           marginTop: '15px',
                         }}
                       >
-                        <div>{n.location}</div>
+                        <div>{meeting.location}</div>
                       </div>
                     </div>
                   </Card>

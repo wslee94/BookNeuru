@@ -84,7 +84,7 @@ const qSelectMeetings = (userID: number) => `
 SELECT  M.MeetingID AS meetingID,
         M.Title AS title,
         M.Location AS location,
-        M.MeetingImageURL AS meetingImangeURL
+        M.MeetingImageURL AS meetingImageURL
 FROM    Book.Meeting M
 INNER JOIN Book.MeetingParticipant MP
   ON  M.MeetingID = MP.MeetingID
@@ -98,7 +98,7 @@ SELECT  M.MeetingID AS meetingID,
         M.Title AS title,
         M.Category AS category, 
         M.Location AS location,
-        M.MeetingImageURL AS meetingImangeURL,
+        M.MeetingImageURL AS meetingImageURL,
         M.Description AS description,
         GROUP_CONCAT(U.Name) AS userNames
 FROM    Book.Meeting M
