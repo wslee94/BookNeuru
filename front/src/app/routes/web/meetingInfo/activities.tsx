@@ -28,7 +28,7 @@ function Activities() {
       data={[
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 1,
@@ -36,7 +36,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 20,
@@ -44,7 +44,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 4,
@@ -52,7 +52,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 3,
@@ -60,7 +60,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 19,
@@ -68,7 +68,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -76,7 +76,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -84,7 +84,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -92,7 +92,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -100,7 +100,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -108,7 +108,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -116,7 +116,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -124,7 +124,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -132,7 +132,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -140,7 +140,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -148,7 +148,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -156,7 +156,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -164,7 +164,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -172,7 +172,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -180,7 +180,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -188,7 +188,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -196,7 +196,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -204,7 +204,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -212,7 +212,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -220,7 +220,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -228,7 +228,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -236,7 +236,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -244,7 +244,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,
@@ -252,7 +252,7 @@ function Activities() {
         },
         {
           activityName: '혁명의 팡파르 독서 토론',
-          activityNameLink: '/meeting-info/activity',
+          activityNameLink: '/meeting/activity',
           bookName: '혁명의 팡파르',
           location: '분당구 미금역 스타벅스',
           participants: 2,

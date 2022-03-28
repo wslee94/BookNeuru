@@ -119,7 +119,7 @@ function Home() {
             {myMeetings.map((meeting: meetingType) => {
               return (
                 <div key={meeting.meetingID} style={{ padding: '5px 10px' }}>
-                  <Card image={meeting.meetingImageURL} imageHeight={160} link="/meeting-info">
+                  <Card image={meeting.meetingImageURL} imageHeight={160} link={`/meeting?id=${meeting.meetingID}`}>
                     <div
                       style={{
                         display: 'flex',

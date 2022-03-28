@@ -56,8 +56,8 @@ function MenuRouter() {
       <Route exact path="/login" component={Login} />
       <Route exact path="/plus-meeting" component={MeetingCreate} />
       <Route exact path="/my-profile" component={MyProfile} />
-      <Route exact path="/meeting-info" component={MeetingInfo} />
-      <Route exact path="/meeting-info/activity" component={Activity} />
+      <Route exact path="/meeting" component={MeetingInfo} />
+      <Route exact path="/meeting/activity" component={Activity} />
       <Route exact path="/activity" component={Activity} />
       <Route exact path="/" component={Home} />
     </Switch>
