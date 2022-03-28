@@ -1,3 +1,5 @@
+import qs from 'qs';
+
 const REG_EMAIL = /^[a-zA-Z0-9._-]+@([a-zA-Z0-9]+)\.[a-zA-Z0-9]{2,8}$/;
 const REG_PASSWORD = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 const REG_PHONE_NUMBER = /^\d{3}-\d{3,4}-\d{4}$/;
@@ -35,4 +37,11 @@ export function setDataInSessionStorage(key: string, value: any) {
 
 export function getDataInSessionStorage(key: string) {
   return sessionStorage.getItem(key);
+}
+
+export function getQueryString(value: string) {
+  const query = qs.parse(value, {
+    ignoreQueryPrefix: true,
+  });
+  return query;
 }
