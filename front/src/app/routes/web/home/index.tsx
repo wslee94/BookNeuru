@@ -143,7 +143,7 @@ function Home() {
                           marginTop: '15px',
                         }}
                       >
-                        <div>{meeting.location}</div>
+                        <div>{meeting.location || '장소 미정'}</div>
                       </div>
                     </div>
                   </Card>

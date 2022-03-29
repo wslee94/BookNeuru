@@ -62,7 +62,7 @@ function MeetingInfo() {
       >
         <Activities />
       </PageCard>
-      <Popup maxWidth="lg" isOpen={isOpenMeetingInfo} title="한 작가 깊게 파기 모임 정보">
+      <Popup maxWidth="lg" isOpen={isOpenMeetingInfo} title={`${meetingInfo?.title} 정보` || ''}>
         <Info meetingInfo={meetingInfo} closeDialog={() => setIsOpenMeetingInfo(false)} />
       </Popup>
       <Popup maxWidth="sm" isOpen={isOpenInvitation} title="모임 구성원 초대">

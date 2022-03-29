@@ -46,11 +46,6 @@ function MeetingCreate() {
       return false;
     }
 
-    if (func.checkBlank(description)) {
-      setAlert({ isOpen: true, title: '필수 값을 입력해 주세요.', text: '모임설명을 입력해 주세요.' });
-      return false;
-    }
-
     return true;
   };
 
@@ -99,7 +94,7 @@ function MeetingCreate() {
           previewType="square"
         />
       </Field>
-      <Field title="모임설명" isRequired>
+      <Field title="모임설명">
         <Editor value={description} onChange={(value) => setDescription(value)} />
       </Field>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
