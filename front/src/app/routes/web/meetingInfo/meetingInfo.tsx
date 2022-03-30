@@ -16,10 +16,11 @@ import { meetingInfoTypes } from './types';
 
 interface InfoProps {
   meetingInfo: meetingInfoTypes | null;
+  fetchMeeting: () => Promise<void>;
   closeDialog: () => void;
 }
 
-function Info({ meetingInfo, closeDialog }: InfoProps) {
+function Info({ meetingInfo, fetchMeeting, closeDialog }: InfoProps) {
   const [formMode, setFormMode] = useState('detail');
   const [title, setTitle] = useState(meetingInfo?.title || '');
   const [location, setLocation] = useState(meetingInfo?.location || '');
@@ -62,7 +63,10 @@ function Info({ meetingInfo, closeDialog }: InfoProps) {
         },
       });
       getAjaxData(res);
-      if (res.data.status === 'SUCCESS') setFormMode('detail');
+      if (res.data.status === 'SUCCESS') {
+        await fetchMeeting();
+        setFormMode('detail');
+      }
     } catch (error) {
       handleAjaxError(error);
     }
