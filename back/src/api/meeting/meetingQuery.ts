@@ -2,6 +2,7 @@ import { execQuery } from "library/sql";
 import mysql from "mysql2/promise";
 import ResponseJson from "library/response";
 import { checkIsNumber } from "helper/func";
+import { qSelectUser } from "api/user/userQuery";
 
 const qInsertMeeting = (
   title: string,
@@ -111,6 +112,40 @@ AND     M.IsActive = 1
 GROUP BY M.MeetingID
 `;
 
+const qUpsertMeetingInvitation = (meetingID: string, userID: number, upsertUserID: number) => `
+INSERT INTO Book.MeetingInvitation
+(
+  MeetingID,
+  UserID,
+  CreateDate,
+  CreateUserID,
+  UpdateDate,
+  UpdateUserID
+)
+VALUES
+(
+  ${meetingID},
+  ${userID},
+  NOW(),
+  ${upsertUserID},
+  NOW(),
+  ${upsertUserID}
+)
+ON DUPLICATE KEY 
+UPDATE  IsActive = 1,
+        UpdateDate = NOW(),
+        UpdateUserID = ${upsertUserID};
+`;
+
+const qIsExistMeetingParticipant = (meetingID: string, userID: number) => `
+SELECT EXISTS (
+  SELECT  UserID 
+  FROM    Book.MeetingParticipant 
+  WHERE   MeetingID = ${meetingID} 
+  AND     UserID = ${userID}
+) AS isExist;
+`;
+
 export const insertMeeting = async (conn: mysql.PoolConnection, param: any, userInfo: any) => {
   const { title, category, location, meetingImageURL, description } = param;
   const { userID } = userInfo;
@@ -162,4 +197,31 @@ export const selectMeeting = async (conn: mysql.PoolConnection, param: any) => {
   }
 
   return new ResponseJson("SUCCESS", result[0], "");
+};
+
+export const upsertMeetingInvitation = async (conn: mysql.PoolConnection, param: any, userInfo: any) => {
+  const { userID } = userInfo;
+  const { id } = param.original;
+  const { email } = param;
+
+  if (!checkIsNumber(id)) {
+    return new ResponseJson("FAIL", null, "잘못된 형식의 요청으로 인해 데이터를 불러올 수 없습니다.");
+  }
+
+  const [user]: any = await execQuery(conn, qSelectUser(email));
+
+  if (!user[0]) {
+    return new ResponseJson("FAIL", null, "입력하신 이메일을 찾을 수 없습니다.");
+  }
+
+  const [isExistMeetingParticipantInfo]: any = await execQuery(conn, qIsExistMeetingParticipant(id, user[0].userID));
+  const { isExist } = isExistMeetingParticipantInfo[0];
+
+  if (isExist) {
+    return new ResponseJson("FAIL", null, "이미 가입한 사용자 입니다.");
+  }
+
+  await execQuery(conn, qUpsertMeetingInvitation(id, user[0].userID, userID));
+
+  return new ResponseJson("SUCCESS", null, "");
 };

@@ -47,7 +47,7 @@ VALUES
 );
 `;
 
-const qSelectUser = (email: string) => `
+export const qSelectUser = (email: string) => `
 SELECT  UserID AS userID,
         Email AS email,
         Name AS name,

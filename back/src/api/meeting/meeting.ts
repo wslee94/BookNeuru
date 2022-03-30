@@ -23,9 +23,15 @@ const selectMeeting = apiWithToken(async (conn: mysql.PoolConnection, param: any
   return result;
 });
 
+const upsertMeetingInvitation = apiWithToken(async (conn: mysql.PoolConnection, param: any, userInfo: any) => {
+  const result = await meetingQuery.upsertMeetingInvitation(conn, param, userInfo);
+  return result;
+});
+
 export default express
   .Router()
   .post("", insertMeeting)
   .put("/:id", updateMeeting)
   .get("", selectMeetings)
-  .get("/:id", selectMeeting);
+  .get("/:id", selectMeeting)
+  .post("/:id/invitation", upsertMeetingInvitation);
