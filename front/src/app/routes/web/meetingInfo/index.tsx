@@ -66,7 +66,7 @@ function MeetingInfo() {
         <Info meetingInfo={meetingInfo} fetchMeeting={fetchMeeting} closeDialog={() => setIsOpenMeetingInfo(false)} />
       </Popup>
       <Popup maxWidth="sm" isOpen={isOpenInvitation} title="모임 구성원 초대">
-        <Invitation closeDialog={() => setIsOpenInvitation(false)} />
+        <Invitation meetingInfo={meetingInfo} closeDialog={() => setIsOpenInvitation(false)} />
       </Popup>
       <Popup maxWidth="lg" isOpen={isOpenActivityInfo} title="활동 만들기">
         <ActivityInfo dialogMode closeDialog={() => setIsOpenActivityInfo(false)} />
