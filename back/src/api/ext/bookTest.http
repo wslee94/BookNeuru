@@ -1,0 +1,4 @@
+### fetch books 
+GET http://localhost:3001/api/ext/book?bookTitle=주식 HTTP/1.1
+content-type: application/json
+Cookie: accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjE0LCJlbWFpbCI6Im9uZXRoaW5nMTBAZ21haWwuY29tIiwibmFtZSI6IuydtOybkOyErSIsImlhdCI6MTY0ODk2MjgyMiwiZXhwIjoxNjQ4OTY2NDIyfQ.gobLWhYnq0kKS63Alt_wgH5N3eY3E07nzZBT_T6tuzw; Path=/; HttpOnly,refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg5NjI4MjIsImV4cCI6MTY1MDE3MjQyMn0.Z_KPNFJOf8QbyaJi_-q3MpMzcW4f8UuUbdb4_Ggr4DM; Path=/; HttpOnly
