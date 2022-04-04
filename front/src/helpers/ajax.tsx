@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestHeaders } from 'axios';
 import { toast } from 'react-toastify';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -9,16 +9,18 @@ axios.defaults.withCredentials = true;
 interface apiCallArgs {
   method: 'get' | 'post' | 'put' | 'delete';
   params?: object;
+  headers?: AxiosRequestHeaders;
   url: string;
   config?: object;
 }
 
-export const apiCall = ({ method, url, params, config }: apiCallArgs) => {
+export const apiCall = ({ method, url, params, headers, config }: apiCallArgs) => {
   return axios({
     method,
     baseURL,
     url,
     data: params,
+    headers,
     ...config,
   });
 };

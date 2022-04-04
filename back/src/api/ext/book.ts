@@ -1,11 +1,16 @@
 import express from "express";
 import mysql from "mysql2/promise";
 import axios from "axios";
+import { checkBlank } from "helper/func";
 import { apiWithToken } from "library/api";
 import { NAVER_CLIENT_ID, NAVER_CLIENT_SECRET } from "config/openAPI";
+import ResponseJson from "library/response";
 
 const fetchBooks = apiWithToken(async (conn: mysql.PoolConnection, param: any) => {
   const { bookTitle } = param.original;
+
+  if (checkBlank(bookTitle)) return new ResponseJson("SUCCESS", [], "");
+
   const bookTitleUTF8 = encodeURI(bookTitle);
 
   const res = await axios({
@@ -17,7 +22,7 @@ const fetchBooks = apiWithToken(async (conn: mysql.PoolConnection, param: any) =
     },
   });
 
-  return res.data;
+  return new ResponseJson("SUCCESS", res.data || [], "");
 });
 
 export default express.Router().get("", fetchBooks);
