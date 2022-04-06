@@ -22,7 +22,16 @@ const fetchBooks = apiWithToken(async (conn: mysql.PoolConnection, param: any) =
     },
   });
 
-  return new ResponseJson("SUCCESS", res.data || [], "");
+  const result = res.data?.items.map((item: any) => {
+    // <b></b> 태그 제거
+    const regex = /<b>|<\/b>/g;
+    const title = item.title.replace(regex, "");
+    const description = item.description.replace(regex, "");
+
+    return { ...item, title, description };
+  });
+
+  return new ResponseJson("SUCCESS", result || [], "");
 });
 
 export default express.Router().get("", fetchBooks);

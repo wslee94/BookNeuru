@@ -1,11 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { debounce } from 'lodash';
 import { handleAjaxError } from 'helpers/error';
 import { apiCall, getAjaxData } from 'helpers/ajax';
-
-type option = { key: string | number; text: string };
 
 interface AutoComplteBookProps {
   value: any;
@@ -18,25 +17,29 @@ function AutoCompleteBook(props: AutoComplteBookProps) {
   const { value, width, onChange, isReadOnly } = props;
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   if (isReadOnly) {
     return <div>{value.text}</div>;
   }
 
-  const fetchBooks = useCallback(async (bookTitle: string) => {
-    try {
-      const res: any = await apiCall({
-        url: `/ext/book?bookTitle=${bookTitle}`,
-        method: 'get',
-      });
-      const result = getAjaxData(res);
-      console.log('result', result);
-    } catch (error) {
-      handleAjaxError(error);
-    }
-  }, []);
-
-  const lazyFetchBooks = useCallback(debounce(fetchBooks, 750), [fetchBooks]);
+  const lazyFetchBooks = useCallback(
+    debounce(async (bookTitle: string) => {
+      try {
+        const res: any = await apiCall({
+          url: `/ext/book?bookTitle=${bookTitle}`,
+          method: 'get',
+        });
+        const result = getAjaxData(res);
+        setOptions(result.map((item: any) => ({ ...item, key: item.isbn, text: item.title })) || []);
+      } catch (error) {
+        handleAjaxError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }, 750),
+    [],
+  );
 
   return (
     <Autocomplete
@@ -48,12 +51,21 @@ function AutoCompleteBook(props: AutoComplteBookProps) {
       onChange={(_e, newValue) => onChange(newValue)}
       inputValue={inputValue}
       onInputChange={(_e, newInputValue) => {
+        setIsLoading(true);
         lazyFetchBooks(newInputValue);
         setInputValue(newInputValue);
       }}
       style={{ width }}
       renderInput={(params) => <TextField {...params} variant="outlined" margin="dense" />}
-      noOptionsText="검색결과가 없습니다."
+      noOptionsText={
+        isLoading ? (
+          <div style={{ textAlign: 'center' }}>
+            <CircularProgress size={25} />
+          </div>
+        ) : (
+          '검색결과가 없습니다.'
+        )
+      }
     />
   );
 }
